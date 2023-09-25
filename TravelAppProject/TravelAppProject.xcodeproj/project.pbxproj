@@ -13,6 +13,7 @@
 		808EAE022AC1B5F800ED57EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808EAE012AC1B5F800ED57EF /* Assets.xcassets */; };
 		808EAE052AC1B5F800ED57EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808EAE032AC1B5F800ED57EF /* LaunchScreen.storyboard */; };
 		808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */; };
+		808EAE0F2AC1D37E00ED57EF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		808EAE042AC1B5F800ED57EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		808EAE062AC1B5F800ED57EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
 				808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */,
 				808EADFC2AC1B5F700ED57EF /* MainViewController.swift */,
+				808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */,
 				808EAE012AC1B5F800ED57EF /* Assets.xcassets */,
 				808EAE032AC1B5F800ED57EF /* LaunchScreen.storyboard */,
 				808EAE062AC1B5F800ED57EF /* Info.plist */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808EAE0F2AC1D37E00ED57EF /* SearchViewController.swift in Sources */,
 				808EADFD2AC1B5F700ED57EF /* MainViewController.swift in Sources */,
 				808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */,
 				808EADF92AC1B5F700ED57EF /* AppDelegate.swift in Sources */,

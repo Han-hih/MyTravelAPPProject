@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         let firstVC = UINavigationController(rootViewController: MainViewController())
         let secondVC = UINavigationController(rootViewController: PhotoViewController())
-       
+        
         tabBarController.setViewControllers([firstVC, secondVC], animated: true)
         tabBarController.tabBar.tintColor = .black
         
