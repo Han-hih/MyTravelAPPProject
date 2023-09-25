@@ -22,6 +22,7 @@ class SearchViewController: UIViewController {
     }()
     let searchTable = {
         let table = UITableView()
+        table.backgroundColor = .clear
         return table
     }()
     
@@ -29,6 +30,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUpAutoLayout()
+        setupTableView()
     }
     
  
@@ -38,27 +40,40 @@ class SearchViewController: UIViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         NSLayoutConstraint.activate([
+            //searchBar 오토레이아웃
             searchBar.topAnchor.constraint(equalTo: view.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            //테이블뷰 오토레이아웃
+            searchTable.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            searchTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            searchTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            searchTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    func setupTableView() {
+        searchTable.delegate = self
+        searchTable.dataSource = self
+        searchTable.register(SearchTable.self, forCellReuseIdentifier: "SearchTable")
+
+    }
+    
+}
+
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return searchResults.count
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTable", for: indexPath) as? SearchTable else { return UITableViewCell() }
+        cell.countryLabel.text = "asdfasdfsfdasf"
+//        cell.countryLabel.text = searchResults[indexPath.row].title
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        return cell
     }
     
     
 }
-
-//extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return searchResults.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTable", for: indexPath) as? SearchTable else { return UITableViewCell() }
-//        cell.countryLabel.text = searchResults[indexPath.row].title
-//        cell.backgroundColor = .clear
-//        cell.selectionStyle = .none
-//        return cell
-//    }
-//    
-//    
-//}
