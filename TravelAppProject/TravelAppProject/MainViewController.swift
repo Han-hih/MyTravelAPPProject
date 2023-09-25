@@ -11,9 +11,14 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .red
+        setNavigation()
     }
-
+    
+    func setNavigation() {
+        self.navigationItem.title = "여행 목록"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+    }
 
 }
 

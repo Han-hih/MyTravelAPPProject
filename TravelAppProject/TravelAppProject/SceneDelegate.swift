@@ -15,8 +15,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let vc = MainViewController()
-        window?.rootViewController = UINavigationController(rootViewController: vc)
+        
+        let tabBarController = UITabBarController()
+        let firstVC = UINavigationController(rootViewController: MainViewController())
+        let secondVC = UINavigationController(rootViewController: PhotoViewController())
+       
+        tabBarController.setViewControllers([firstVC, secondVC], animated: true)
+        tabBarController.tabBar.tintColor = .black
+        
+        if let items = tabBarController.tabBar.items {
+            items[0].selectedImage = UIImage(systemName: "map.fill")
+            items[0].image = UIImage(systemName: "map")
+            items[0].title = "여행 목록"
+            
+            items[1].selectedImage = UIImage(systemName: "photo")
+            items[1].image = UIImage(systemName: "photo.fill")
+            items[1].title = "사진"
+        }
+        
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
     }
