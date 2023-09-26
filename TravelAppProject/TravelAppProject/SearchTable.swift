@@ -13,6 +13,7 @@ class SearchTable: UITableViewCell {
     let countryLabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.textColor = .black
         return label
     }()
     

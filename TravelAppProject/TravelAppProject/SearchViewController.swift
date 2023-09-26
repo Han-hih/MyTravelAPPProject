@@ -30,6 +30,8 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUpAutoLayout()
+        setSearchCompleter()
+        setSearchBar()
         setupTableView()
     }
     
@@ -51,6 +53,15 @@ class SearchViewController: UIViewController {
             searchTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    func setSearchCompleter() {
+        searchCompleter.delegate = self
+        searchCompleter.resultTypes = .address
+    }
+    
+    func setSearchBar() {
+        searchBar.delegate = self
+    }
+    
     func setupTableView() {
         searchTable.delegate = self
         searchTable.dataSource = self
@@ -63,17 +74,30 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return searchResults.count
-        return 10
+        return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTable", for: indexPath) as? SearchTable else { return UITableViewCell() }
-        cell.countryLabel.text = "asdfasdfsfdasf"
-//        cell.countryLabel.text = searchResults[indexPath.row].title
+        cell.countryLabel.text = searchResults[indexPath.row].title
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
     }
     
     
+}
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchCompleter.queryFragment = searchText
+    }
+}
+extension SearchViewController: MKLocalSearchCompleterDelegate {
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        searchResults = completer.results
+        searchTable.reloadData()
+    }
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
 }
