@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
         setupTableView()
     }
     
- 
+    
     func setUpAutoLayout() {
         [searchBar, searchTable].forEach {
             view.addSubview($0)
@@ -66,14 +66,12 @@ class SearchViewController: UIViewController {
         searchTable.delegate = self
         searchTable.dataSource = self
         searchTable.register(SearchTable.self, forCellReuseIdentifier: "SearchTable")
-
     }
-    
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return searchResults.count
+        //        return searchResults.count
         return searchResults.count
     }
     
@@ -83,6 +81,28 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedResult = searchResults[indexPath.row]
+        let searchRequest = MKLocalSearch.Request(completion: selectedResult)
+        let search = MKLocalSearch(request: searchRequest)
+        search.start { response, error in
+            guard let placeMark = response?.mapItems[0].placemark else {
+                return
+            }
+            guard error == nil else {
+                print(error.debugDescription)
+                return
+            }
+            let country = placeMark.country
+//            let countryCode = placeMark.countryCode
+            print(country)
+            
+            let vc = CalanderViewController()
+            self.present(vc, animated: true)
+            
+        }
     }
     
     
