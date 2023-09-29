@@ -17,6 +17,21 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         return view
     }()
     
+    lazy var startButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("2022-01-33 ~ 2022-01-44\n2박 3일", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.textAlignment = .center
+        button.backgroundColor = .blue
+        button.layer.cornerRadius = 8
+        button.clipsToBounds = true
+        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        
+        return button
+    }()
+    
     private var datesRange: [Date]?
     private var firstDate: Date?
     private var lastDate: Date?
@@ -25,16 +40,22 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(calendar)
+        view.addSubview(startButton)
         setAutoLayout()
         calendar.allowsMultipleSelection = true
     }
     
     func setAutoLayout() {
         NSLayoutConstraint.activate([
+            // MARK: - 캘린더 오토레이아웃
             calendar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             calendar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             calendar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            calendar.heightAnchor.constraint(equalToConstant: 400)
+            calendar.heightAnchor.constraint(equalToConstant: 400),
+            // MARK: - 버튼 오코레이아웃
+            startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            startButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            startButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
     }
     
