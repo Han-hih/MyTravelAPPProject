@@ -26,11 +26,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let items = tabBarController.tabBar.items {
             items[0].selectedImage = UIImage(systemName: "map.fill")
             items[0].image = UIImage(systemName: "map")
-            items[0].title = "여행 목록"
+            items[0].title = "Travel List".localized
             
             items[1].selectedImage = UIImage(systemName: "photo")
             items[1].image = UIImage(systemName: "photo.fill")
-            items[1].title = "사진"
+            items[1].title = "Photo".localized
         }
         
         window?.rootViewController = tabBarController

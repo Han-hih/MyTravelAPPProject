@@ -10,6 +10,7 @@
 		80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */; };
 		80491F912AC4133400095DE8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 80491F902AC4133400095DE8 /* FSCalendar */; };
 		80491F942AC71B3100095DE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80491F962AC71B3100095DE8 /* Localizable.strings */; };
+		80491F9A2AC7366B00095DE8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F992AC7366B00095DE8 /* String+Extension.swift */; };
 		808EADF92AC1B5F700ED57EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EADF82AC1B5F700ED57EF /* AppDelegate.swift */; };
 		808EADFB2AC1B5F700ED57EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */; };
 		808EADFD2AC1B5F700ED57EF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EADFC2AC1B5F700ED57EF /* MainViewController.swift */; };
@@ -25,6 +26,7 @@
 		80491F952AC71B3100095DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80491F972AC71B6300095DE8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80491F982AC71B6E00095DE8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		80491F992AC7366B00095DE8 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		808EADF52AC1B5F700ED57EF /* TravelAppProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelAppProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		808EADF82AC1B5F700ED57EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				808EAE012AC1B5F800ED57EF /* Assets.xcassets */,
 				808EAE032AC1B5F800ED57EF /* LaunchScreen.storyboard */,
 				808EAE062AC1B5F800ED57EF /* Info.plist */,
+				80491F992AC7366B00095DE8 /* String+Extension.swift */,
 				80491F962AC71B3100095DE8 /* Localizable.strings */,
 			);
 			path = TravelAppProject;
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80491F9A2AC7366B00095DE8 /* String+Extension.swift in Sources */,
 				808EAE0F2AC1D37E00ED57EF /* SearchViewController.swift in Sources */,
 				808EADFD2AC1B5F700ED57EF /* MainViewController.swift in Sources */,
 				808EAE112AC1E6DF00ED57EF /* SearchTable.swift in Sources */,
