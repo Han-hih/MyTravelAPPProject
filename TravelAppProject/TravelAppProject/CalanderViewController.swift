@@ -28,7 +28,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         button.layer.cornerRadius = 8
         button.clipsToBounds = true
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        
+        button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -46,6 +46,19 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         setAutoLayout()
         calendar.allowsMultipleSelection = true
     }
+    
+    @objc func startButtonTapped() {
+        if startButton.isEnabled {
+            let vc = PlanViewController()
+            guard let dateCount = datesRange?.count else { return }
+            vc.sectionCount = dateCount
+            vc.modalPresentationStyle = .fullScreen
+//            self.present(vc, animated: true)
+            navigationController?.isNavigationBarHidden = true
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     
     func setAutoLayout() {
         NSLayoutConstraint.activate([
@@ -136,7 +149,8 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             firstDate = nil
             
             datesRange = []
-            
+            startButton.setTitle("여행 날짜를 선택해주세요", for: .normal)
+            startButton.isEnabled = false
             print("datesRange contains: \(datesRange!)", "날짜 선택 취소") //*
         }
     }
