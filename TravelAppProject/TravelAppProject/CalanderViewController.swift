@@ -20,7 +20,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
     lazy var startButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("2022-01-33 ~ 2022-01-44\n2박 3일", for: .normal)
+//        button.setTitle("2022-01-33 ~ 2022-01-44\n2박 3일", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
@@ -31,6 +31,8 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         
         return button
     }()
+    
+    let viewModel = CalanderViewModel()
     
     private var datesRange: [Date]?
     private var firstDate: Date?
@@ -78,8 +80,18 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         if firstDate == nil {
             firstDate = date
             datesRange = [firstDate!]
+            print(firstDate, "잘나옴")
+            print(datesRange?[0], "잘나옴222")
+//            self.startButton.setTitle("\(datesRange?[0])", for: .normal)
+            viewModel.dateRange.bind { date in
+                guard let date = self.datesRange?[0] else { return }
+                print(date, self.datesRange?[0])
+                self.startButton.setTitle(self.viewModel.dateToString(completion: {
+                    date
+                }), for: .normal)
+            }
+            print("datesRange contains: \(datesRange!)", "하루만 선택")
             
-            print("datesRange contains: \(datesRange!)")
             return
         }
         if firstDate != nil && lastDate == nil {
@@ -88,7 +100,8 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
                 firstDate = date
                 datesRange = [firstDate!]
                 
-                print("datesRange contains: \(datesRange!)")
+                print("datesRange contains: \(datesRange!)", "하루만 선택되어있을때") //*
+                
                 return
             }
             
@@ -99,7 +112,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
                 calendar.select(d)
             }
             datesRange = range
-            print("datesRange contains: \(datesRange!)")
+            print("datesRange contains: \(datesRange!)", "기간으로 선택됨") //*
             return
         }
         
@@ -113,7 +126,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             
             datesRange = []
             
-            print("datesRange contains: \(datesRange!)")
+            print("datesRange contains: \(datesRange!)", "날짜 선택 취소") //*
         }
     }
     
@@ -125,7 +138,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             lastDate = nil
             firstDate = nil
             datesRange = []
-            print("datesRange contains: \(datesRange!)")
+            print("datesRange contains: \(datesRange!)", "날짜 선택 취소")
         }
     }
 }
