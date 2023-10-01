@@ -43,9 +43,9 @@ class SearchViewController: UIViewController {
         }
         NSLayoutConstraint.activate([
             //searchBar 오토레이아웃
-            searchBar.topAnchor.constraint(equalTo: view.topAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             //테이블뷰 오토레이아웃
             searchTable.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             searchTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -100,7 +100,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             print(country)
             
             let vc = CalanderViewController()
-            self.present(vc, animated: true)
+            
+            vc.modalPresentationStyle = .fullScreen
+            vc.title = "여행 기간을 설정해주세요"
+            self.navigationController?.pushViewController(vc, animated: true)
             
         }
     }

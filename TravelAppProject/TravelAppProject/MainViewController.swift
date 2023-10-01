@@ -24,8 +24,10 @@ class MainViewController: UIViewController {
 
     @objc func createButtonTapped() {
         let vc = SearchViewController()
-        vc.modalPresentationStyle = .automatic
-        self.present(vc, animated: true)
+//        let nav = UINavigationController(rootViewController: vc)
+        vc.modalPresentationStyle = .fullScreen
+        vc.title = "나라 선택"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
