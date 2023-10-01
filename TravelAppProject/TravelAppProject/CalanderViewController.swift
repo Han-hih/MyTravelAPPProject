@@ -113,6 +113,17 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             }
             datesRange = range
             print("datesRange contains: \(datesRange!)", "기간으로 선택됨") //*
+            viewModel.dateRange.bind { date in
+                guard let date = self.datesRange else { return }
+                print(date, self.datesRange?.first, self.datesRange?.last)
+                let firstDay = self.viewModel.dateToString {
+                    date.first!
+                }
+                let lastDay = self.viewModel.dateToString {
+                    date.last!
+                }
+                self.startButton.setTitle("\(firstDay) ~ \(lastDay)", for: .normal)
+            }
             return
         }
         
