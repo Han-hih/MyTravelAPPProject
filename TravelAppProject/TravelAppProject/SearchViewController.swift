@@ -52,7 +52,8 @@ class SearchViewController: UIViewController {
             searchTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             searchTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
+        }
+    
     func setSearchCompleter() {
         searchCompleter.delegate = self
         searchCompleter.resultTypes = .address

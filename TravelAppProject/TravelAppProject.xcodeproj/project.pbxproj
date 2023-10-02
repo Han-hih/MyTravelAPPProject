@@ -22,6 +22,7 @@
 		808EAE0F2AC1D37E00ED57EF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */; };
 		808EAE112AC1E6DF00ED57EF /* SearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE102AC1E6DF00ED57EF /* SearchTable.swift */; };
 		80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */; };
+		80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		808EAE102AC1E6DF00ED57EF /* SearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTable.swift; sourceTree = "<group>"; };
 		80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
+		80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */,
 				80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */,
 				80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */,
+				80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */,
 				80491F9D2AC8806B00095DE8 /* CalanderViewModel.swift */,
 				80491F9B2AC87FA300095DE8 /* Observable.swift */,
 				808EAE102AC1E6DF00ED57EF /* SearchTable.swift */,
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80491F9E2AC8806B00095DE8 /* CalanderViewModel.swift in Sources */,
+				80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */,
 				80491F9A2AC7366B00095DE8 /* String+Extension.swift in Sources */,
 				808EAE0F2AC1D37E00ED57EF /* SearchViewController.swift in Sources */,
 				808EADFD2AC1B5F700ED57EF /* MainViewController.swift in Sources */,
