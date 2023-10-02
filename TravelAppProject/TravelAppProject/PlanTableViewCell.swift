@@ -42,9 +42,6 @@ class PlanTableViewCell: UITableViewCell {
             //장소 제목 레이블
             placeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             placeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            //추가버튼
-            addButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            addButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
             
         ])
         

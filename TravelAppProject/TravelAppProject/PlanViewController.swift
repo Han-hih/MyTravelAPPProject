@@ -18,15 +18,21 @@ final class PlanViewController: UIViewController {
         return view
     }()
     
+    let addButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        return button
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .brown
         setAutoLayout()
         setupTableView()
+        self.tableView.isEditing = true
     }
     
     func setAutoLayout() {
-        [tableView].forEach {
+        [tableView, addButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -34,7 +40,10 @@ final class PlanViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.heightAnchor.constraint(equalToConstant: 400)
+            tableView.heightAnchor.constraint(equalToConstant: 400),
+            
+            addButton.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     func setupTableView() {
@@ -46,7 +55,20 @@ final class PlanViewController: UIViewController {
 }
 
 extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
     
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//        placeArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        let moveObject = self.placeArray[sourceIndexPath.row]
+        placeArray.remove(at: sourceIndexPath.row)
+        placeArray.insert(moveObject, at: destinationIndexPath.row)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount
