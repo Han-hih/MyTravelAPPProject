@@ -45,6 +45,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         view.addSubview(startButton)
         setAutoLayout()
         calendar.allowsMultipleSelection = true
+        startButton.isEnabled = false
     }
     
     @objc func startButtonTapped() {
@@ -96,6 +97,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             print(firstDate, "잘나옴")
             print(datesRange?[0], "잘나옴222")
 //            self.startButton.setTitle("\(datesRange?[0])", for: .normal)
+            startButton.isEnabled = true
             viewModel.dateRange.bind { date in
                 guard let date = self.datesRange?[0] else { return }
                 print(date, self.datesRange?[0])
@@ -126,6 +128,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             }
             datesRange = range
             print("datesRange contains: \(datesRange!)", "기간으로 선택됨") //*
+            startButton.isEnabled = true
             viewModel.dateRange.bind { date in
                 guard let date = self.datesRange else { return }
                 print(date, self.datesRange?.first, self.datesRange?.last)
