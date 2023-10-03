@@ -10,7 +10,7 @@ import UIKit
 final class PlanViewController: UIViewController {
     
     var sectionCount = 0
-    var placeArray = ["서울", "대구", "부산"]
+    var placeArray: [String] = ["서울", "대구", "부산"]
     
     let tableView = {
         let view = UITableView(frame: .zero, style: .insetGrouped)
@@ -41,9 +41,6 @@ final class PlanViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.heightAnchor.constraint(equalToConstant: 400),
-            
-            addButton.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     func setupTableView() {
@@ -55,6 +52,36 @@ final class PlanViewController: UIViewController {
 }
 
 extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+            let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0))
+//            footerView.backgroundColor = .orange
+        let plusButton = UIButton()
+        plusButton.setTitle("Add Place".localized, for: .normal)
+        plusButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+        plusButton.tintColor = .black
+//        plusButton.layer.borderWidth = 1
+//        plusButton.layer.borderColor = UIColor.black.cgColor
+//        plusButton.layer.cornerRadius = 8
+        plusButton.clipsToBounds = true
+        plusButton.setTitleColor(UIColor.black, for: .normal)
+            plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        plusButton.setUnderline()
+            footerView.addSubview(plusButton)
+        plusButton.translatesAutoresizingMaskIntoConstraints = false
+        plusButton.centerXAnchor.constraint(equalTo: footerView.centerXAnchor).isActive = true
+        plusButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor).isActive = true
+        
+            return footerView
+
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
+    @objc func plusButtonTapped() {
+        
+    }
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
@@ -64,7 +91,7 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-//        placeArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        //        placeArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
         let moveObject = self.placeArray[sourceIndexPath.row]
         placeArray.remove(at: sourceIndexPath.row)
         placeArray.insert(moveObject, at: destinationIndexPath.row)
@@ -73,19 +100,39 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return placeArray.count
+        if placeArray.isEmpty {
+            return 1
+        } else {
+            return placeArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlanTable", for: indexPath) as? PlanTableViewCell else {
             return UITableViewCell() }
         cell.backgroundColor = .systemMint
-        cell.placeLabel.text = placeArray[indexPath.row]
+        if placeArray.isEmpty {
+            cell.placeLabel.text = ""
+        } else {
+            cell.placeLabel.text = placeArray[indexPath.row]
+        }
         return cell
         
-        }
     }
-    
-    
+}
 
+
+
+extension UIButton {
+    func setUnderline() {
+            guard let title = title(for: .normal) else { return }
+            let attributedString = NSMutableAttributedString(string: title)
+            attributedString.addAttribute(.underlineStyle,
+                                          value: NSUnderlineStyle.single.rawValue,
+                                          range: NSRange(location: 0, length: title.count)
+            )
+            setAttributedTitle(attributedString, for: .normal)
+        }
+}
