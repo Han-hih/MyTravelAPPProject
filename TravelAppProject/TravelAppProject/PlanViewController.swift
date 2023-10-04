@@ -10,7 +10,8 @@ import UIKit
 final class PlanViewController: UIViewController {
     
     var sectionCount = 0
-    var placeArray: [String] = ["서울", "대구", "부산"]
+   lazy var place = [[String]](repeating: [String](), count: sectionCount)
+    var placeArray = [["대전", "세종", "부산"], ["서울", "대구", "부산"]]
     
     let tableView = {
         let view = UITableView(frame: .zero, style: .insetGrouped)
@@ -60,6 +61,7 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         plusButton.setTitle("Add Place".localized, for: .normal)
         plusButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
         plusButton.tintColor = .black
+        plusButton.tag = section
 //        plusButton.layer.borderWidth = 1
 //        plusButton.layer.borderColor = UIColor.black.cgColor
 //        plusButton.layer.cornerRadius = 8
@@ -73,15 +75,18 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         plusButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor).isActive = true
         
             return footerView
-
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 44
     }
     
-    @objc func plusButtonTapped() {
+    @objc func plusButtonTapped(_ sender: UIButton) {
+        let vc = PlanSearchViewController()
         
+        present(vc, animated: true)
+        print(sender.tag)
     }
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
@@ -102,22 +107,14 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if placeArray.isEmpty {
-            return 1
-        } else {
-            return placeArray.count
-        }
+        return place[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlanTable", for: indexPath) as? PlanTableViewCell else {
             return UITableViewCell() }
         cell.backgroundColor = .systemMint
-        if placeArray.isEmpty {
-            cell.placeLabel.text = ""
-        } else {
-            cell.placeLabel.text = placeArray[indexPath.row]
-        }
+        cell.placeLabel.text = place[indexPath.section][indexPath.row]
         return cell
         
     }
