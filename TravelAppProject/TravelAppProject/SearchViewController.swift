@@ -77,10 +77,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTable", for: indexPath) as? SearchTable else { return UITableViewCell() }
-        cell.mainTextLabel.text = searchResults[indexPath.row].title
-        cell.backgroundColor = .clear
-        cell.selectionStyle = .none
+        let cell = UITableViewCell()
+        var content = cell.defaultContentConfiguration()
+//        content.text = searchResults[indexPath.row].title
+        content.attributedText = NSAttributedString(string: searchResults[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold)])
+        content.textProperties.alignment = .justified
+        cell.contentConfiguration = content
+
         return cell
     }
     

@@ -71,20 +71,18 @@ class PlanSearchViewController: UIViewController {
 }
 
 extension PlanSearchViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //        return searchResults.count
         return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTable", for: indexPath) as? SearchTable else { return UITableViewCell() }
-        cell.mainTextLabel.text = searchResults[indexPath.row].title
-        cell.subTextLabel.text = searchResults[indexPath.row].subtitle
-        cell.backgroundColor = .clear
-        cell.selectionStyle = .none
+         let cell = UITableViewCell()
+        var content = cell.defaultContentConfiguration()
+        content.text = searchResults[indexPath.row].title
+        content.attributedText = NSAttributedString(string: searchResults[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .semibold)])
+        content.secondaryText = searchResults[indexPath.row].subtitle
+        cell.contentConfiguration = content
         return cell
     }
     
