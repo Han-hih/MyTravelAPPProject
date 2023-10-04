@@ -78,7 +78,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTable", for: indexPath) as? SearchTable else { return UITableViewCell() }
-        cell.countryLabel.text = searchResults[indexPath.row].title
+        cell.mainTextLabel.text = searchResults[indexPath.row].title
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell

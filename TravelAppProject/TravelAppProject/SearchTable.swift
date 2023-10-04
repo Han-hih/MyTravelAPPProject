@@ -10,9 +10,15 @@ import UIKit
 class SearchTable: UITableViewCell {
     static let identifier = "SearchTable"
     
-    let countryLabel = {
+    let mainTextLabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.textColor = .black
+        return label
+    }()
+    let subTextLabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12, weight: .regular)
         label.textColor = .black
         return label
     }()
@@ -36,11 +42,17 @@ class SearchTable: UITableViewCell {
     }
     
     func setAutoLayout() {
-        addSubview(countryLabel)
-        countryLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(mainTextLabel)
+        addSubview(subTextLabel)
+        mainTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        subTextLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            countryLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            countryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
+            mainTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            mainTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            mainTextLabel.heightAnchor.constraint(equalToConstant: 20),
+            subTextLabel.bottomAnchor.constraint(equalTo: mainTextLabel.bottomAnchor, constant: 20),
+            subTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            subTextLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
         
         

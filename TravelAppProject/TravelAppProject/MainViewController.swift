@@ -16,7 +16,7 @@ class MainViewController: UIViewController {
     }
     
     func setNavigation() {
-        self.navigationItem.title = "여행 목록"
+        self.navigationItem.title = "Travel List".localized
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .done, target: self, action: #selector(createButtonTapped))
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationController?.navigationBar.tintColor = .black
