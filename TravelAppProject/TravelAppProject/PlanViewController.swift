@@ -12,6 +12,7 @@ final class PlanViewController: UIViewController {
     var sectionCount = 0
    lazy var place = [[String]](repeating: [String](), count: sectionCount)
     var placeArray = [["대전", "세종", "부산"], ["서울", "대구", "부산"]]
+    var dateArray = [Date]()
     
     let tableView = {
         let view = UITableView(frame: .zero, style: .insetGrouped)
@@ -30,6 +31,7 @@ final class PlanViewController: UIViewController {
         setAutoLayout()
         setupTableView()
         self.tableView.isEditing = true
+        print(dateArray)
     }
     
     func setAutoLayout() {
@@ -41,7 +43,7 @@ final class PlanViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.heightAnchor.constraint(equalToConstant: 400),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
     }
     func setupTableView() {
@@ -53,6 +55,10 @@ final class PlanViewController: UIViewController {
 }
 
 extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return dateArray[section].formatted()
+    }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
             let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0))

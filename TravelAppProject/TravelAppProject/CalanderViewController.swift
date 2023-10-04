@@ -54,6 +54,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             guard let dateCount = datesRange?.count else { return }
             vc.sectionCount = dateCount
             vc.modalPresentationStyle = .fullScreen
+            vc.dateArray = datesRange!
 //            self.present(vc, animated: true)
             navigationController?.isNavigationBarHidden = true
             navigationController?.pushViewController(vc, animated: true)
