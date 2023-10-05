@@ -25,6 +25,7 @@
 		808EAE112AC1E6DF00ED57EF /* SearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE102AC1E6DF00ED57EF /* SearchTable.swift */; };
 		808F8A592ACEDD1700D9A0EB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 808F8A582ACEDD1700D9A0EB /* Realm */; };
 		808F8A5B2ACEDD1700D9A0EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 808F8A5A2ACEDD1700D9A0EB /* RealmSwift */; };
+		808F8A5E2ACEDF1D00D9A0EB /* TravelRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808F8A5D2ACEDF1D00D9A0EB /* TravelRealmModel.swift */; };
 		80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */; };
 		80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		808EAE102AC1E6DF00ED57EF /* SearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTable.swift; sourceTree = "<group>"; };
+		808F8A5D2ACEDF1D00D9A0EB /* TravelRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelRealmModel.swift; sourceTree = "<group>"; };
 		80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +88,7 @@
 		808EADF72AC1B5F700ED57EF /* TravelAppProject */ = {
 			isa = PBXGroup;
 			children = (
+				808F8A5C2ACEDF0400D9A0EB /* Realm */,
 				808EADF82AC1B5F700ED57EF /* AppDelegate.swift */,
 				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
 				808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */,
@@ -106,6 +109,14 @@
 				80491F962AC71B3100095DE8 /* Localizable.strings */,
 			);
 			path = TravelAppProject;
+			sourceTree = "<group>";
+		};
+		808F8A5C2ACEDF0400D9A0EB /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				808F8A5D2ACEDF1D00D9A0EB /* TravelRealmModel.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +214,7 @@
 				80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */,
 				808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */,
 				808EADF92AC1B5F700ED57EF /* AppDelegate.swift in Sources */,
+				808F8A5E2ACEDF1D00D9A0EB /* TravelRealmModel.swift in Sources */,
 				808EADFB2AC1B5F700ED57EF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
