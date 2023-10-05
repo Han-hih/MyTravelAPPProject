@@ -95,8 +95,8 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         if firstDate == nil {
             firstDate = date
             datesRange = [firstDate!]
-            print(firstDate, "잘나옴")
-            print(datesRange?[0], "잘나옴222")
+//            print(firstDate, "잘나옴")
+//            print(datesRange?[0], "잘나옴222")
 //            self.startButton.setTitle("\(datesRange?[0])", for: .normal)
             startButton.isEnabled = true
             viewModel.dateRange.bind { date in
@@ -132,7 +132,8 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             startButton.isEnabled = true
             viewModel.dateRange.bind { date in
                 guard let date = self.datesRange else { return }
-                print(date, self.datesRange?.first, self.datesRange?.last)
+//                print(date, self.datesRange?.first, self.datesRange?.last)
+                
                 let firstDay = self.viewModel.dateToString {
                     date.first!
                 }
@@ -140,10 +141,13 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
                     date.last!
                 }
                 self.startButton.setTitle("\(firstDay) ~ \(lastDay)", for: .normal)
+                print(self.daysBetween(start: date.first!, end: date.last!))
             }
+//            print(daysBetween(start: self.datesRange?.first, end: self.datesRange?.last))
             return
         }
         
+     
         if firstDate != nil && lastDate != nil {
             for d in calendar.selectedDates {
                 calendar.deselect(d)
@@ -169,5 +173,9 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             datesRange = []
             print("datesRange contains: \(datesRange!)", "날짜 선택 취소")
         }
+    }
+    
+    func daysBetween(start: Date, end: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: start, to: end).day!
     }
 }

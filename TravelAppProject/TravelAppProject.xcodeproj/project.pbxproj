@@ -23,6 +23,8 @@
 		808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */; };
 		808EAE0F2AC1D37E00ED57EF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */; };
 		808EAE112AC1E6DF00ED57EF /* SearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE102AC1E6DF00ED57EF /* SearchTable.swift */; };
+		808F8A592ACEDD1700D9A0EB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 808F8A582ACEDD1700D9A0EB /* Realm */; };
+		808F8A5B2ACEDD1700D9A0EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 808F8A5A2ACEDD1700D9A0EB /* RealmSwift */; };
 		80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */; };
 		80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808F8A5B2ACEDD1700D9A0EB /* RealmSwift in Frameworks */,
+				808F8A592ACEDD1700D9A0EB /* Realm in Frameworks */,
 				80491F912AC4133400095DE8 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +126,8 @@
 			name = TravelAppProject;
 			packageProductDependencies = (
 				80491F902AC4133400095DE8 /* FSCalendar */,
+				808F8A582ACEDD1700D9A0EB /* Realm */,
+				808F8A5A2ACEDD1700D9A0EB /* RealmSwift */,
 			);
 			productName = TravelAppProject;
 			productReference = 808EADF52AC1B5F700ED57EF /* TravelAppProject.app */;
@@ -155,6 +161,7 @@
 			mainGroup = 808EADEC2AC1B5F700ED57EF;
 			packageReferences = (
 				80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 808EADF62AC1B5F700ED57EF /* Products */;
 			projectDirPath = "";
@@ -439,6 +446,14 @@
 				minimumVersion = 2.8.4;
 			};
 		};
+		808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -446,6 +461,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		808F8A582ACEDD1700D9A0EB /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		808F8A5A2ACEDD1700D9A0EB /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
