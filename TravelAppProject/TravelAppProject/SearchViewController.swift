@@ -8,6 +8,15 @@
 import UIKit
 import MapKit
 
+enum Section {
+     case search
+}
+
+struct Search: Hashable {
+    var result: MKLocalSearchCompletion
+}
+
+
 class SearchViewController: UIViewController {
     
     private var searchCompleter = MKLocalSearchCompleter() // 검색을 도와주는 변수
@@ -26,6 +35,9 @@ class SearchViewController: UIViewController {
         return table
     }()
     
+    var dataSource : UITableViewDiffableDataSource<Section, Search>!
+    var snapshot : NSDiffableDataSourceSnapshot<Section, Search>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -33,8 +45,30 @@ class SearchViewController: UIViewController {
         setSearchCompleter()
         setSearchBar()
         setupTableView()
+        setDataSource()
+        
     }
-    
+    func setDataSource() {
+        
+        dataSource = UITableViewDiffableDataSource<Section, Search>(tableView: self.searchTable, cellProvider: { [self] tableView, indexPath, item in
+            let cell = UITableViewCell()
+            var content = cell.defaultContentConfiguration()
+            content.attributedText = NSAttributedString(string: searchResults[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold)])
+            content.textProperties.alignment = .justified
+            cell.contentConfiguration = content
+
+            return cell
+        })
+        
+        
+    }
+    func snapShot(data: [MKLocalSearchCompletion]) {
+       var snapshot = NSDiffableDataSourceSnapshot<Section, Search>()
+        let data = data.map { Search.init(result: $0) }
+        snapshot.appendSections([.search])
+        snapshot.appendItems(data)
+        dataSource.apply(snapshot)
+    }
     
     func setUpAutoLayout() {
         [searchBar, searchTable].forEach {
@@ -65,27 +99,26 @@ class SearchViewController: UIViewController {
     
     func setupTableView() {
         searchTable.delegate = self
-        searchTable.dataSource = self
-        searchTable.register(SearchTable.self, forCellReuseIdentifier: "SearchTable")
+//        searchTable.dataSource = self
+//        searchTable.register(SearchTable.self, forCellReuseIdentifier: "SearchTable")
     }
 }
 
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return searchResults.count
-        return searchResults.count
-    }
+extension SearchViewController: UITableViewDelegate /*UITableViewDataSource*/ {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return searchResults.count
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        var content = cell.defaultContentConfiguration()
-//        content.text = searchResults[indexPath.row].title
-        content.attributedText = NSAttributedString(string: searchResults[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold)])
-        content.textProperties.alignment = .justified
-        cell.contentConfiguration = content
-
-        return cell
-    }
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = UITableViewCell()
+//        var content = cell.defaultContentConfiguration()
+////        content.text = searchResults[indexPath.row].title
+//        content.attributedText = NSAttributedString(string: searchResults[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold)])
+//        content.textProperties.alignment = .justified
+//        cell.contentConfiguration = content
+//
+//        return cell
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedResult = searchResults[indexPath.row]
@@ -122,7 +155,8 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         searchResults = completer.results
-        searchTable.reloadData()
+        print(completer.results)
+        snapShot(data: searchResults)
     }
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         print(error.localizedDescription)
