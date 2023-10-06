@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800404642AD01F7E00634CD4 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404632AD01F7E00634CD4 /* MainCollectionViewCell.swift */; };
+		800404662AD0325000634CD4 /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404652AD0325000634CD4 /* ReusableViewProtocol.swift */; };
 		80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */; };
 		80491F912AC4133400095DE8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 80491F902AC4133400095DE8 /* FSCalendar */; };
 		80491F942AC71B3100095DE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80491F962AC71B3100095DE8 /* Localizable.strings */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		800404632AD01F7E00634CD4 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		800404652AD0325000634CD4 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderViewController.swift; sourceTree = "<group>"; };
 		80491F952AC71B3100095DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80491F972AC71B6300095DE8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				808F8A5C2ACEDF0400D9A0EB /* Realm */,
 				808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */,
 				808EADFC2AC1B5F700ED57EF /* MainViewController.swift */,
+				800404632AD01F7E00634CD4 /* MainCollectionViewCell.swift */,
 				808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */,
 				80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */,
 				80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */,
@@ -105,6 +110,7 @@
 				808EAE012AC1B5F800ED57EF /* Assets.xcassets */,
 				808EAE032AC1B5F800ED57EF /* LaunchScreen.storyboard */,
 				808EAE062AC1B5F800ED57EF /* Info.plist */,
+				800404652AD0325000634CD4 /* ReusableViewProtocol.swift */,
 				80491F992AC7366B00095DE8 /* String+Extension.swift */,
 				80491F962AC71B3100095DE8 /* Localizable.strings */,
 			);
@@ -201,9 +207,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				800404662AD0325000634CD4 /* ReusableViewProtocol.swift in Sources */,
 				80491F9E2AC8806B00095DE8 /* CalanderViewModel.swift in Sources */,
 				80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */,
 				80491F9A2AC7366B00095DE8 /* String+Extension.swift in Sources */,
+				800404642AD01F7E00634CD4 /* MainCollectionViewCell.swift in Sources */,
 				808EAE0F2AC1D37E00ED57EF /* SearchViewController.swift in Sources */,
 				8087419F2ACC311C00F81574 /* PlanSearchSettingViewController.swift in Sources */,
 				808EADFD2AC1B5F700ED57EF /* MainViewController.swift in Sources */,
