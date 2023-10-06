@@ -20,7 +20,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
     lazy var startButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle("2022-01-33 ~ 2022-01-44\n2박 3일", for: .normal)
+        //        button.setTitle("2022-01-33 ~ 2022-01-44\n2박 3일", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
@@ -55,7 +55,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             vc.sectionCount = dateCount
             vc.modalPresentationStyle = .fullScreen
             vc.dateArray = datesRange!
-//            self.present(vc, animated: true)
+            //            self.present(vc, animated: true)
             navigationController?.isNavigationBarHidden = true
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -95,9 +95,9 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         if firstDate == nil {
             firstDate = date
             datesRange = [firstDate!]
-//            print(firstDate, "잘나옴")
-//            print(datesRange?[0], "잘나옴222")
-//            self.startButton.setTitle("\(datesRange?[0])", for: .normal)
+            //            print(firstDate, "잘나옴")
+            //            print(datesRange?[0], "잘나옴222")
+            //            self.startButton.setTitle("\(datesRange?[0])", for: .normal)
             startButton.isEnabled = true
             viewModel.dateRange.bind { date in
                 guard let date = self.datesRange?[0] else { return }
@@ -132,7 +132,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             startButton.isEnabled = true
             viewModel.dateRange.bind { date in
                 guard let date = self.datesRange else { return }
-//                print(date, self.datesRange?.first, self.datesRange?.last)
+                //                print(date, self.datesRange?.first, self.datesRange?.last)
                 
                 let firstDay = self.viewModel.dateToString {
                     date.first!
@@ -142,12 +142,13 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
                 }
                 self.startButton.setTitle("\(firstDay) ~ \(lastDay)", for: .normal)
                 print(self.daysBetween(start: date.first!, end: date.last!))
+                print(self.dateBetween(start: date.first!, end: date.last!))
             }
-//            print(daysBetween(start: self.datesRange?.first, end: self.datesRange?.last))
+            //            print(daysBetween(start: self.datesRange?.first, end: self.datesRange?.last))
             return
         }
         
-     
+        
         if firstDate != nil && lastDate != nil {
             for d in calendar.selectedDates {
                 calendar.deselect(d)
@@ -178,4 +179,18 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
     func daysBetween(start: Date, end: Date) -> Int {
         return Calendar.current.dateComponents([.day], from: start, to: end).day!
     }
+    
+    func dateBetween(start: Date, end: Date) -> [Date] {
+        if start > end { return [Date]() }
+        
+        var tempDate = start
+        var array = [tempDate]
+        
+        while tempDate < end {
+            tempDate = Calendar.current.date(byAdding: .day, value: 1, to: tempDate)!
+            array.append(tempDate)
+        }
+        return array
+    }
+    
 }
