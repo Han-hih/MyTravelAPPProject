@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import RealmSwift
 
 class CalanderViewController: UIViewController, FSCalendarDelegate {
     
@@ -37,6 +38,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
     private var datesRange: [Date]?
     private var firstDate: Date?
     private var lastDate: Date?
+    var country = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,17 +52,30 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
     
     @objc func startButtonTapped() {
         if startButton.isEnabled {
-            let vc = PlanViewController()
-            guard let dateCount = datesRange?.count else { return }
-            vc.sectionCount = dateCount
-            vc.modalPresentationStyle = .fullScreen
-            vc.dateArray = datesRange!
-            //            self.present(vc, animated: true)
-            navigationController?.isNavigationBarHidden = true
-            navigationController?.pushViewController(vc, animated: true)
+            createRealm()
+            self.navigationController?.popToRootViewController(animated: true)
+
         }
     }
     
+    func createRealm() {
+        let realm = try! Realm()
+        if datesRange?.count == 1 {
+            let task = TravelRealmModel(country: country, startDate: datesRange!.first!, endDate: nil)
+            try! realm.write {
+                realm.add(task)
+                print("realm 저장 성공(하루)")
+                print(Realm.Configuration.defaultConfiguration.fileURL!)
+            }
+        } else {
+            let task = TravelRealmModel(country: country, startDate: datesRange!.first!, endDate: datesRange!.last!)
+            try! realm.write {
+                realm.add(task)
+                print("realm 저장 성공(여러날)")
+                print(Realm.Configuration.defaultConfiguration.fileURL!)
+            }
+        }
+    }
     
     func setAutoLayout() {
         NSLayoutConstraint.activate([

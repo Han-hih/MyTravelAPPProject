@@ -88,9 +88,9 @@
 		808EADF72AC1B5F700ED57EF /* TravelAppProject */ = {
 			isa = PBXGroup;
 			children = (
-				808F8A5C2ACEDF0400D9A0EB /* Realm */,
 				808EADF82AC1B5F700ED57EF /* AppDelegate.swift */,
 				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
+				808F8A5C2ACEDF0400D9A0EB /* Realm */,
 				808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */,
 				808EADFC2AC1B5F700ED57EF /* MainViewController.swift */,
 				808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */,

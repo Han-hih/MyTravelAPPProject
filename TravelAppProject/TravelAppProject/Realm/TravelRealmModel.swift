@@ -16,13 +16,12 @@ class TravelRealmModel: Object {
     @Persisted var endDate: Date?
     @Persisted var detail: List<DetailTable>
     
-    convenience init(country: String, startDate: Date, endDate: Date? = nil, detail: List<DetailTable>) {
+    convenience init(country: String, startDate: Date, endDate: Date? = nil) {
         self.init()
         
         self.country = country
         self.startDate = startDate
         self.endDate = endDate
-        self.detail = detail
     }
     
     

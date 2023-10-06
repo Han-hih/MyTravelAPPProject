@@ -132,7 +132,7 @@ extension SearchViewController: UITableViewDelegate /*UITableViewDataSource*/ {
                 print(error.debugDescription)
                 return
             }
-            let country = placeMark.country
+            guard let country = placeMark.country else { return }
 //            let countryCode = placeMark.countryCode
             print(country)
             
@@ -140,6 +140,7 @@ extension SearchViewController: UITableViewDelegate /*UITableViewDataSource*/ {
             
             vc.modalPresentationStyle = .fullScreen
             vc.title = "여행 기간을 설정해주세요"
+            vc.country = country
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
