@@ -116,42 +116,43 @@ class MainCollectionViewCell: UICollectionViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         NSLayoutConstraint.activate([
+            // MARK: - 바코드뷰
             barcodeView.topAnchor.constraint(equalTo: contentView.topAnchor),
             barcodeView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             barcodeView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             barcodeView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2),
-            
+            // MARK: - 메인뷰
             mainView.topAnchor.constraint(equalTo: barcodeView.bottomAnchor),
             mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             mainView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6),
-            
+            // MARK: - 하단뷰
             bottomView.topAnchor.constraint(equalTo: mainView.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
+            // MARK: - 여행레이블뷰
             travelLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
             travelLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
-            
+            // MARK: - 시작날짜
             startLabel.topAnchor.constraint(equalTo: travelLabel.topAnchor),
             startLabel.leadingAnchor.constraint(equalTo: mainView.centerXAnchor, constant: 10),
-            
+            // MARK: - 끝날짜
             endLabel.leadingAnchor.constraint(equalTo: startLabel.leadingAnchor),
             endLabel.topAnchor.constraint(equalTo: mainView.centerYAnchor),
-            
+            // MARK: - 하단뷰에 들어가는 레이블
             viewLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             viewLabel.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
-            
+            // MARK: - 여행지 레이블
             travelPlaceLabel.topAnchor.constraint(equalTo: travelLabel.bottomAnchor, constant: 5),
             travelPlaceLabel.leadingAnchor.constraint(equalTo: travelLabel.leadingAnchor),
-            
+            // MARK: - 시작날짜 레이블
             startDateLabel.topAnchor.constraint(equalTo: travelPlaceLabel.topAnchor),
             startDateLabel.leadingAnchor.constraint(equalTo: startLabel.leadingAnchor),
-            
+            // MARK: - 끝 날짜 레이블
             endDateLabel.topAnchor.constraint(equalTo: endLabel.bottomAnchor, constant: 5),
             endDateLabel.leadingAnchor.constraint(equalTo: startLabel.leadingAnchor),
-            
+            // MARK: - 나라 전체 이름
             countryFullLabel.topAnchor.constraint(equalTo: travelPlaceLabel.bottomAnchor, constant: 2),
             countryFullLabel.leadingAnchor.constraint(equalTo: travelPlaceLabel.leadingAnchor),
             countryFullLabel.trailingAnchor.constraint(equalTo: mainView.centerXAnchor, constant: -5)
