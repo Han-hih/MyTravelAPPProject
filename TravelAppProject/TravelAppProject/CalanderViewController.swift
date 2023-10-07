@@ -156,10 +156,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
                     date.last!
                 }
                 self.startButton.setTitle("\(firstDay) ~ \(lastDay)", for: .normal)
-                print(self.daysBetween(start: date.first!, end: date.last!))
-                print(self.dateBetween(start: date.first!, end: date.last!))
             }
-            //            print(daysBetween(start: self.datesRange?.first, end: self.datesRange?.last))
             return
         }
         
@@ -189,23 +186,6 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             datesRange = []
             print("datesRange contains: \(datesRange!)", "날짜 선택 취소")
         }
-    }
-    
-    func daysBetween(start: Date, end: Date) -> Int {
-        return Calendar.current.dateComponents([.day], from: start, to: end).day!
-    }
-    
-    func dateBetween(start: Date, end: Date) -> [Date] {
-        if start > end { return [Date]() }
-        
-        var tempDate = start
-        var array = [tempDate]
-        
-        while tempDate < end {
-            tempDate = Calendar.current.date(byAdding: .day, value: 1, to: tempDate)!
-            array.append(tempDate)
-        }
-        return array
     }
     
 }

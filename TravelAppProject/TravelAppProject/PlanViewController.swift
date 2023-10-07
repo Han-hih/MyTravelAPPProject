@@ -27,7 +27,7 @@ final class PlanViewController: UIViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
+        view.backgroundColor = .white
         setAutoLayout()
         setupTableView()
         self.tableView.isEditing = true
@@ -57,7 +57,7 @@ final class PlanViewController: UIViewController {
 extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return dateArray[section].formatted()
+        return "".localizeDate(date: dateArray[section])
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -100,7 +100,8 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-    
+    // MARK: - 수정 할 부분(드래그앤드롭)
+
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         //        placeArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
         let moveObject = self.placeArray[sourceIndexPath.row]

@@ -87,5 +87,29 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = PlanViewController()
+        vc.navigationController?.title = list[indexPath.row].country
+        vc.navigationItem.backButtonTitle = ""
+        vc.dateArray = dateBetween(start: list[indexPath.row].startDate, end: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
+        vc.sectionCount = daysBetween(start: list[indexPath.row].startDate, end: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
+    func daysBetween(start: Date, end: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: start, to: end).day!
+    }
+    
+    func dateBetween(start: Date, end: Date) -> [Date] {
+        if start > end { return [Date]() }
+        
+        var tempDate = start
+        var array = [tempDate]
+        
+        while tempDate < end {
+            tempDate = Calendar.current.date(byAdding: .day, value: 1, to: tempDate)!
+            array.append(tempDate)
+        }
+        return array
+    }
 }
