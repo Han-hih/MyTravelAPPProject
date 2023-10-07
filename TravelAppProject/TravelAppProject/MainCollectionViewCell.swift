@@ -43,6 +43,35 @@ class MainCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    let travelLabel = {
+        let label = CustomLabel()
+        label.text = "여행지"
+        return label
+    }()
+    
+    let startLabel = {
+        let label = CustomLabel()
+        label.text = "Start Date"
+        return label
+    }()
+    
+    let endLabel = {
+        let label = CustomLabel()
+        label.text = "End Date"
+        return label
+    }()
+    
+    let viewLabel = {
+        let label = PaddingLabel()
+        label.text = " VIEW YOUR PLAN "
+        label.font = .boldSystemFont(ofSize: 30)
+        label.layer.cornerRadius = 10
+        label.clipsToBounds = true
+        label.layer.borderColor = UIColor.black.cgColor
+        label.layer.borderWidth = 1
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -56,7 +85,7 @@ class MainCollectionViewCell: UICollectionViewCell {
     
    
     func setAutoLayout() {
-        [barcodeView, mainView, bottomView].forEach {
+        [barcodeView, mainView, bottomView, travelLabel, startLabel, endLabel, viewLabel].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -74,7 +103,21 @@ class MainCollectionViewCell: UICollectionViewCell {
             bottomView.topAnchor.constraint(equalTo: mainView.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            bottomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            bottomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+             
+            travelLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
+            travelLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            
+            startLabel.topAnchor.constraint(equalTo: travelLabel.topAnchor),
+            startLabel.leadingAnchor.constraint(equalTo: mainView.centerXAnchor, constant: 10),
+            
+            endLabel.leadingAnchor.constraint(equalTo: startLabel.leadingAnchor),
+            endLabel.topAnchor.constraint(equalTo: mainView.centerYAnchor),
+            
+            viewLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
+            viewLabel.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor)
+            
         ])
     }
 }
+
