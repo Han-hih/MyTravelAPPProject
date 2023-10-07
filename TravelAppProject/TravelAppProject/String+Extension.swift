@@ -14,8 +14,8 @@ extension String {
     func localized(number: Int) -> String {
         return StringLiteralType(format: self.localized, number)
     }
-    func localizeDate() -> String {
-        return DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
+    func localizeDate(date: Date) -> String {
+        return DateFormatter.localizedString(from: date, dateStyle: .full, timeStyle: .none)
     }
     func numbers(money: Int) -> String {
         return NumberFormatter.localizedString(from: money as NSNumber, number: .decimal)
