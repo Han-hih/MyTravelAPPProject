@@ -25,6 +25,23 @@ class CustomLabel: UILabel {
     }
     
 }
+
+class CustomDateLabel: UILabel {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setDateLabel()
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setDateLabel() {
+        font = .systemFont(ofSize: 20, weight: .semibold)
+        textColor = .black
+    }
+    
+    
+}
 @IBDesignable class PaddingLabel: UILabel {
     
     @IBInspectable var topPadding: CGFloat = 10.0
