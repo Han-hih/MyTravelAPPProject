@@ -39,7 +39,7 @@ class DetailTable: Object {
     
     @Persisted(originProperty: "detail") var mainPlan: LinkingObjects<TravelRealmModel>
     
-    convenience init(date: Date, sequence: Int, location: String, memo: String? = nil, time: String? = nil, longitude: Double, latitude: Double, mainPlan: LinkingObjects<TravelRealmModel>) {
+    convenience init(date: Date, sequence: Int, location: String, memo: String? = nil, time: String? = nil, longitude: Double, latitude: Double) {
         self.init()
         
         self.date = date
@@ -49,6 +49,5 @@ class DetailTable: Object {
         self.time = time
         self.longitude = longitude
         self.latitude = latitude
-        self.mainPlan = mainPlan
     }
 }
