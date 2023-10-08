@@ -8,6 +8,13 @@
 import UIKit
 import MapKit
 
+enum Section {
+    case search
+}
+struct Search: Hashable {
+    var result: MKLocalSearchCompletion
+}
+
 class PlanSearchViewController: UIViewController {
     
     private var searchCompleter = MKLocalSearchCompleter() // 검색을 도와주는 변수

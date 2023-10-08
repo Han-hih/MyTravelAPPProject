@@ -8,19 +8,18 @@
 import UIKit
 import MapKit
 
-enum Section {
-     case search
-}
 
-struct Search: Hashable {
-    var result: MKLocalSearchCompletion
-}
 
 
 class SearchViewController: UIViewController {
     
-    private var searchCompleter = MKLocalSearchCompleter() // 검색을 도와주는 변수
-    private var searchResults = [MKLocalSearchCompletion]() // 검색 결과를 담는 변수
+    enum Section {
+         case search
+    }
+    
+    let countryController = CountryController()
+    
+    var searchArray = [String]()
     
     let searchBar = {
         let bar = UISearchBar()
@@ -35,39 +34,40 @@ class SearchViewController: UIViewController {
         return table
     }()
     
-    var dataSource : UITableViewDiffableDataSource<Section, Search>!
-    var snapshot : NSDiffableDataSourceSnapshot<Section, Search>!
+    var dataSource : UITableViewDiffableDataSource<Section, CountryController.Country>!
+    var snapshot : NSDiffableDataSourceSnapshot<Section, CountryController.Country>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUpAutoLayout()
-        setSearchCompleter()
         setSearchBar()
         setupTableView()
         setDataSource()
-        
+
     }
+    
     func setDataSource() {
-        
-        dataSource = UITableViewDiffableDataSource<Section, Search>(tableView: self.searchTable, cellProvider: { [self] tableView, indexPath, item in
+        dataSource = UITableViewDiffableDataSource<Section, CountryController.Country>(tableView: self.searchTable, cellProvider: { tableView, indexPath, item in
             let cell = UITableViewCell()
             var content = cell.defaultContentConfiguration()
-            content.attributedText = NSAttributedString(string: searchResults[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold)])
+            content.attributedText = NSAttributedString(string: item.countryKOR, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold)])
+            content.secondaryAttributedText = NSAttributedString(string: item.countryName, attributes: [.font: UIFont.systemFont(ofSize: 12)])
             content.textProperties.alignment = .justified
             cell.contentConfiguration = content
-
+            
             return cell
         })
         
         
     }
-    func snapShot(data: [MKLocalSearchCompletion]) {
-       var snapshot = NSDiffableDataSourceSnapshot<Section, Search>()
-        let data = data.map { Search.init(result: $0) }
+    func performQuery(with filter: String?) {
+        let countries = countryController.filteredCountries(with: filter).sorted { $0.countryName < $1.countryName }
+        var snapshot = NSDiffableDataSourceSnapshot<Section, CountryController.Country>()
         snapshot.appendSections([.search])
-        snapshot.appendItems(data)
-        dataSource.apply(snapshot)
+        snapshot.appendItems(countries)
+        
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     func setUpAutoLayout() {
@@ -88,10 +88,6 @@ class SearchViewController: UIViewController {
         ])
         }
     
-    func setSearchCompleter() {
-        searchCompleter.delegate = self
-        searchCompleter.resultTypes = .address
-    }
     
     func setSearchBar() {
         searchBar.delegate = self
@@ -99,67 +95,30 @@ class SearchViewController: UIViewController {
     
     func setupTableView() {
         searchTable.delegate = self
-//        searchTable.dataSource = self
-//        searchTable.register(SearchTable.self, forCellReuseIdentifier: "SearchTable")
     }
 }
 
-extension SearchViewController: UITableViewDelegate /*UITableViewDataSource*/ {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return searchResults.count
-//    }
-    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell()
-//        var content = cell.defaultContentConfiguration()
-////        content.text = searchResults[indexPath.row].title
-//        content.attributedText = NSAttributedString(string: searchResults[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold)])
-//        content.textProperties.alignment = .justified
-//        cell.contentConfiguration = content
-//
-//        return cell
-//    }
+extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedResult = searchResults[indexPath.row]
-        let searchRequest = MKLocalSearch.Request(completion: selectedResult)
-        let search = MKLocalSearch(request: searchRequest)
-        search.start { response, error in
-            guard let placeMark = response?.mapItems[0].placemark else {
-                return
-            }
-            guard error == nil else {
-                print(error.debugDescription)
-                return
-            }
-            guard let country = placeMark.country else { return }
-//            let countryCode = placeMark.countryCode
-            print(country)
-            
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        let code = item.countryCode
+        print(code)
+        
             let vc = CalanderViewController()
             
             vc.modalPresentationStyle = .fullScreen
             vc.title = "여행 기간을 설정해주세요"
-            vc.country = country
+            vc.country = code
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
     }
     
     
-}
+
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchCompleter.queryFragment = searchText
-    }
-}
-extension SearchViewController: MKLocalSearchCompleterDelegate {
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        searchResults = completer.results
-        print(completer.results)
-        snapShot(data: searchResults)
-    }
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        print(error.localizedDescription)
+        performQuery(with: searchText)
     }
 }
