@@ -25,7 +25,7 @@ class PlanSearchSettingViewController: UIViewController {
     }()
     
     let timeTextField = {
-        let field = CustomTextField()
+        let field = UITextField()
         return field
     }()
     
