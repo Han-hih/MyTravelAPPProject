@@ -11,27 +11,47 @@ class PlanSearchSettingViewController: UIViewController {
     
     let resultTextField = {
         let text = UITextField()
-        text.backgroundColor = .lightGray
-        text.borderStyle = .line
-        text.layer.cornerRadius = 8
-        text.clipsToBounds = true
         
         return text
     }()
     
     let memoTextField = {
         let view = UITextView()
-        view.backgroundColor = .lightGray
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
         return view
     }()
     
     let timeTextField = {
-        let field = UITextField()
-        field.layer.cornerRadius = 8
-        field.backgroundColor = .lightGray
+        let field = CustomTextField()
         return field
     }()
     
+    let addButton = {
+        let button = UIButton()
+        button.setTitle("장소 추가하기", for: .normal)
+        button.backgroundColor = .systemCyan
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        return button
+    }()
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        func setBottomLine(textField: UITextField) {
+            let bottomLine = CALayer()
+            bottomLine.frame = CGRectMake(0.0, textField.frame.height + 1, textField.frame.width, 1.0)
+            bottomLine.backgroundColor = UIColor.black.cgColor
+            textField.borderStyle = .none
+            textField.layer.addSublayer(bottomLine)
+        }
+            setBottomLine(textField: resultTextField)
+        setBottomLine(textField: timeTextField)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -43,9 +63,9 @@ class PlanSearchSettingViewController: UIViewController {
     
     func setupDatePicker() {
         let datePicker = UIDatePicker()
-        
         datePicker.datePickerMode = .time
-        datePicker.locale = Locale(identifier: "ko-KR")
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.locale = Locale(identifier: "en-US".localized)
         datePicker.addTarget(self, action: #selector(dateChange), for: .valueChanged)
         timeTextField.inputView = datePicker
     }
@@ -60,7 +80,7 @@ class PlanSearchSettingViewController: UIViewController {
         return formatter.string(from: time)
     }
     func setAutoLayout() {
-        [resultTextField, memoTextField, timeTextField].forEach {
+        [resultTextField, memoTextField, timeTextField, addButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -68,18 +88,23 @@ class PlanSearchSettingViewController: UIViewController {
                 // MARK: - 장소 제목 텍스트필드
                 resultTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
                 resultTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-                resultTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                resultTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
                 // MARK: - 시간 선택 필드
-                timeTextField.topAnchor.constraint(equalTo: resultTextField.bottomAnchor, constant: 20),
+                timeTextField.topAnchor.constraint(equalTo: resultTextField.bottomAnchor, constant: 40),
                 timeTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
                 timeTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
 
                 // MARK: - 메모 텍스트뷰
-                memoTextField.topAnchor.constraint(equalTo: timeTextField.bottomAnchor, constant: 20),
+                memoTextField.topAnchor.constraint(equalTo: timeTextField.bottomAnchor, constant: 40),
                 memoTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
                 memoTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-                memoTextField.heightAnchor.constraint(equalToConstant: 200),
-                
+                memoTextField.heightAnchor.constraint(equalToConstant: 100),
+                // MARK: - 장소 추가 버튼
+                addButton.topAnchor.constraint(equalTo: memoTextField.bottomAnchor, constant: 40),
+                addButton.leadingAnchor.constraint(equalTo: memoTextField.leadingAnchor),
+                addButton.trailingAnchor.constraint(equalTo: memoTextField.trailingAnchor),
+                addButton.heightAnchor.constraint(equalToConstant: 50)
+
 
             ])
         

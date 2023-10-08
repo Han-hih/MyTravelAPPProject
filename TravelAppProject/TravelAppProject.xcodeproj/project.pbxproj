@@ -121,11 +121,10 @@
 		808EADF72AC1B5F700ED57EF /* TravelAppProject */ = {
 			isa = PBXGroup;
 			children = (
-				800404732AD29B4A00634CD4 /* SecondTabBarView */,
-				800404722AD29B2A00634CD4 /* CountryData */,
-				800404672AD0F49900634CD4 /* Custom */,
 				808EADF82AC1B5F700ED57EF /* AppDelegate.swift */,
 				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
+				800404732AD29B4A00634CD4 /* SecondTabBarView */,
+				800404672AD0F49900634CD4 /* Custom */,
 				808F8A5C2ACEDF0400D9A0EB /* Realm */,
 				808EADFC2AC1B5F700ED57EF /* MainViewController.swift */,
 				800404632AD01F7E00634CD4 /* MainCollectionViewCell.swift */,
@@ -137,6 +136,7 @@
 				80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */,
 				80491F9D2AC8806B00095DE8 /* CalanderViewModel.swift */,
 				80491F9B2AC87FA300095DE8 /* Observable.swift */,
+				800404722AD29B2A00634CD4 /* CountryData */,
 				808EAE012AC1B5F800ED57EF /* Assets.xcassets */,
 				808EAE032AC1B5F800ED57EF /* LaunchScreen.storyboard */,
 				808EAE062AC1B5F800ED57EF /* Info.plist */,
