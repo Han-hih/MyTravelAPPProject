@@ -89,6 +89,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = PlanViewController()
+        
+        vc.id = list[indexPath.row]._id
+        
         vc.navigationController?.title = list[indexPath.row].country
         vc.navigationItem.backButtonTitle = ""
         vc.dateArray = dateBetween(start: list[indexPath.row].startDate, end: list[indexPath.row].endDate ?? list[indexPath.row].startDate)

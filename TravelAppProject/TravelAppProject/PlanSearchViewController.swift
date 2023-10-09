@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import RealmSwift
 
 enum Section {
     case search
@@ -35,7 +36,7 @@ class PlanSearchViewController: UIViewController {
     
     var dataSource : UITableViewDiffableDataSource<Section, Search>!
     var snapshot : NSDiffableDataSourceSnapshot<Section, Search>!
-    
+    var id: ObjectId?
     var section = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,6 +142,7 @@ extension PlanSearchViewController: UITableViewDelegate/*UITableViewDataSource*/
             vc.sectionNumber = self.section
             vc.latitude = latitude
             vc.longitude = longitude
+            vc.id = self.id
             self.present(vc, animated: true)
         }
     }

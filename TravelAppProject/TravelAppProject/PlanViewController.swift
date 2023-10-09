@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class PlanViewController: UIViewController {
     
+    var id: ObjectId?
+    
+    let realm = try! Realm()
+    var list: Results<DetailTable>!
+    
     var sectionCount = 0
    lazy var place = [[String]](repeating: [String](), count: sectionCount)
-    var placeArray = [["대전", "세종", "부산"], ["서울", "대구", "부산"]]
     var dateArray = [Date]()
     
     let tableView = {
@@ -25,8 +30,16 @@ final class PlanViewController: UIViewController {
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         return button
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        print(place)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        list = realm.objects(DetailTable.self)
         view.backgroundColor = .white
         setAutoLayout()
         setupTableView()
@@ -51,7 +64,6 @@ final class PlanViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(PlanTableViewCell.self, forCellReuseIdentifier: "PlanTable")
     }
-    
 }
 
 extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
@@ -89,6 +101,7 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     @objc func plusButtonTapped(_ sender: UIButton) {
         let vc = PlanSearchViewController()
         vc.section = sender.tag
+        vc.id = id
         present(vc, animated: true)
         print(sender.tag)
     }
@@ -104,9 +117,9 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         //        placeArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        let moveObject = self.placeArray[sourceIndexPath.row]
-        placeArray.remove(at: sourceIndexPath.row)
-        placeArray.insert(moveObject, at: destinationIndexPath.row)
+//        let moveObject = self.[sourceIndexPath.row]
+//        placeArray.remove(at: sourceIndexPath.row)
+//        placeArray.insert(moveObject, at: destinationIndexPath.row)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,13 +128,23 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return place[section].count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlanTable", for: indexPath) as? PlanTableViewCell else {
             return UITableViewCell() }
+//        for item in 0...list.count {
+//            if list[indexPath.row].section == indexPath.section {
+//                place.insert(, at: indexPath.section)
+//            }
+//        }
+//        if list[indexPath.row].section == indexPath.section {
+//            place.insert([list[indexPath.row].location], at: indexPath.section)
+//            cell.placeLabel.text = place[indexPath.section][indexPath.row]
+        
         cell.backgroundColor = .systemMint
-        cell.placeLabel.text = place[indexPath.section][indexPath.row]
+//        cell.placeLabel.text = place[indexPath.section][indexPath.row]
         return cell
         
     }

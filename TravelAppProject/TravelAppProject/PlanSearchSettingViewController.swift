@@ -41,7 +41,7 @@ class PlanSearchSettingViewController: UIViewController {
         return button
     }()
     
-    
+    var id: ObjectId?
     var longitude = 0.0
     var latitude = 0.0
     var sectionNumber = 0
@@ -76,10 +76,14 @@ class PlanSearchSettingViewController: UIViewController {
     
     func realmCreate() {
         let realm = try! Realm()
+        let main = realm.objects(TravelRealmModel.self).where {
+            $0._id == id!
+        }.first!
+        
         let task = DetailTable(section: sectionNumber, location: resultTextField.text!, memo: memoTextField.text ?? "", time: timeTextField.text ?? "", longitude: longitude, latitude: latitude)
         try! realm.write {
-            realm.add(task)
-            
+//            realm.add(task)
+            main.detail.append(task)
             print(Realm.Configuration.defaultConfiguration.fileURL!)
         }
     }
