@@ -88,7 +88,7 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     @objc func plusButtonTapped(_ sender: UIButton) {
         let vc = PlanSearchViewController()
-        
+        vc.section = sender.tag
         present(vc, animated: true)
         print(sender.tag)
     }

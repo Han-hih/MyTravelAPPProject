@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PlanSearchSettingViewController: UIViewController {
     
@@ -36,9 +37,15 @@ class PlanSearchSettingViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 20
         button.clipsToBounds = true
+        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
     
+    
+    var longitude = 0.0
+    var latitude = 0.0
+    var sectionNumber = 0
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         func setBottomLine(textField: UITextField) {
@@ -61,6 +68,22 @@ class PlanSearchSettingViewController: UIViewController {
         
     }
     
+    @objc func addButtonTapped() {
+        realmCreate()
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+    
+    }
+    
+    func realmCreate() {
+        let realm = try! Realm()
+        let task = DetailTable(section: sectionNumber, location: resultTextField.text!, memo: memoTextField.text ?? "", time: timeTextField.text ?? "", longitude: longitude, latitude: latitude)
+        try! realm.write {
+            realm.add(task)
+            
+            print(Realm.Configuration.defaultConfiguration.fileURL!)
+        }
+    }
+    
     func setupDatePicker() {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .time
@@ -69,7 +92,6 @@ class PlanSearchSettingViewController: UIViewController {
         datePicker.addTarget(self, action: #selector(dateChange), for: .valueChanged)
         timeTextField.inputView = datePicker
     }
-    
     @objc func dateChange(_ sender: UIDatePicker) {
         timeTextField.text = timeFormatter(time: sender.date)
     }

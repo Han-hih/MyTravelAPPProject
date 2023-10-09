@@ -36,7 +36,7 @@ class PlanSearchViewController: UIViewController {
     var dataSource : UITableViewDiffableDataSource<Section, Search>!
     var snapshot : NSDiffableDataSourceSnapshot<Section, Search>!
     
-    
+    var section = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -132,12 +132,16 @@ extension PlanSearchViewController: UITableViewDelegate/*UITableViewDataSource*/
                 return
             }
             let place = placeMark.name
+            let longitude = placeMark.coordinate.longitude
+            let latitude = placeMark.coordinate.latitude
             print(place)
             
             let vc = PlanSearchSettingViewController()
             vc.resultTextField.text = place
+            vc.sectionNumber = self.section
+            vc.latitude = latitude
+            vc.longitude = longitude
             self.present(vc, animated: true)
-//
         }
     }
     
