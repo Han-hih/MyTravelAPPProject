@@ -90,7 +90,25 @@ class PlanSearchSettingViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: "en-US".localized)
         datePicker.addTarget(self, action: #selector(dateChange), for: .valueChanged)
+        datePicker.sizeToFit()
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneButtonPressed))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(cancelButtonTapped))
+        toolbar.setItems([cancelButton, flexibleSpace ,doneButton], animated: true)
+        timeTextField.inputAccessoryView = toolbar
         timeTextField.inputView = datePicker
+    }
+    @objc func cancelButtonTapped() {
+        self.view.endEditing(true)
+        timeTextField.text = ""
+        
+    }
+    @objc func doneButtonPressed() {
+//        timeTextField.text =
+        self.view.endEditing(true)
     }
     @objc func dateChange(_ sender: UIDatePicker) {
         timeTextField.text = timeFormatter(time: sender.date)
