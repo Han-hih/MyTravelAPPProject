@@ -31,6 +31,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad() 
         collectionView.reloadData()
+
         list = realm.objects(TravelRealmModel.self)
         view.backgroundColor = .white
         view.addSubview(collectionView)
