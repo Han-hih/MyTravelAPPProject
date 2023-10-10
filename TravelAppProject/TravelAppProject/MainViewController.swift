@@ -30,6 +30,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad() 
+        collectionView.reloadData()
         list = realm.objects(TravelRealmModel.self)
         view.backgroundColor = .white
         view.addSubview(collectionView)
@@ -82,7 +83,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
+        dateFormatter.dateFormat = "dd MMM yyyy".localized
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
         cell.startDateLabel.text = dateFormatter.string(from: list[indexPath.row].startDate)
         cell.endDateLabel.text = dateFormatter.string(from: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
