@@ -13,10 +13,11 @@ final class PlanViewController: UIViewController {
     var id: ObjectId?
     
     let realm = try! Realm()
-    var list: Results<DetailTable>!
+    var list: Results<TravelRealmModel>!
     
+    var appendArr = [String]()
     var sectionCount = 0
-   lazy var place = [[String]](repeating: [String](), count: sectionCount)
+    lazy var place = [[Plan]](repeating: [Plan(location: "")], count: sectionCount)
     var dateArray = [Date]()
     
     let tableView = {
@@ -33,20 +34,50 @@ final class PlanViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        presentingViewController?.viewWillDisappear(true)
         tableView.reloadData()
-        print(place)
     }
     
+    struct Plan {
+        var location: String
+//        var memo: String?
+//        var time: String?
+        
+        init(location: String) {
+            self.location = location
+//            self.memo = memo
+//            self.time = time
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        list = realm.objects(DetailTable.self)
+        list = realm.objects(TravelRealmModel.self)
         view.backgroundColor = .white
         setAutoLayout()
         setupTableView()
         self.tableView.isEditing = true
-        print(dateArray)
+        print(place)
+        planArrayMake()
     }
-    
+    func planArrayMake() {
+        let main = realm.objects(TravelRealmModel.self).where {
+            $0._id == id!
+        }.first!
+        
+        for i in 0..<sectionCount { // ex) 0과 1을돌고
+            for j in 0..<main.detail.count { //ex) detail의 값들을 돌고
+                if i == main.detail[j].section { // ex) i와 detail의 section값이 같으면 배열에 추가
+                    place[i].append(Plan(location: main.detail[j].location))
+                }
+            }
+            if place[i][0].location == "" {
+                place[i].remove(at: 0)
+            }
+        }
+        
+        print(place)
+    }
     func setAutoLayout() {
         [tableView, addButton].forEach {
             view.addSubview($0)
@@ -73,26 +104,26 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-            let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0))
-//            footerView.backgroundColor = .orange
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0))
+        //            footerView.backgroundColor = .orange
         let plusButton = UIButton()
         plusButton.setTitle("Add Place".localized, for: .normal)
         plusButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
         plusButton.tintColor = .black
         plusButton.tag = section
-//        plusButton.layer.borderWidth = 1
-//        plusButton.layer.borderColor = UIColor.black.cgColor
-//        plusButton.layer.cornerRadius = 8
+        //        plusButton.layer.borderWidth = 1
+        //        plusButton.layer.borderColor = UIColor.black.cgColor
+        //        plusButton.layer.cornerRadius = 8
         plusButton.clipsToBounds = true
         plusButton.setTitleColor(UIColor.black, for: .normal)
-            plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         plusButton.setUnderline()
-            footerView.addSubview(plusButton)
+        footerView.addSubview(plusButton)
         plusButton.translatesAutoresizingMaskIntoConstraints = false
         plusButton.centerXAnchor.constraint(equalTo: footerView.centerXAnchor).isActive = true
         plusButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor).isActive = true
         
-            return footerView
+        return footerView
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 44
@@ -114,12 +145,12 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         return false
     }
     // MARK: - 수정 할 부분(드래그앤드롭)
-
+    
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         //        placeArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-//        let moveObject = self.[sourceIndexPath.row]
-//        placeArray.remove(at: sourceIndexPath.row)
-//        placeArray.insert(moveObject, at: destinationIndexPath.row)
+        //        let moveObject = self.[sourceIndexPath.row]
+        //        placeArray.remove(at: sourceIndexPath.row)
+        //        placeArray.insert(moveObject, at: destinationIndexPath.row)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -134,32 +165,22 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlanTable", for: indexPath) as? PlanTableViewCell else {
             return UITableViewCell() }
-//        for item in 0...list.count {
-//            if list[indexPath.row].section == indexPath.section {
-//                place.insert(, at: indexPath.section)
-//            }
-//        }
-//        if list[indexPath.row].section == indexPath.section {
-//            place.insert([list[indexPath.row].location], at: indexPath.section)
-//            cell.placeLabel.text = place[indexPath.section][indexPath.row]
-        
-        cell.backgroundColor = .systemMint
-//        cell.placeLabel.text = place[indexPath.section][indexPath.row]
+        cell.placeLabel.text = place[indexPath.section][indexPath.row].location
         return cell
         
     }
+    
 }
-
 
 
 extension UIButton {
     func setUnderline() {
-            guard let title = title(for: .normal) else { return }
-            let attributedString = NSMutableAttributedString(string: title)
-            attributedString.addAttribute(.underlineStyle,
-                                          value: NSUnderlineStyle.single.rawValue,
-                                          range: NSRange(location: 0, length: title.count)
-            )
-            setAttributedTitle(attributedString, for: .normal)
-        }
+        guard let title = title(for: .normal) else { return }
+        let attributedString = NSMutableAttributedString(string: title)
+        attributedString.addAttribute(.underlineStyle,
+                                      value: NSUnderlineStyle.single.rawValue,
+                                      range: NSRange(location: 0, length: title.count)
+        )
+        setAttributedTitle(attributedString, for: .normal)
+    }
 }
