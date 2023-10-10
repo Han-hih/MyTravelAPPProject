@@ -11,6 +11,32 @@ import RealmSwift
 class MainCollectionViewCell: UICollectionViewCell {
     static let shared = MainCollectionViewCell()
     
+    private enum Color {
+        static var gradientColors = [
+          UIColor.systemBlue,
+          UIColor.systemBlue.withAlphaComponent(0.7),
+          UIColor.systemBlue.withAlphaComponent(0.4),
+          UIColor.systemGreen.withAlphaComponent(0.3),
+          UIColor.systemGreen.withAlphaComponent(0.7),
+          UIColor.systemGreen.withAlphaComponent(0.3),
+          UIColor.systemBlue.withAlphaComponent(0.4),
+          UIColor.systemBlue.withAlphaComponent(0.7),
+        ]
+      }
+      private enum Constants {
+        static let gradientLocation = [Int](0..<Color.gradientColors.count)
+          .map(Double.init)
+          .map { $0 / Double(Color.gradientColors.count) }
+          .map(NSNumber.init)
+        static let cornerRadius = 20.0
+        static let cornerWidth = 2.0
+//        static let viewSize = CGSize(width: 100, height: 350)
+      }
+    private var timer: Timer?
+    deinit {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
    private let barcodeView = {
         let view = UIImageView()
         view.layer.cornerRadius = 20
@@ -60,15 +86,21 @@ class MainCollectionViewCell: UICollectionViewCell {
         label.text = "End Date".localized
         return label
     }()
-    
+    private lazy var gradationView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.layer.cornerRadius = Constants.cornerRadius
+        view.clipsToBounds = true
+        return view
+    }()
     private let viewLabel = {
         let label = PaddingLabel()
         label.text = " VIEW YOUR PLAN "
         label.font = .boldSystemFont(ofSize: 30)
         label.layer.cornerRadius = 10
         label.clipsToBounds = true
-        label.layer.borderColor = UIColor.black.cgColor
-        label.layer.borderWidth = 1
+//        label.layer.borderColor = UIColor.black.cgColor
+//        label.layer.borderWidth = 1
         return label
     }()
     
@@ -104,14 +136,56 @@ class MainCollectionViewCell: UICollectionViewCell {
         setAutoLayout()
         
     }
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.gradationAnimate()
+    }
+  
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func gradationAnimate() {
+        let shape = CAShapeLayer()
+        shape.path = UIBezierPath(roundedRect: self.gradationView.bounds.insetBy(dx: Constants.cornerWidth, dy: Constants.cornerWidth), cornerRadius: self.gradationView.layer.cornerRadius).cgPath
+        shape.lineWidth = Constants.cornerWidth
+        shape.cornerRadius = Constants.cornerRadius
+        shape.strokeColor = UIColor.white.cgColor
+        shape.fillColor = UIColor.clear.cgColor
+        self.gradationView.layer.mask = shape
+        
+        let gradient = CAGradientLayer()
+           gradient.frame = self.gradationView.bounds
+           gradient.type = .conic
+           gradient.colors = Color.gradientColors.map(\.cgColor) as [Any]
+           gradient.locations = Constants.gradientLocation
+           gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+           gradient.endPoint = CGPoint(x: 1, y: 1)
+           gradient.mask = shape
+           gradient.cornerRadius = Constants.cornerRadius
+           self.gradationView.layer.addSublayer(gradient)
+        
+        self.timer?.invalidate()
+           self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
+             gradient.removeAnimation(forKey: "myAnimation")
+             let previous = Color.gradientColors.map(\.cgColor)
+             let last = Color.gradientColors.removeLast()
+             Color.gradientColors.insert(last, at: 0)
+             let lastColors = Color.gradientColors.map(\.cgColor)
+             
+             let colorsAnimation = CABasicAnimation(keyPath: "colors")
+             colorsAnimation.fromValue = previous
+             colorsAnimation.toValue = lastColors
+             colorsAnimation.repeatCount = 1
+             colorsAnimation.duration = 0.2
+             colorsAnimation.isRemovedOnCompletion = false
+             colorsAnimation.fillMode = .both
+             gradient.add(colorsAnimation, forKey: "myAnimation")
+           }
+    }
     
     func setAutoLayout() {
-        [barcodeView, mainView, bottomView, travelLabel, startLabel, endLabel, viewLabel, travelPlaceLabel, startDateLabel, endDateLabel, countryFullLabel].forEach {
+        [barcodeView, mainView, bottomView, travelLabel, startLabel, endLabel, gradationView, viewLabel, travelPlaceLabel, startDateLabel, endDateLabel, countryFullLabel].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -140,6 +214,11 @@ class MainCollectionViewCell: UICollectionViewCell {
             // MARK: - 끝날짜
             endLabel.leadingAnchor.constraint(equalTo: startLabel.leadingAnchor),
             endLabel.topAnchor.constraint(equalTo: mainView.centerYAnchor),
+            // MARK: - 하단뷰에 들어가는 뷰
+            gradationView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
+            gradationView.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
+            gradationView.heightAnchor.constraint(equalTo: bottomView.heightAnchor, multiplier: 0.6),
+            gradationView.widthAnchor.constraint(equalTo: bottomView.widthAnchor, multiplier: 0.9),
             // MARK: - 하단뷰에 들어가는 레이블
             viewLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             viewLabel.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),

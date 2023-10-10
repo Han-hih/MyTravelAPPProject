@@ -143,6 +143,7 @@ extension PlanSearchViewController: UITableViewDelegate/*UITableViewDataSource*/
             vc.latitude = latitude
             vc.longitude = longitude
             vc.id = self.id
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
         }
     }

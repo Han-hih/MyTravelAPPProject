@@ -50,6 +50,7 @@ final class PlanViewController: UIViewController {
         }
         
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         list = realm.objects(TravelRealmModel.self)
@@ -111,9 +112,6 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         plusButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
         plusButton.tintColor = .black
         plusButton.tag = section
-        //        plusButton.layer.borderWidth = 1
-        //        plusButton.layer.borderColor = UIColor.black.cgColor
-        //        plusButton.layer.cornerRadius = 8
         plusButton.clipsToBounds = true
         plusButton.setTitleColor(UIColor.black, for: .normal)
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
@@ -133,6 +131,7 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = PlanSearchViewController()
         vc.section = sender.tag
         vc.id = id
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
         print(sender.tag)
     }

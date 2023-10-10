@@ -29,7 +29,7 @@ class MainViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad() 
         list = realm.objects(TravelRealmModel.self)
         view.backgroundColor = .white
         view.addSubview(collectionView)
@@ -37,7 +37,9 @@ class MainViewController: UIViewController {
         setAutoLayout()
         setNavigation()
     }
-    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.reloadData()
