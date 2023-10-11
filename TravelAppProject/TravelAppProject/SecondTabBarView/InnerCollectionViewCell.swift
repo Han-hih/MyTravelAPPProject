@@ -12,6 +12,7 @@ class InnerCollectionViewCell: UICollectionViewCell {
     let innerImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = 12
+        view.clipsToBounds = true
         return view
     }()
     
@@ -24,6 +25,14 @@ class InnerCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.prepare(image: nil)
+    }
+    
+    func prepare(image: UIImage?) {
+        self.innerImageView.backgroundColor = .systemCyan
+    }
     func setAutoLayout() {
         contentView.addSubview(innerImageView)
         innerImageView.translatesAutoresizingMaskIntoConstraints = false
