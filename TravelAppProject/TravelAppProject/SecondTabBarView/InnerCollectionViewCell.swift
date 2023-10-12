@@ -34,14 +34,19 @@ class InnerCollectionViewCell: UICollectionViewCell {
         self.innerImageView.backgroundColor = .systemCyan
     }
     func setAutoLayout() {
-        contentView.addSubview(innerImageView)
-        innerImageView.translatesAutoresizingMaskIntoConstraints = false
+        [innerImageView].forEach {
+            contentView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         NSLayoutConstraint.activate([
+            // MARK: - 사진뷰
             innerImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             innerImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             innerImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9),
-            innerImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7)
+            innerImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7),
+            
+
         
         ])
     }
