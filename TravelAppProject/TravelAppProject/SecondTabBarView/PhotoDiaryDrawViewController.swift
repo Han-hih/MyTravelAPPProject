@@ -46,7 +46,12 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
         setLayout()
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.addKeyboardNotifications()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.removeKeyboardNotifications()
+    }
     @objc func doneButtonTapped() {
         self.view.endEditing(true)
     }
@@ -72,7 +77,7 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
             memoTextFieldView.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 30),
             memoTextFieldView.leadingAnchor.constraint(equalTo: photoView.leadingAnchor),
             memoTextFieldView.trailingAnchor.constraint(equalTo: photoView.trailingAnchor),
-            memoTextFieldView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.3)
+            memoTextFieldView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
     
@@ -101,6 +106,32 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
             }
         } else {
             print("error")
+        }
+    }
+    
+    func addKeyboardNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    func removeKeyboardNotifications(){
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillShow(_ noti: NSNotification){
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.view.frame.origin.y -= (keyboardHeight-(self.tabBarController?.tabBar.frame.size.height)!)
+        }
+    }
+
+    @objc func keyboardWillHide(_ noti: NSNotification){
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.view.frame.origin.y += (keyboardHeight-(self.tabBarController?.tabBar.frame.size.height)!)
         }
     }
 }
