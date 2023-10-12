@@ -15,6 +15,7 @@
 		80159E062AD5AA5300ACCBCA /* InnerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E052AD5AA5300ACCBCA /* InnerCollectionViewCell.swift */; };
 		80159E082AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E072AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift */; };
 		80159E2D2AD76FE300ACCBCA /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */; };
+		8020B0FD2AD7BE6500ECBB37 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */; };
 		80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */; };
 		80491F912AC4133400095DE8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 80491F902AC4133400095DE8 /* FSCalendar */; };
 		80491F942AC71B3100095DE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80491F962AC71B3100095DE8 /* Localizable.strings */; };
@@ -46,6 +47,7 @@
 		80159E052AD5AA5300ACCBCA /* InnerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCollectionViewCell.swift; sourceTree = "<group>"; };
 		80159E072AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalCollectionViewCell.swift; sourceTree = "<group>"; };
 		80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
+		8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderViewController.swift; sourceTree = "<group>"; };
 		80491F952AC71B3100095DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80491F972AC71B6300095DE8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 			path = SecondTabBarView;
 			sourceTree = "<group>";
 		};
+		8020B0FB2AD7BE4B00ECBB37 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		808EADEC2AC1B5F700ED57EF = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 		808EADF72AC1B5F700ED57EF /* TravelAppProject */ = {
 			isa = PBXGroup;
 			children = (
+				8020B0FB2AD7BE4B00ECBB37 /* Utility */,
 				808EADF82AC1B5F700ED57EF /* AppDelegate.swift */,
 				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
 				800404732AD29B4A00634CD4 /* SecondTabBarView */,
@@ -262,6 +273,7 @@
 				80491F9C2AC87FA300095DE8 /* Observable.swift in Sources */,
 				80159E082AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift in Sources */,
 				80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */,
+				8020B0FD2AD7BE6500ECBB37 /* FileManager+Extension.swift in Sources */,
 				8087419D2ACC2DF700F81574 /* PlanSearchViewController.swift in Sources */,
 				80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */,
 				808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */,
