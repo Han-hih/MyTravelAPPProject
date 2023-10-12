@@ -177,7 +177,7 @@ class MainCollectionViewCell: UICollectionViewCell {
              colorsAnimation.fromValue = previous
              colorsAnimation.toValue = lastColors
              colorsAnimation.repeatCount = 1
-             colorsAnimation.duration = 0.6
+             colorsAnimation.duration = 0.4
              colorsAnimation.isRemovedOnCompletion = false
              colorsAnimation.fillMode = .both
              gradient.add(colorsAnimation, forKey: "myAnimation")

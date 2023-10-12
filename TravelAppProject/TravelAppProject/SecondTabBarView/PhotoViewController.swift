@@ -31,68 +31,60 @@ class PhotoViewController: UIViewController {
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .white
-        view.isPagingEnabled = true
+        view.isScrollEnabled = true
+        view.isPagingEnabled = false
         view.register(ExternalCollectionViewCell.self, forCellWithReuseIdentifier: ExternalCollectionViewCell.identifier)
-        
-        
+        view.decelerationRate = .fast
+        view.showsHorizontalScrollIndicator = false
+        view.contentInsetAdjustmentBehavior = .never
         view.delegate = self
         view.dataSource = self
         
         return view
     }()
     
-//    private lazy var innerCollectionView = {
-//        
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .horizontal
-//        layout.itemSize = Const.itemSize
-//        layout.minimumLineSpacing = Const.itemSpacing
-//        layout.minimumInteritemSpacing = 0
-//        
-//        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        view.isScrollEnabled = true
-//        view.showsHorizontalScrollIndicator = false
-//        view.showsVerticalScrollIndicator = true
-//        view.backgroundColor = .clear
-//        view.clipsToBounds = true
-//        view.isPagingEnabled = false
-//        view.delegate = self
-//        view.dataSource = self
-//        view.register(InnerCollectionViewCell.self, forCellWithReuseIdentifier: InnerCollectionViewCell.identifier)
-//        view.contentInsetAdjustmentBehavior = .never
-//        view.contentInset = Const.collectionViewContentInset
-//        view.decelerationRate = .fast
-//        return view
-//    }()
+    let countryName = {
+       let label = UILabel()
+       label.font = .systemFont(ofSize: 35, weight: .bold)
+       label.text = "대한민국"
+       return label
+   }()
+   
+    let travelRange = {
+       let label = UILabel()
+       label.font = .systemFont(ofSize: 20)
+       label.text = "2020년 07월 20일 ~ 2020년 07월 25일"
+       return label
+   }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
         setAutoLayout()
-//        view.bringSubviewToFront(innerCollectionView)
+//        view.bringSubviewToFront(externalCollectionView)
         print(imageList.count)
     }
     
     
     func setAutoLayout() {
-        [externalCollectionView].forEach {
+        [externalCollectionView, countryName, travelRange].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
         NSLayoutConstraint.activate([
-            // MARK: - 안쪽뷰
-//            innerCollectionView.topAnchor.constraint(equalTo: externalCollectionView.topAnchor),
-//            innerCollectionView.trailingAnchor.constraint(equalTo: externalCollectionView.trailingAnchor),
-//            innerCollectionView.leadingAnchor.constraint(equalTo: externalCollectionView.leadingAnchor),
-//            innerCollectionView.widthAnchor.constraint(equalTo: externalCollectionView.widthAnchor),
-//            innerCollectionView.heightAnchor.constraint(equalTo: externalCollectionView.widthAnchor),
             // MARK: - 바깥뷰
             externalCollectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             externalCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             externalCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
-            externalCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9)
-
+            externalCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            
+            // MARK: - 도시이름
+            countryName.topAnchor.constraint(equalTo: externalCollectionView.bottomAnchor, constant: -100),
+            countryName.leadingAnchor.constraint(equalTo: externalCollectionView.leadingAnchor, constant: 10),
+            // MARK: - 여행기간
+            travelRange.topAnchor.constraint(equalTo: countryName.bottomAnchor, constant: 20),
+            travelRange.leadingAnchor.constraint(equalTo: countryName.leadingAnchor)
         ])
     }
     
@@ -100,29 +92,13 @@ class PhotoViewController: UIViewController {
 }
 extension PhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView {
-//        case innerCollectionView:
-//            return imageList.count
-        case externalCollectionView:
-            return 3
-        default:
-            return 0
-        }
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let innerCell = innerCollectionView.dequeueReusableCell(withReuseIdentifier: InnerCollectionViewCell.identifier, for: indexPath) as? InnerCollectionViewCell else { return UICollectionViewCell() }
-//        innerCell.innerImageView.image = imageList[indexPath.row]
         guard let exterCell = externalCollectionView.dequeueReusableCell(withReuseIdentifier: ExternalCollectionViewCell.identifier, for: indexPath) as? ExternalCollectionViewCell else { return UICollectionViewCell() }
         
-        switch collectionView {
-//        case innerCollectionView:
-//            return innerCell
-        case externalCollectionView:
-            return exterCell
-        default:
-            return UICollectionViewCell()
-        }
+   return exterCell
         
     }
 }
