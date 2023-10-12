@@ -14,6 +14,7 @@
 		800404712AD279FD00634CD4 /* CountryRawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404702AD279FD00634CD4 /* CountryRawData.swift */; };
 		80159E062AD5AA5300ACCBCA /* InnerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E052AD5AA5300ACCBCA /* InnerCollectionViewCell.swift */; };
 		80159E082AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E072AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift */; };
+		80159E2D2AD76FE300ACCBCA /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */; };
 		80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */; };
 		80491F912AC4133400095DE8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 80491F902AC4133400095DE8 /* FSCalendar */; };
 		80491F942AC71B3100095DE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80491F962AC71B3100095DE8 /* Localizable.strings */; };
@@ -44,6 +45,7 @@
 		800404702AD279FD00634CD4 /* CountryRawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryRawData.swift; sourceTree = "<group>"; };
 		80159E052AD5AA5300ACCBCA /* InnerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCollectionViewCell.swift; sourceTree = "<group>"; };
 		80159E072AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalCollectionViewCell.swift; sourceTree = "<group>"; };
+		80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
 		80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderViewController.swift; sourceTree = "<group>"; };
 		80491F952AC71B3100095DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80491F972AC71B6300095DE8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				800404682AD0F4A800634CD4 /* CustomLabel.swift */,
+				80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				800404692AD0F4A800634CD4 /* CustomLabel.swift in Sources */,
 				80491F9E2AC8806B00095DE8 /* CalanderViewModel.swift in Sources */,
 				800404712AD279FD00634CD4 /* CountryRawData.swift in Sources */,
+				80159E2D2AD76FE300ACCBCA /* CustomFlowLayout.swift in Sources */,
 				80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */,
 				80491F9A2AC7366B00095DE8 /* String+Extension.swift in Sources */,
 				800404642AD01F7E00634CD4 /* MainCollectionViewCell.swift in Sources */,
