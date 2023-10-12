@@ -59,12 +59,18 @@ class PhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigation()
         view.backgroundColor = .red
         setAutoLayout()
-//        view.bringSubviewToFront(externalCollectionView)
+        
         print(imageList.count)
     }
     
+    func setNavigation() {
+        self.navigationItem.title = "Photo Diary".localized
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.tintColor = .black
+    }
     
     func setAutoLayout() {
         [externalCollectionView, countryName, travelRange].forEach {
@@ -100,6 +106,12 @@ extension PhotoViewController: UICollectionViewDataSource {
         
    return exterCell
         
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = PhotoDiaryViewController()
+        
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
