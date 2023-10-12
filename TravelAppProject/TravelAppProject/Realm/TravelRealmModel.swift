@@ -15,6 +15,7 @@ class TravelRealmModel: Object {
     @Persisted var startDate: Date
     @Persisted var endDate: Date?
     @Persisted var detail: List<DetailTable>
+    @Persisted var photo: List<PhotoTable>
     
     convenience init(country: String, startDate: Date, endDate: Date? = nil) {
         self.init()
@@ -47,5 +48,20 @@ class DetailTable: Object {
         self.time = time
         self.longitude = longitude
         self.latitude = latitude
+    }
+}
+
+class PhotoTable: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var photo: Data
+    @Persisted var photoMemo: String?
+    
+    @Persisted(originProperty: "photo") var photoDiary: LinkingObjects<TravelRealmModel>
+    
+    convenience init(photo: Data, photoMemo: String? = nil) {
+        self.init()
+        
+        self.photo = photo
+        self.photoMemo = photoMemo
     }
 }
