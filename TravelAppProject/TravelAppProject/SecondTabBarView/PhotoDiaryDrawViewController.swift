@@ -44,6 +44,7 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
         super.viewDidLoad()
         view.backgroundColor = .white
         setLayout()
+        setNavigationBar()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +55,13 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
     }
     @objc func doneButtonTapped() {
         self.view.endEditing(true)
+    }
+    func setNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pencil.circle"), style: .plain, target: self, action: #selector(saveButtonTapped))
+        self.navigationController?.navigationBar.tintColor = .black
+    }
+    @objc func saveButtonTapped() {
+        
     }
     
     func setLayout() {
