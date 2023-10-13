@@ -18,6 +18,7 @@
 		8020B0FD2AD7BE6500ECBB37 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */; };
 		8020B0FF2AD805C600ECBB37 /* PhotoDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */; };
 		8020B1012AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */; };
+		8020B1062AD8D0E700ECBB37 /* PhotoRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B1052AD8D0E700ECBB37 /* PhotoRealmRepository.swift */; };
 		80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */; };
 		80491F912AC4133400095DE8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 80491F902AC4133400095DE8 /* FSCalendar */; };
 		80491F942AC71B3100095DE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80491F962AC71B3100095DE8 /* Localizable.strings */; };
@@ -52,6 +53,7 @@
 		8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDiaryViewController.swift; sourceTree = "<group>"; };
 		8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDiaryDrawViewController.swift; sourceTree = "<group>"; };
+		8020B1052AD8D0E700ECBB37 /* PhotoRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRealmRepository.swift; sourceTree = "<group>"; };
 		80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderViewController.swift; sourceTree = "<group>"; };
 		80491F952AC71B3100095DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80491F972AC71B6300095DE8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				808F8A5D2ACEDF1D00D9A0EB /* TravelRealmModel.swift */,
+				8020B1052AD8D0E700ECBB37 /* PhotoRealmRepository.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */,
 				8020B0FF2AD805C600ECBB37 /* PhotoDiaryViewController.swift in Sources */,
 				808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */,
+				8020B1062AD8D0E700ECBB37 /* PhotoRealmRepository.swift in Sources */,
 				808EADF92AC1B5F700ED57EF /* AppDelegate.swift in Sources */,
 				808F8A5E2ACEDF1D00D9A0EB /* TravelRealmModel.swift in Sources */,
 				808EADFB2AC1B5F700ED57EF /* SceneDelegate.swift in Sources */,
