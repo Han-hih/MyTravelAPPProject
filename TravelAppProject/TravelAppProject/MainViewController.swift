@@ -12,10 +12,7 @@ class MainViewController: UIViewController {
     var list: Results<TravelRealmModel>!
     
     lazy var collectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = .zero
-        layout.minimumInteritemSpacing = .zero
+        let layout = CustomFlowLayout()
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .white
