@@ -53,15 +53,13 @@ class DetailTable: Object {
 
 class PhotoTable: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var photo: Data
     @Persisted var photoMemo: String?
     
     @Persisted(originProperty: "photo") var photoDiary: LinkingObjects<TravelRealmModel>
     
-    convenience init(photo: Data, photoMemo: String? = nil) {
+    convenience init(photoMemo: String? = nil) {
         self.init()
-        
-        self.photo = photo
+
         self.photoMemo = photoMemo
     }
 }
