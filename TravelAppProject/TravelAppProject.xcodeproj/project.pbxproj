@@ -39,9 +39,12 @@
 		808F8A5E2ACEDF1D00D9A0EB /* TravelRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808F8A5D2ACEDF1D00D9A0EB /* TravelRealmModel.swift */; };
 		80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */; };
 		80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */; };
+		D532CCEF79CE967660F96333 /* Pods_TravelAppProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0354202EA2AA6615E31ED975 /* Pods_TravelAppProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0354202EA2AA6615E31ED975 /* Pods_TravelAppProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelAppProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1023031FA1AF4106AA8D727A /* Pods-TravelAppProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelAppProject.release.xcconfig"; path = "Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject.release.xcconfig"; sourceTree = "<group>"; };
 		800404632AD01F7E00634CD4 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		800404652AD0325000634CD4 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		800404682AD0F4A800634CD4 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		808F8A5D2ACEDF1D00D9A0EB /* TravelRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelRealmModel.swift; sourceTree = "<group>"; };
 		80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTableViewCell.swift; sourceTree = "<group>"; };
+		9EA670909D4A7803BF2C9A81 /* Pods-TravelAppProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelAppProject.debug.xcconfig"; path = "Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,12 +89,30 @@
 				808F8A5B2ACEDD1700D9A0EB /* RealmSwift in Frameworks */,
 				808F8A592ACEDD1700D9A0EB /* Realm in Frameworks */,
 				80491F912AC4133400095DE8 /* FSCalendar in Frameworks */,
+				D532CCEF79CE967660F96333 /* Pods_TravelAppProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		168F3A66DAFC49933A9239EB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9EA670909D4A7803BF2C9A81 /* Pods-TravelAppProject.debug.xcconfig */,
+				1023031FA1AF4106AA8D727A /* Pods-TravelAppProject.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		4500F1E05B711D1836DD3E77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0354202EA2AA6615E31ED975 /* Pods_TravelAppProject.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		800404672AD0F49900634CD4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,8 +154,11 @@
 		808EADEC2AC1B5F700ED57EF = {
 			isa = PBXGroup;
 			children = (
+				8020B0FB2AD7BE4B00ECBB37 /* Utility */,
 				808EADF72AC1B5F700ED57EF /* TravelAppProject */,
 				808EADF62AC1B5F700ED57EF /* Products */,
+				168F3A66DAFC49933A9239EB /* Pods */,
+				4500F1E05B711D1836DD3E77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,7 +173,6 @@
 		808EADF72AC1B5F700ED57EF /* TravelAppProject */ = {
 			isa = PBXGroup;
 			children = (
-				8020B0FB2AD7BE4B00ECBB37 /* Utility */,
 				808EADF82AC1B5F700ED57EF /* AppDelegate.swift */,
 				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
 				800404732AD29B4A00634CD4 /* SecondTabBarView */,
@@ -191,9 +215,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 808EAE092AC1B5F800ED57EF /* Build configuration list for PBXNativeTarget "TravelAppProject" */;
 			buildPhases = (
+				5DBBB6E66C4298F2654EF9A4 /* [CP] Check Pods Manifest.lock */,
 				808EADF12AC1B5F700ED57EF /* Sources */,
 				808EADF22AC1B5F700ED57EF /* Frameworks */,
 				808EADF32AC1B5F700ED57EF /* Resources */,
+				3329235F1F888971FA5C3493 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -236,8 +262,8 @@
 			);
 			mainGroup = 808EADEC2AC1B5F700ED57EF;
 			packageReferences = (
-				80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar" */,
-				808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */,
+				80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */,
+				808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */,
 			);
 			productRefGroup = 808EADF62AC1B5F700ED57EF /* Products */;
 			projectDirPath = "";
@@ -260,6 +286,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3329235F1F888971FA5C3493 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DBBB6E66C4298F2654EF9A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TravelAppProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		808EADF12AC1B5F700ED57EF /* Sources */ = {
@@ -357,7 +425,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -421,7 +489,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -442,6 +510,7 @@
 		};
 		808EAE0A2AC1B5F800ED57EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EA670909D4A7803BF2C9A81 /* Pods-TravelAppProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -473,6 +542,7 @@
 		};
 		808EAE0B2AC1B5F800ED57EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1023031FA1AF4106AA8D727A /* Pods-TravelAppProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -526,7 +596,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+		80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
 			requirement = {
@@ -534,7 +604,7 @@
 				minimumVersion = 2.8.4;
 			};
 		};
-		808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -547,17 +617,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		80491F902AC4133400095DE8 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			package = 80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */;
 			productName = FSCalendar;
 		};
 		808F8A582ACEDD1700D9A0EB /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = Realm;
 		};
 		808F8A5A2ACEDD1700D9A0EB /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
