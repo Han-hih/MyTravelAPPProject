@@ -14,10 +14,9 @@ protocol PhotoRealmRepositoryType: AnyObject {
 
 class PhotoRealmRepository: PhotoRealmRepositoryType {
     
-   private let realm = try! Realm()
-    
+    let realm = try! Realm()
+
     func createItem(_ item: PhotoTable) {
-        
         do {
             try realm.write {
                 realm.add(item)
