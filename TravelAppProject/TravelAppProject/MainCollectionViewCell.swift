@@ -192,18 +192,18 @@ class MainCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             // MARK: - 바코드뷰
             barcodeView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            barcodeView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            barcodeView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            barcodeView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            barcodeView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
             barcodeView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2),
             // MARK: - 메인뷰
             mainView.topAnchor.constraint(equalTo: barcodeView.bottomAnchor),
-            mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            mainView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            mainView.widthAnchor.constraint(equalTo: barcodeView.widthAnchor),
             mainView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6),
             // MARK: - 하단뷰
             bottomView.topAnchor.constraint(equalTo: mainView.bottomAnchor),
-            bottomView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            bottomView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            bottomView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            bottomView.widthAnchor.constraint(equalTo: barcodeView.widthAnchor),
             bottomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             // MARK: - 여행레이블뷰
             travelLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),

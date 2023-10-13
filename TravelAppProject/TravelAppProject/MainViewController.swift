@@ -20,6 +20,10 @@ class MainViewController: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .white
         view.isPagingEnabled = true
+        view.isScrollEnabled = true
+        view.showsHorizontalScrollIndicator = false
+        view.showsVerticalScrollIndicator = true
+        
         view.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
         
         view.delegate = self
@@ -53,7 +57,7 @@ class MainViewController: UIViewController {
             collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
         ])
     }
     
