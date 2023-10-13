@@ -70,7 +70,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         }
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8),
+            collectionView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.9),
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
 
         ])
