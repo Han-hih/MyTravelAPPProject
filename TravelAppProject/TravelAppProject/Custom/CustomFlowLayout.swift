@@ -12,6 +12,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         super.init()
         
         scrollDirection = .horizontal
+        minimumLineSpacing = .zero
+        minimumInteritemSpacing = .zero
     }
     
     required init?(coder: NSCoder) {
