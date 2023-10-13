@@ -42,6 +42,7 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
     }()
     let repository = PhotoRealmRepository()
     
+    var id: ObjectId?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -65,8 +66,15 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
     }
     
     @objc func saveButtonTapped() {
+        let realm = try! Realm()
+        let main = realm.objects(TravelRealmModel.self).where {
+            $0._id == id!
+        }.first!
         let task = PhotoTable(photoMemo: memoTextFieldView.text ?? "")
-        repository.createItem(task)
+        try! realm.write {
+            main.photo.append(task)
+        }
+//        repository.createItem(task)
         if photoView.image != nil {
             saveImageToDocument(fileName: "\(task._id).jpg", image: photoView.image!)
         }
