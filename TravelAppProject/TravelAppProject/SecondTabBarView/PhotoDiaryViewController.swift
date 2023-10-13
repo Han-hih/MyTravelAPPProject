@@ -117,7 +117,8 @@ extension PhotoDiaryViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoDiaryCollectionViewCell.identifier, for: indexPath) as? PhotoDiaryCollectionViewCell else { return UICollectionViewCell() }
-        
+        cell.imageView.image = photoList[indexPath.item]
+        cell.memoLabel.text = memoList[indexPath.item]
         return cell
     }
     

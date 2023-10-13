@@ -31,6 +31,7 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
     private let memoTextFieldView = {
         let view = UITextView()
         view.backgroundColor = .lightGray
+        view.textAlignment = .center
         let keyboardToolbar = UIToolbar()
         let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneBarButton = UIBarButtonItem(title: "Done".localized, style: .plain, target: self, action: #selector(doneButtonTapped))
