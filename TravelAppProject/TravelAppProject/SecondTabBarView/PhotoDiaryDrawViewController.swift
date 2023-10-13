@@ -71,16 +71,28 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
         let main = realm.objects(TravelRealmModel.self).where {
             $0._id == id!
         }.first!
+        
         let task = PhotoTable(photoMemo: memoTextFieldView.text ?? "")
-        try! realm.write {
-            main.photo.append(task)
+        if photoView.image == nil {
+            let alert = UIAlertController(title: "사진을 추가해 주세요", message: .none, preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "확인", style: .default) { _ in
+            print("저장안됨")
+            }
+            alert.addAction(ok)
+            present(alert, animated:  true)
+        } else {
+            try! realm.write {
+                main.photo.append(task)
+            }
+            self.navigationController?.popViewController(animated: true)
         }
 //        repository.createItem(task)
         if photoView.image != nil {
             saveImageToDocument(fileName: "\(task._id).jpg", image: photoView.image!)
         }
         
-        navigationController?.popViewController(animated: true)
+       
     }
     
     func setLayout() {
