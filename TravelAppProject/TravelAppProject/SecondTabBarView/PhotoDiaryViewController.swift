@@ -39,7 +39,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         setConfiguration()
         setNavigationBar()
         setAutoLayout()
@@ -70,8 +70,10 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         }
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.9),
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+            
 
         ])
         
@@ -104,7 +106,11 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         
     }
 }
-extension PhotoDiaryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PhotoDiaryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.frame.size
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photoList.count
     }
