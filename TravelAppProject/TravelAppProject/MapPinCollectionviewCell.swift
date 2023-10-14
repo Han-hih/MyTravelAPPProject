@@ -12,12 +12,14 @@ class MapPinCollectionviewCell: UICollectionViewCell {
     let dateLabel = {
         let label = UILabel()
         label.text = "14일(금)"
-        
+        label.layer.borderColor = UIColor.black.cgColor
+        label.layer.borderWidth = 1
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setLayout()
     }
     
     required init?(coder: NSCoder) {

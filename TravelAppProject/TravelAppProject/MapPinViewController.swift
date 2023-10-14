@@ -17,10 +17,13 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
     }()
     
     let collectionView = {
-        let layout = CustomFlowLayout()
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 10
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .yellow
+        view.register(MapPinCollectionviewCell.self, forCellWithReuseIdentifier: MapPinCollectionviewCell.identifier)
         return view
     }()
     
@@ -28,6 +31,9 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.mapView.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         setAutoLayout()
     }
     func setAutoLayout() {
