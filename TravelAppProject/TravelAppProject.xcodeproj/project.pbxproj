@@ -25,6 +25,8 @@
 		80491F9A2AC7366B00095DE8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F992AC7366B00095DE8 /* String+Extension.swift */; };
 		80491F9C2AC87FA300095DE8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F9B2AC87FA300095DE8 /* Observable.swift */; };
 		80491F9E2AC8806B00095DE8 /* CalanderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F9D2AC8806B00095DE8 /* CalanderViewModel.swift */; };
+		806985562ADA79A8003609BA /* MapPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806985552ADA79A8003609BA /* MapPinViewController.swift */; };
+		806985582ADA7DD1003609BA /* MapPinCollectionviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806985572ADA7DD1003609BA /* MapPinCollectionviewCell.swift */; };
 		8087419D2ACC2DF700F81574 /* PlanSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087419C2ACC2DF600F81574 /* PlanSearchViewController.swift */; };
 		8087419F2ACC311C00F81574 /* PlanSearchSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087419E2ACC311C00F81574 /* PlanSearchSettingViewController.swift */; };
 		808EADF92AC1B5F700ED57EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EADF82AC1B5F700ED57EF /* AppDelegate.swift */; };
@@ -66,6 +68,8 @@
 		80491F992AC7366B00095DE8 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		80491F9B2AC87FA300095DE8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		80491F9D2AC8806B00095DE8 /* CalanderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderViewModel.swift; sourceTree = "<group>"; };
+		806985552ADA79A8003609BA /* MapPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPinViewController.swift; sourceTree = "<group>"; };
+		806985572ADA7DD1003609BA /* MapPinCollectionviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPinCollectionviewCell.swift; sourceTree = "<group>"; };
 		8087419C2ACC2DF600F81574 /* PlanSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanSearchViewController.swift; sourceTree = "<group>"; };
 		8087419E2ACC311C00F81574 /* PlanSearchSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanSearchSettingViewController.swift; sourceTree = "<group>"; };
 		808EADF52AC1B5F700ED57EF /* TravelAppProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelAppProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +193,8 @@
 				808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */,
 				80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */,
 				80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */,
+				806985552ADA79A8003609BA /* MapPinViewController.swift */,
+				806985572ADA7DD1003609BA /* MapPinCollectionviewCell.swift */,
 				8087419C2ACC2DF600F81574 /* PlanSearchViewController.swift */,
 				8087419E2ACC311C00F81574 /* PlanSearchSettingViewController.swift */,
 				80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */,
@@ -345,8 +351,10 @@
 				800404692AD0F4A800634CD4 /* CustomLabel.swift in Sources */,
 				80491F9E2AC8806B00095DE8 /* CalanderViewModel.swift in Sources */,
 				800404712AD279FD00634CD4 /* CountryRawData.swift in Sources */,
+				806985582ADA7DD1003609BA /* MapPinCollectionviewCell.swift in Sources */,
 				80159E2D2AD76FE300ACCBCA /* CustomFlowLayout.swift in Sources */,
 				80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */,
+				806985562ADA79A8003609BA /* MapPinViewController.swift in Sources */,
 				80491F9A2AC7366B00095DE8 /* String+Extension.swift in Sources */,
 				800404642AD01F7E00634CD4 /* MainCollectionViewCell.swift in Sources */,
 				808EAE0F2AC1D37E00ED57EF /* SearchViewController.swift in Sources */,
