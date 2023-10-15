@@ -90,7 +90,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.backgroundColor = .clear
         view.layer.cornerRadius = Constants.cornerRadius
-        view.clipsToBounds = true
+//        view.clipsToBounds = true
         return view
     }()
     private let viewLabel = {
@@ -143,6 +143,10 @@ class MainCollectionViewCell: UICollectionViewCell {
   
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        self.gradationAnimate()
     }
     
     func gradationAnimate() {
