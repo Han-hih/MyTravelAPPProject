@@ -86,11 +86,11 @@ class MainCollectionViewCell: UICollectionViewCell {
         label.text = "End Date".localized
         return label
     }()
-    private lazy var gradationView = {
+    private let gradationView = {
         let view = UIView()
         view.backgroundColor = .clear
         view.layer.cornerRadius = Constants.cornerRadius
-//        view.clipsToBounds = true
+        view.clipsToBounds = true
         return view
     }()
     private let viewLabel = {
@@ -147,6 +147,11 @@ class MainCollectionViewCell: UICollectionViewCell {
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
         self.gradationAnimate()
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        gradationAnimate()
     }
     
     func gradationAnimate() {
