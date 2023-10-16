@@ -33,22 +33,17 @@ class MainViewController: UIViewController {
         super.viewDidLoad() 
         collectionView.reloadData()
 
-        list = realm.objects(TravelRealmModel.self)
+        list = realm.objects(TravelRealmModel.self).sorted(byKeyPath: "addDate", ascending: false)
         view.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         setAutoLayout()
         setNavigation()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        MainCollectionViewCell.shared.gradationAnimate()
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.reloadData()
     }
-    
     func setAutoLayout() {
         NSLayoutConstraint.activate([
             collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
