@@ -14,15 +14,18 @@ class TravelRealmModel: Object {
     @Persisted var country: String
     @Persisted var startDate: Date
     @Persisted var endDate: Date?
+    @Persisted var addDate: Date
     @Persisted var detail: List<DetailTable>
     @Persisted var photo: List<PhotoTable>
     
-    convenience init(country: String, startDate: Date, endDate: Date? = nil) {
+    
+    convenience init(country: String, startDate: Date, endDate: Date? = nil, addDate: Date) {
         self.init()
         
         self.country = country
         self.startDate = startDate
         self.endDate = endDate
+        self.addDate = Date()
     }
     
     
