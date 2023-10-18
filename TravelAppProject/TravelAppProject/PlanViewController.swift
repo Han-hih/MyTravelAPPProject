@@ -20,7 +20,7 @@ final class PlanViewController: UIViewController {
     
     var appendArr = [String]()
     var sectionCount = 0
-    lazy var place = [[Plan]](repeating: [Plan(location: "", memo: "", time: "")], count: sectionCount)
+    lazy var place = [[Plan]](repeating: [Plan(objectID: id!, location: "", memo: "", time: "")], count: sectionCount)
     var dateArray = [Date]()
     
     let tableView = {
@@ -38,17 +38,25 @@ final class PlanViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
+        place = [[Plan]](repeating: [Plan(objectID: id!, location: "", memo: "", time: "")], count: sectionCount)
         
-        
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setSortedData()
+        tableView.reloadData()
+                    
     }
     
     struct Plan {
+        var objectId: ObjectId
         var location: String
         var memo: String?
         var time: String?
         
-        init(location: String, memo: String? = nil, time: String? = nil) {
+        init(objectID: ObjectId, location: String, memo: String? = nil, time: String? = nil) {
+            self.objectId = objectID
             self.location = location
             self.memo = memo
             self.time = time
@@ -65,7 +73,7 @@ final class PlanViewController: UIViewController {
         setAutoLayout()
         setSortedData()
         setupTableView()
-        self.tableView.isEditing = true
+        
         
     }
     func setSortedData() {
@@ -77,7 +85,7 @@ final class PlanViewController: UIViewController {
         for i in 0..<sectionCount {
             for j in 0..<main.detail.count {
                 if dateArray[i] == main.detail[j].date {
-                    place[i].append(Plan(location: main.detail[j].location))
+                    place[i].append(Plan(objectID: main.detail[j]._id, location: main.detail[j].location))
                 }
             }
             if place[i][0].location == "" {
@@ -150,41 +158,39 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         vc.date = dateArray[sender.tag]
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
-    }
-    
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    // MARK: - 수정 할 부분(드래그앤드롭)
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print(sourceIndexPath.section, sourceIndexPath.row)
-        print(destinationIndexPath.section, destinationIndexPath.row)
-        let main = realm.objects(TravelRealmModel.self).where {
-            $0._id == id!
+  
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let main = self.realm.objects(TravelRealmModel.self).where {
+            $0._id == self.id!
         }.first!
-        
-        let sectionToUpdate = main.detail[sourceIndexPath.section]
-        let rowToUpdate = main.detail[sourceIndexPath.row]
-        try! realm.write {
-//            sectionToUpdate.section = destinationIndexPath.section
-//            rowToUpdate.row = destinationIndexPath.row
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, _, completionHandler in
+                for i in 0..<main.detail.count {
+                    guard let task = self.realm.objects(DetailTable.self).filter({ $0._id == main.detail[i]._id }).first else { return }
+                    if self.place[indexPath.section][indexPath.row].objectId == main.detail[i]._id {
+                        try! self.realm.write {
+                            self.realm.delete(task)
+                        }
+                        
+                    }
+                }
+            
+                self.tableView.reloadData()
+            
+            
+            
+            print("삭제 클릭됨")
+            completionHandler(true)
         }
-        
-        //        updateRealm(section: sectionToUpdate, row: destinationIndexPath, location: place, longitude: self, latitude: self)
+        deleteAction.image = UIImage(systemName: "trash")
+        deleteAction.backgroundColor = .red
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
     }
-    func updateRealm(section: Int, row: Int, location: String, memo: String? = nil, time: String? = nil, longitude: Double, latitude: Double) {
-        try! realm.write {
-            realm.create(DetailTable.self, value: [section: section, row: row, location: location, memo: memo ?? "", time: time ?? "", longitude: longitude, latitude: latitude], update: .modified)
+    
+        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+            return true
         }
-        
-    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount
     }
@@ -197,15 +203,14 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlanTableViewCell.identifier, for: indexPath) as? PlanTableViewCell else {
             return UITableViewCell() }
-       
-                cell.placeLabel.text = place[indexPath.section][indexPath.row].location
+        
+        cell.placeLabel.text = place[indexPath.section][indexPath.row].location
         return cell
         
     }
     
+    
 }
-
-
 extension UIButton {
     func setUnderline() {
         guard let title = title(for: .normal) else { return }
