@@ -114,7 +114,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         var tempDate = start
         var array = [tempDate]
         
-        while tempDate <= end {
+        while tempDate < end {
             tempDate = Calendar.current.date(byAdding: .day, value: 1, to: tempDate)!
             array.append(tempDate)
         }
