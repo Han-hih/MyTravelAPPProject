@@ -45,7 +45,8 @@ class PlanSearchSettingViewController: UIViewController {
     var longitude = 0.0
     var latitude = 0.0
     var sectionNumber = 0
-
+    var row = 0
+    var date = Date()
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         func setBottomLine(textField: UITextField) {
@@ -70,8 +71,14 @@ class PlanSearchSettingViewController: UIViewController {
     
     @objc func addButtonTapped() {
         realmCreate()
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-    
+        if let viewControllers = self.navigationController?.viewControllers {
+            for viewController in viewControllers {
+                if viewController is PlanViewController {
+                    self.navigationController?.popToViewController(viewController, animated: true)
+                    break
+                }
+            }
+        }
     }
     
     func realmCreate() {
@@ -80,7 +87,7 @@ class PlanSearchSettingViewController: UIViewController {
             $0._id == id!
         }.first!
         
-        let task = DetailTable(section: sectionNumber, location: resultTextField.text!, memo: memoTextField.text ?? "", time: timeTextField.text ?? "", longitude: longitude, latitude: latitude)
+        let task = DetailTable(date: date, location: resultTextField.text!, memo: memoTextField.text ?? "", time: timeTextField.text ?? "", longitude: longitude, latitude: latitude)
         try! realm.write {
 //            realm.add(task)
             main.detail.append(task)
