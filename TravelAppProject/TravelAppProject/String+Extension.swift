@@ -17,6 +17,10 @@ extension String {
     func localizeDate(date: Date) -> String {
         return DateFormatter.localizedString(from: date, dateStyle: .full, timeStyle: .none)
     }
+    
+    func mediumLocalizeDate(date: Date) -> String {
+        return DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
+    }
     func numbers(money: Int) -> String {
         return NumberFormatter.localizedString(from: money as NSNumber, number: .decimal)
      }

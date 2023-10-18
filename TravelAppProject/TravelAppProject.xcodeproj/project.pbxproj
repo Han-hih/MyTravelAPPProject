@@ -12,14 +12,12 @@
 		800404692AD0F4A800634CD4 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404682AD0F4A800634CD4 /* CustomLabel.swift */; };
 		8004046D2AD2786E00634CD4 /* CountryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004046C2AD2786E00634CD4 /* CountryController.swift */; };
 		800404712AD279FD00634CD4 /* CountryRawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404702AD279FD00634CD4 /* CountryRawData.swift */; };
-		80159E062AD5AA5300ACCBCA /* InnerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E052AD5AA5300ACCBCA /* InnerCollectionViewCell.swift */; };
-		80159E082AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E072AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift */; };
+		800FC5E32ADFB6E800F84AED /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FC5E22ADFB6E800F84AED /* PhotoTableViewCell.swift */; };
 		80159E2D2AD76FE300ACCBCA /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */; };
 		8020B0FD2AD7BE6500ECBB37 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */; };
 		8020B0FF2AD805C600ECBB37 /* PhotoDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */; };
 		8020B1012AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */; };
 		8020B1062AD8D0E700ECBB37 /* PhotoRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B1052AD8D0E700ECBB37 /* PhotoRealmRepository.swift */; };
-		803DFC512ADC3C7C00D427DC /* InnerFSPagerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803DFC502ADC3C7C00D427DC /* InnerFSPagerViewCell.swift */; };
 		80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */; };
 		80491F912AC4133400095DE8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 80491F902AC4133400095DE8 /* FSCalendar */; };
 		80491F942AC71B3100095DE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80491F962AC71B3100095DE8 /* Localizable.strings */; };
@@ -40,7 +38,6 @@
 		808F8A592ACEDD1700D9A0EB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 808F8A582ACEDD1700D9A0EB /* Realm */; };
 		808F8A5B2ACEDD1700D9A0EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 808F8A5A2ACEDD1700D9A0EB /* RealmSwift */; };
 		808F8A5E2ACEDF1D00D9A0EB /* TravelRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808F8A5D2ACEDF1D00D9A0EB /* TravelRealmModel.swift */; };
-		809512552AD96947000DA92B /* PagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809512542AD96947000DA92B /* PagerViewController.swift */; };
 		809512572AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809512562AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift */; };
 		80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */; };
 		80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */; };
@@ -55,14 +52,12 @@
 		800404682AD0F4A800634CD4 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		8004046C2AD2786E00634CD4 /* CountryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryController.swift; sourceTree = "<group>"; };
 		800404702AD279FD00634CD4 /* CountryRawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryRawData.swift; sourceTree = "<group>"; };
-		80159E052AD5AA5300ACCBCA /* InnerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCollectionViewCell.swift; sourceTree = "<group>"; };
-		80159E072AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalCollectionViewCell.swift; sourceTree = "<group>"; };
+		800FC5E22ADFB6E800F84AED /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
 		8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDiaryViewController.swift; sourceTree = "<group>"; };
 		8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDiaryDrawViewController.swift; sourceTree = "<group>"; };
 		8020B1052AD8D0E700ECBB37 /* PhotoRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRealmRepository.swift; sourceTree = "<group>"; };
-		803DFC502ADC3C7C00D427DC /* InnerFSPagerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerFSPagerViewCell.swift; sourceTree = "<group>"; };
 		80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderViewController.swift; sourceTree = "<group>"; };
 		80491F952AC71B3100095DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80491F972AC71B6300095DE8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -84,7 +79,6 @@
 		808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		808F8A5D2ACEDF1D00D9A0EB /* TravelRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelRealmModel.swift; sourceTree = "<group>"; };
-		809512542AD96947000DA92B /* PagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerViewController.swift; sourceTree = "<group>"; };
 		809512562AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTableViewCell.swift; sourceTree = "<group>"; };
@@ -145,13 +139,10 @@
 			isa = PBXGroup;
 			children = (
 				808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */,
-				80159E052AD5AA5300ACCBCA /* InnerCollectionViewCell.swift */,
-				80159E072AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift */,
+				800FC5E22ADFB6E800F84AED /* PhotoTableViewCell.swift */,
 				8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */,
 				809512562AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift */,
 				8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */,
-				809512542AD96947000DA92B /* PagerViewController.swift */,
-				803DFC502ADC3C7C00D427DC /* InnerFSPagerViewCell.swift */,
 			);
 			path = SecondTabBarView;
 			sourceTree = "<group>";
@@ -349,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				800FC5E32ADFB6E800F84AED /* PhotoTableViewCell.swift in Sources */,
 				800404662AD0325000634CD4 /* ReusableViewProtocol.swift in Sources */,
 				8020B1012AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift in Sources */,
 				800404692AD0F4A800634CD4 /* CustomLabel.swift in Sources */,
@@ -364,11 +356,8 @@
 				8087419F2ACC311C00F81574 /* PlanSearchSettingViewController.swift in Sources */,
 				8004046D2AD2786E00634CD4 /* CountryController.swift in Sources */,
 				808EADFD2AC1B5F700ED57EF /* MainViewController.swift in Sources */,
-				803DFC512ADC3C7C00D427DC /* InnerFSPagerViewCell.swift in Sources */,
-				80159E062AD5AA5300ACCBCA /* InnerCollectionViewCell.swift in Sources */,
 				80491F9C2AC87FA300095DE8 /* Observable.swift in Sources */,
 				809512572AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift in Sources */,
-				80159E082AD5C1F100ACCBCA /* ExternalCollectionViewCell.swift in Sources */,
 				80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */,
 				8020B0FD2AD7BE6500ECBB37 /* FileManager+Extension.swift in Sources */,
 				8087419D2ACC2DF700F81574 /* PlanSearchViewController.swift in Sources */,
@@ -376,7 +365,6 @@
 				8020B0FF2AD805C600ECBB37 /* PhotoDiaryViewController.swift in Sources */,
 				808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */,
 				8020B1062AD8D0E700ECBB37 /* PhotoRealmRepository.swift in Sources */,
-				809512552AD96947000DA92B /* PagerViewController.swift in Sources */,
 				808EADF92AC1B5F700ED57EF /* AppDelegate.swift in Sources */,
 				808F8A5E2ACEDF1D00D9A0EB /* TravelRealmModel.swift in Sources */,
 				808EADFB2AC1B5F700ED57EF /* SceneDelegate.swift in Sources */,

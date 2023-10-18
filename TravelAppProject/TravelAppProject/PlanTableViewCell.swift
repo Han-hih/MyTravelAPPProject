@@ -8,7 +8,7 @@
 import UIKit
 
 class PlanTableViewCell: UITableViewCell {
-    static let identifier = "PlanTable"
+    
     
     let placeLabel = {
         let label = UILabel()

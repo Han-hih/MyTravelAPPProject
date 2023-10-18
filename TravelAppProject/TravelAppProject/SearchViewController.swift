@@ -103,6 +103,7 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         let code = item.countryCode
+        let countryName = item.countryKOR
         print(code)
         
             let vc = CalanderViewController()
@@ -110,6 +111,7 @@ extension SearchViewController: UITableViewDelegate {
             vc.modalPresentationStyle = .fullScreen
             vc.title = "여행 기간을 설정해주세요"
             vc.country = code
+        vc.countryName = countryName
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
