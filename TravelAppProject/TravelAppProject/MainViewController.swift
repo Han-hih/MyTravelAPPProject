@@ -97,11 +97,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         vc.navigationItem.backButtonTitle = ""
         vc.dateArray = dateBetween(start: list[indexPath.row].startDate, end: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
         vc.sectionCount = daysBetween(start: list[indexPath.row].startDate, end: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
+        print(vc.dateArray, vc.sectionCount)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func daysBetween(start: Date, end: Date) -> Int {
-        return Calendar.current.dateComponents([.day], from: start, to: end).day!
+        return Calendar.current.dateComponents([.day], from: start, to: end).day! + 1
+        
     }
     
     func dateBetween(start: Date, end: Date) -> [Date] {
@@ -110,7 +112,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         var tempDate = start
         var array = [tempDate]
         
-        while tempDate < end {
+        while tempDate <= end {
             tempDate = Calendar.current.date(byAdding: .day, value: 1, to: tempDate)!
             array.append(tempDate)
         }
