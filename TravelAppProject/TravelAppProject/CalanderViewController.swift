@@ -39,7 +39,7 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
     private var firstDate: Date?
     private var lastDate: Date?
     var country = ""
-    
+    var countryName = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -61,14 +61,14 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
     func createRealm() {
         let realm = try! Realm()
         if datesRange?.count == 1 {
-            let task = TravelRealmModel(country: country, startDate: datesRange!.first!, endDate: nil, addDate: Date())
+            let task = TravelRealmModel(country: country, countryName: countryName, startDate: datesRange!.first!, endDate: nil, addDate: Date())
             try! realm.write {
                 realm.add(task)
                 print("realm 저장 성공(하루)")
                 print(Realm.Configuration.defaultConfiguration.fileURL!)
             }
         } else {
-            let task = TravelRealmModel(country: country, startDate: datesRange!.first!, endDate: datesRange!.last!, addDate: Date())
+            let task = TravelRealmModel(country: country, countryName: countryName, startDate: datesRange!.first!, endDate: datesRange!.last!, addDate: Date())
             try! realm.write {
                 realm.add(task)
                 print("realm 저장 성공(여러날)")

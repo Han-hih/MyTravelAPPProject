@@ -12,6 +12,7 @@ class TravelRealmModel: Object {
     
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var country: String
+    @Persisted var countryName: String
     @Persisted var startDate: Date
     @Persisted var endDate: Date?
     @Persisted var addDate: Date
@@ -19,10 +20,11 @@ class TravelRealmModel: Object {
     @Persisted var photo: List<PhotoTable>
     
     
-    convenience init(country: String, startDate: Date, endDate: Date? = nil, addDate: Date) {
+    convenience init(country: String, countryName: String, startDate: Date, endDate: Date? = nil, addDate: Date) {
         self.init()
         
         self.country = country
+        self.countryName = countryName
         self.startDate = startDate
         self.endDate = endDate
         self.addDate = Date()
@@ -34,6 +36,7 @@ class TravelRealmModel: Object {
 class DetailTable: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var section: Int
+    @Persisted var row: Int
     @Persisted var location: String
     @Persisted var memo: String?
     @Persisted var time: String?
@@ -42,10 +45,11 @@ class DetailTable: Object {
     
     @Persisted(originProperty: "detail") var mainPlan: LinkingObjects<TravelRealmModel>
     
-    convenience init(section: Int, location: String, memo: String? = nil, time: String? = nil, longitude: Double, latitude: Double) {
+    convenience init(section: Int, row: Int, location: String, memo: String? = nil, time: String? = nil, longitude: Double, latitude: Double) {
         self.init()
         
         self.section = section
+        self.row = row
         self.location = location
         self.memo = memo
         self.time = time
