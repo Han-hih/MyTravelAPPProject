@@ -83,6 +83,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy".localized
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
+        cell.travelPlaceLabel.text = list[indexPath.row].country
+        cell.countryFullLabel.text = list[indexPath.row].countryName
         cell.startDateLabel.text = dateFormatter.string(from: list[indexPath.row].startDate)
         cell.endDateLabel.text = dateFormatter.string(from: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
         return cell

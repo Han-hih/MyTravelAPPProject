@@ -25,7 +25,7 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         list = realm.objects(TravelRealmModel.self).sorted(byKeyPath: "addDate", ascending: false)
         setAutoLayout()
        
