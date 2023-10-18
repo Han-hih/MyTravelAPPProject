@@ -10,14 +10,17 @@ import RealmSwift
 
 final class PlanViewController: UIViewController {
     
+    
+    
     var id: ObjectId?
     
     let realm = try! Realm()
     var list: Results<TravelRealmModel>!
+    var sortedData: [[DetailTable]] = []
     
     var appendArr = [String]()
     var sectionCount = 0
-    lazy var place = [[Plan]](repeating: [Plan(location: "")], count: sectionCount)
+    lazy var place = [[Plan]](repeating: [Plan(location: "", memo: "", time: "")], count: sectionCount)
     var dateArray = [Date]()
     
     let tableView = {
@@ -26,27 +29,29 @@ final class PlanViewController: UIViewController {
         return view
     }()
     
-    let addButton = {
+    let naviButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         return button
     }()
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presentingViewController?.viewWillDisappear(true)
-        tableView.reloadData()
+        self.tableView.reloadData()
+        
+        
     }
     
     struct Plan {
         var location: String
-//        var memo: String?
-//        var time: String?
+        var memo: String?
+        var time: String?
         
-        init(location: String) {
+        init(location: String, memo: String? = nil, time: String? = nil) {
             self.location = location
-//            self.memo = memo
-//            self.time = time
+            self.memo = memo
+            self.time = time
         }
         
     }
@@ -54,33 +59,46 @@ final class PlanViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         list = realm.objects(TravelRealmModel.self)
+        
         view.backgroundColor = .white
+        setNavigation()
         setAutoLayout()
+        setSortedData()
         setupTableView()
         self.tableView.isEditing = true
-        print(place)
-        planArrayMake()
-    }
-    func planArrayMake() {
-        let main = realm.objects(TravelRealmModel.self).where {
-            $0._id == id!
-        }.first!
         
-        for i in 0..<sectionCount { // ex) 0과 1을돌고
-            for j in 0..<main.detail.count { //ex) detail의 값들을 돌고
-                if i == main.detail[j].section { // ex) i와 detail의 section값이 같으면 배열에 추가
+    }
+    func setSortedData() {
+        // 날짜 기준으로 하나의 Array 만들어서 sortedData 추가
+        let main = realm.objects(TravelRealmModel.self).where {
+                    $0._id == id!
+                }.first!
+        
+        for i in 0..<sectionCount {
+            for j in 0..<main.detail.count {
+                if dateArray[i] == main.detail[j].date {
                     place[i].append(Plan(location: main.detail[j].location))
                 }
             }
             if place[i][0].location == "" {
-                place[i].remove(at: 0)
-            }
+                           place[i].remove(at: 0)
+                       }
         }
-        
-        print(place)
+    }
+
+    func setNavigation() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(mapButtonTapped))
+        self.navigationController?.navigationBar.tintColor = .black
+    }
+    @objc func mapButtonTapped() {
+        let vc = MapPinViewController()
+        vc.sectionCount = sectionCount
+        vc.dateArray = dateArray
+        vc.id = id
+        navigationController?.pushViewController(vc, animated: true)
     }
     func setAutoLayout() {
-        [tableView, addButton].forEach {
+        [tableView, naviButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -94,7 +112,7 @@ final class PlanViewController: UIViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(PlanTableViewCell.self, forCellReuseIdentifier: "PlanTable")
+        tableView.register(PlanTableViewCell.self, forCellReuseIdentifier: PlanTableViewCell.identifier)
     }
 }
 
@@ -106,7 +124,6 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0))
-        //            footerView.backgroundColor = .orange
         let plusButton = UIButton()
         plusButton.setTitle("Add Place".localized, for: .normal)
         plusButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
@@ -129,11 +146,9 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     
     @objc func plusButtonTapped(_ sender: UIButton) {
         let vc = PlanSearchViewController()
-        vc.section = sender.tag
         vc.id = id
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
-        print(sender.tag)
+        vc.date = dateArray[sender.tag]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -143,15 +158,33 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     // MARK: - 수정 할 부분(드래그앤드롭)
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        //        placeArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        //        let moveObject = self.[sourceIndexPath.row]
-        //        placeArray.remove(at: sourceIndexPath.row)
-        //        placeArray.insert(moveObject, at: destinationIndexPath.row)
+        print(sourceIndexPath.section, sourceIndexPath.row)
+        print(destinationIndexPath.section, destinationIndexPath.row)
+        let main = realm.objects(TravelRealmModel.self).where {
+            $0._id == id!
+        }.first!
+        
+        let sectionToUpdate = main.detail[sourceIndexPath.section]
+        let rowToUpdate = main.detail[sourceIndexPath.row]
+        try! realm.write {
+//            sectionToUpdate.section = destinationIndexPath.section
+//            rowToUpdate.row = destinationIndexPath.row
+        }
+        
+        //        updateRealm(section: sectionToUpdate, row: destinationIndexPath, location: place, longitude: self, latitude: self)
     }
-    
+    func updateRealm(section: Int, row: Int, location: String, memo: String? = nil, time: String? = nil, longitude: Double, latitude: Double) {
+        try! realm.write {
+            realm.create(DetailTable.self, value: [section: section, row: row, location: location, memo: memo ?? "", time: time ?? "", longitude: longitude, latitude: latitude], update: .modified)
+        }
+        
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount
     }
@@ -162,9 +195,10 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlanTable", for: indexPath) as? PlanTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlanTableViewCell.identifier, for: indexPath) as? PlanTableViewCell else {
             return UITableViewCell() }
-        cell.placeLabel.text = place[indexPath.section][indexPath.row].location
+       
+                cell.placeLabel.text = place[indexPath.section][indexPath.row].location
         return cell
         
     }
