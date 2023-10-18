@@ -38,10 +38,10 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
     let collectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = .zero
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
         view.register(MapPinCollectionviewCell.self, forCellWithReuseIdentifier: MapPinCollectionviewCell.identifier)
         return view
     }()
@@ -55,42 +55,41 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
         locationArrayMake()
         setAutoLayout()
         setMapPin()
+        print(dateArray)
     }
     func locationArrayMake() {
         let main = realm.objects(TravelRealmModel.self).where {
             $0._id == id!
         }.first!
         
-        for i in 0..<sectionCount {
+        for i in 0..<dateArray.count {
             for j in 0..<main.detail.count {
-                if i == main.detail[j].section {
+                if dateArray[i] == main.detail[j].date {
                     locations[i].append(Location(location: main.detail[j].location, latitude: main.detail[j].latitude, longitude: main.detail[j].longitude))
                 }
             }
         }
-        
-        print(locations)
     }
     
     func setMapPin() {
-        for i in 0..<sectionCount {
+        for i in 0..<dateArray.count {
             for j in 0..<locations[i].count {
-                let place = PlaceAnnotation(id: "\(i)", title: locations[i][j].location, locationName: "\(i + 1)일차 \(j + 1)번째", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[i][j].latitude, longitude: locations[i][j].longitude), pinTintColor: .black)
+                let place = PlaceAnnotation(id: "\(i + 1)", title: locations[i][j].location, locationName: "\(i + 1)일차 \(j + 1)번째", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[i][j].latitude, longitude: locations[i][j].longitude), pinTintColor: .black)
+                //                let annotation = MKPointAnnotation()
                 
-//                let annotation = MKPointAnnotation()
-//                annotation.coordinate = CLLocationCoordinate2D(latitude: locations[i][j].latitude, longitude: locations[i][j].longitude)
-//                annotation.title = "\(i + 1)일차 \(j + 1)번째"
+                //                let annotation = MKPointAnnotation()
+                //                annotation.coordinate = CLLocationCoordinate2D(latitude: locations[i][j].latitude, longitude: locations[i][j].longitude)
+                //                annotation.title = "\(i + 1)일차 \(j + 1)번째"
                 mapView.addAnnotation(place)
                 mapView.showAnnotations([place], animated: true)
+                
+                
             }
             
             
         }
         
     }
-    
-    
-    
     
     func setAutoLayout() {
         [mapView, collectionView].forEach {
@@ -116,12 +115,14 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
 }
 extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sectionCount
+        return dateArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MapPinCollectionviewCell.identifier, for: indexPath) as? MapPinCollectionviewCell else { return UICollectionViewCell() }
-        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd \nE"
+        cell.dateLabel.text =  dateFormatter.string(from: dateArray[indexPath.item])
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -129,27 +130,19 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
         mapView.removeOverlays(mapView.overlays)
         let directionRequest = MKDirections.Request()
         directionRequest.transportType = .walking
+        directionArray.removeAll()
         for i in 0..<locations[indexPath.item].count {
-            let annotation = MKPointAnnotation()
-//            annotation.coordinate = CLLocationCoordinate2D(latitude: locations[indexPath.item][i].latitude, longitude: locations[indexPath.section][i].longitude)
-            let place = PlaceAnnotation(id: "\(i)", title: locations[indexPath.item][i].location, locationName: "", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[indexPath.item][i].latitude, longitude: locations[indexPath.section][i].longitude), pinTintColor: .black)
-//            annotation.title = "\(indexPath.item + 1)일차 \(i + 1)번째"
-//            mapView.addAnnotation(annotation)
+            let place = PlaceAnnotation(id: "\(i + 1)", title: locations[indexPath.item][i].location, locationName: "", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[indexPath.item][i].latitude, longitude: locations[indexPath.section][i].longitude), pinTintColor: .black)
+            let annotationView = MKAnnotationView(annotation: place, reuseIdentifier: "custom")
+            annotationView.image = UIImage(systemName: "\(i + 1).circle")
             mapView.addAnnotation(place)
             mapView.showAnnotations([place], animated: true)
             directionArray.append(place.coordinate)
-            var polyline = MKPolyline(coordinates: directionArray, count: directionArray.count)
+            let polyline = MKPolyline(coordinates: directionArray, count: directionArray.count)
             mapView.addOverlay(polyline)
             
-            
-            //            print(annotation)
         }
-        directionRequest.transportType = .walking
-//        directionRequest.
-        
-        mapView.reloadInputViews()
     }
-
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKGradientPolylineRenderer(overlay: overlay)
         renderer.lineWidth = 1
@@ -168,15 +161,15 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if annotationView == nil {
             annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Custom")
             annotationView?.canShowCallout = true
-            
-            let naviButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            let naviButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 40))
             naviButton.setImage(UIImage(systemName: "location.fill"), for: .normal)
             naviButton.tintColor = .black
             annotationView?.rightCalloutAccessoryView = naviButton
+            
         } else {
             annotationView?.annotation = annotation
         }
-        
+//        annotationView?.image = UIImage(systemName: "\(?)".circle")
         annotationView?.markerTintColor = .black
         return annotationView
     }
