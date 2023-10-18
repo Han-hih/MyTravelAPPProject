@@ -75,20 +75,10 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
         for i in 0..<dateArray.count {
             for j in 0..<locations[i].count {
                 let place = PlaceAnnotation(id: "\(i + 1)", title: locations[i][j].location, locationName: "\(i + 1)일차 \(j + 1)번째", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[i][j].latitude, longitude: locations[i][j].longitude), pinTintColor: .black)
-                //                let annotation = MKPointAnnotation()
-                
-                //                let annotation = MKPointAnnotation()
-                //                annotation.coordinate = CLLocationCoordinate2D(latitude: locations[i][j].latitude, longitude: locations[i][j].longitude)
-                //                annotation.title = "\(i + 1)일차 \(j + 1)번째"
                 mapView.addAnnotation(place)
                 mapView.showAnnotations([place], animated: true)
-                
-                
             }
-            
-            
         }
-        
     }
     
     func setAutoLayout() {
@@ -115,32 +105,42 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
 }
 extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dateArray.count
+        return dateArray.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MapPinCollectionviewCell.identifier, for: indexPath) as? MapPinCollectionviewCell else { return UICollectionViewCell() }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd \nE"
-        cell.dateLabel.text =  dateFormatter.string(from: dateArray[indexPath.item])
+        if indexPath.item == 0 {
+            cell.dateLabel.text = "All".localized
+        } else {
+            cell.dateLabel.text =  dateFormatter.string(from: dateArray[indexPath.item - 1])
+            
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item == 0 {
+            mapView.removeOverlays(mapView.overlays)
+            directionArray.removeAll()
+            setMapPin()
+        } else {
         mapView.removeAnnotations(mapView.annotations)
         mapView.removeOverlays(mapView.overlays)
         let directionRequest = MKDirections.Request()
         directionRequest.transportType = .walking
         directionArray.removeAll()
-        for i in 0..<locations[indexPath.item].count {
-            let place = PlaceAnnotation(id: "\(i + 1)", title: locations[indexPath.item][i].location, locationName: "", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[indexPath.item][i].latitude, longitude: locations[indexPath.section][i].longitude), pinTintColor: .black)
-            let annotationView = MKAnnotationView(annotation: place, reuseIdentifier: "custom")
-            annotationView.image = UIImage(systemName: "\(i + 1).circle")
-            mapView.addAnnotation(place)
-            mapView.showAnnotations([place], animated: true)
-            directionArray.append(place.coordinate)
-            let polyline = MKPolyline(coordinates: directionArray, count: directionArray.count)
-            mapView.addOverlay(polyline)
-            
+            for i in 0..<locations[indexPath.item - 1].count {
+                let place = PlaceAnnotation(id: "\(i + 1)", title: locations[indexPath.item - 1][i].location, locationName: "", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[indexPath.item - 1][i].latitude, longitude: locations[indexPath.item - 1][i].longitude), pinTintColor: .black)
+                let annotationView = MKAnnotationView(annotation: place, reuseIdentifier: "custom")
+                annotationView.image = UIImage(systemName: "\(i + 1).circle")
+                mapView.addAnnotation(place)
+                mapView.showAnnotations([place], animated: true)
+                directionArray.append(place.coordinate)
+                let polyline = MKPolyline(coordinates: directionArray, count: directionArray.count)
+                mapView.addOverlay(polyline)
+            }
         }
     }
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
