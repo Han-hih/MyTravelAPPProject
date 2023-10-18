@@ -12,8 +12,13 @@ class MapPinCollectionviewCell: UICollectionViewCell {
     let dateLabel = {
         let label = UILabel()
         label.text = "14일(금)"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 2
         label.layer.borderColor = UIColor.black.cgColor
         label.layer.borderWidth = 1
+        label.layer.cornerRadius = 5
+        label.clipsToBounds = true
         return label
     }()
     
