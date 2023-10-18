@@ -35,8 +35,7 @@ class TravelRealmModel: Object {
 
 class DetailTable: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var section: Int
-    @Persisted var row: Int
+    @Persisted var date: Date
     @Persisted var location: String
     @Persisted var memo: String?
     @Persisted var time: String?
@@ -45,11 +44,10 @@ class DetailTable: Object {
     
     @Persisted(originProperty: "detail") var mainPlan: LinkingObjects<TravelRealmModel>
     
-    convenience init(section: Int, row: Int, location: String, memo: String? = nil, time: String? = nil, longitude: Double, latitude: Double) {
+    convenience init(date: Date, location: String, memo: String? = nil, time: String? = nil, longitude: Double, latitude: Double) {
         self.init()
         
-        self.section = section
-        self.row = row
+        self.date = date
         self.location = location
         self.memo = memo
         self.time = time
