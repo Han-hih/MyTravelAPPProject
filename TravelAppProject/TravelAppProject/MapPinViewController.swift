@@ -28,7 +28,7 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
     let realm = try! Realm()
     lazy var locations = [[Location]](repeating: [], count: sectionCount)
     var directionArray = [CLLocationCoordinate2D]()
-//    var placeArray = [MKPlacemark]()
+    var allAnnotaitions = [PlaceAnnotation]()
     let mapView: MKMapView = {
         let map = MKMapView()
         map.overrideUserInterfaceStyle = .light
@@ -72,13 +72,18 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
     }
     
     func setMapPin() {
+//        var allAnnotaitions: [PlaceAnnotation] = []
+        allAnnotaitions.removeAll()
         for i in 0..<dateArray.count {
             for j in 0..<locations[i].count {
                 let place = PlaceAnnotation(id: "\(i + 1)", title: locations[i][j].location, locationName: "\(i + 1)일차 \(j + 1)번째", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[i][j].latitude, longitude: locations[i][j].longitude), pinTintColor: .black)
                 mapView.addAnnotation(place)
-                mapView.showAnnotations([place], animated: true)
+                allAnnotaitions.append(place)
+                
             }
+           
         }
+        mapView.showAnnotations(allAnnotaitions, animated: true)
     }
     
     func setAutoLayout() {
@@ -129,29 +134,32 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
         mapView.removeAnnotations(mapView.annotations)
         mapView.removeOverlays(mapView.overlays)
         let directionRequest = MKDirections.Request()
-        directionRequest.transportType = .walking
+        
         directionArray.removeAll()
+            allAnnotaitions.removeAll()
             for i in 0..<locations[indexPath.item - 1].count {
                 let place = PlaceAnnotation(id: "\(i + 1)", title: locations[indexPath.item - 1][i].location, locationName: "", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[indexPath.item - 1][i].latitude, longitude: locations[indexPath.item - 1][i].longitude), pinTintColor: .black)
                 let annotationView = MKAnnotationView(annotation: place, reuseIdentifier: "custom")
                 annotationView.image = UIImage(systemName: "\(i + 1).circle")
                 mapView.addAnnotation(place)
-                mapView.showAnnotations([place], animated: true)
+                allAnnotaitions.append(place)
+                
                 directionArray.append(place.coordinate)
                 let polyline = MKPolyline(coordinates: directionArray, count: directionArray.count)
                 mapView.addOverlay(polyline)
             }
+            mapView.showAnnotations(allAnnotaitions, animated: true)
         }
     }
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKGradientPolylineRenderer(overlay: overlay)
-        renderer.lineWidth = 1
-//        renderer.strokeColor = .systemCyan
-        renderer.setColors([
-            UIColor(red: 0.02, green: 0.91, blue: 0.05, alpha: 1.0),
-            UIColor(red: 1.0, green: 0.48, blue: 0.0, alpha: 1.0),
-            UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
-        ], locations: [])
+        renderer.lineWidth = 4
+        renderer.strokeColor = .systemRed
+//        renderer.setColors([
+//            UIColor(red: 0.02, green: 0.91, blue: 0.05, alpha: 1.0),
+//            UIColor(red: 1.0, green: 0.48, blue: 0.0, alpha: 1.0),
+//            UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+//        ], locations: [])
         return renderer
     }
     
@@ -177,50 +185,28 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
           print("calloutAccessoryControlTapped")
        }
+    
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let firstAnnotation = MKPointAnnotation()
-        let secondAnnotation = MKPointAnnotation()
-        print(view.annotation!.coordinate)
+        if let selectedAnnotaition = view.annotation {
+            let selectedCoordinate = selectedAnnotaition.coordinate
+            
+            let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            let region = MKCoordinateRegion(center: selectedCoordinate, span: span)
+            mapView.setRegion(region, animated: true)
+            
+            print(selectedCoordinate)
+        }
         
-        
-//        firstAnnotation.coordinate = CLLocationCoordinate2D(latitude: locations[collectionView.tag - 1][view.tag - 1].latitude, longitude: locations[self.tabBarItem.tag - 1][view.tag - 1].longitude)
-//        secondAnnotation.coordinate = CLLocationCoordinate2D(latitude: locations[collectionView.tag][view.tag].latitude, longitude: locations[self.tabBarItem.tag][view.tag].longitude)
-//        
-//        let firstPlaceMark = MKPlacemark(coordinate: firstAnnotation.coordinate)
-//        let secondPlaceMark = MKPlacemark(coordinate: secondAnnotation.coordinate)
-//        
-//        let firstMapItem = MKMapItem(placemark: firstPlaceMark)
-//        let secondMapItem = MKMapItem(placemark: secondPlaceMark)
-//        
-//        self.mapView.showAnnotations([firstAnnotation, secondAnnotation], animated: true)
-//        let directionRequest = MKDirections.Request()
-//        directionRequest.source = firstMapItem
-//        directionRequest.destination = secondMapItem
-//        directionRequest.transportType = .walking
-//        
-//        let direction = MKDirections(request: directionRequest)
-//        
-//        direction.calculate { (response, error) in
-//            guard let response = response else {
-//                if let error = error {
-//                    print("error")
-//                }
-//                return
-//            }
-//            let route = response.routes[0]
-//            self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
-//            
-//            let rect = route.polyline.boundingMapRect
-//            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-//        }
     }
 }
 
-class PlaceAnnotation: NSObject, MKAnnotation  {
+class PlaceAnnotation: NSObject, MKAnnotation {
+    
     let title: String?
     let locationName: String
     let discipline: String
-    let coordinate: CLLocationCoordinate2D
+    var coordinate: CLLocationCoordinate2D
     var pinTintColor: UIColor
     
 init(id: String, title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D, pinTintColor: UIColor) {
@@ -232,4 +218,6 @@ init(id: String, title: String, locationName: String, discipline: String, coordi
     
     super.init()
     }
+    
+ 
 }
