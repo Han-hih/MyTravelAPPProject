@@ -46,6 +46,7 @@ class MapPinViewController: UIViewController, MKMapViewDelegate {
         return view
     }()
     
+    var selectedCoordinate = CLLocationCoordinate2DMake(0.0, 0.0)
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -131,11 +132,11 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
             directionArray.removeAll()
             setMapPin()
         } else {
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.removeOverlays(mapView.overlays)
-        let directionRequest = MKDirections.Request()
-        
-        directionArray.removeAll()
+            mapView.removeAnnotations(mapView.annotations)
+            mapView.removeOverlays(mapView.overlays)
+            let directionRequest = MKDirections.Request()
+            
+            directionArray.removeAll()
             allAnnotaitions.removeAll()
             for i in 0..<locations[indexPath.item - 1].count {
                 let place = PlaceAnnotation(id: "\(i + 1)", title: locations[indexPath.item - 1][i].location, locationName: "", discipline: "", coordinate: CLLocationCoordinate2D(latitude: locations[indexPath.item - 1][i].latitude, longitude: locations[indexPath.item - 1][i].longitude), pinTintColor: .black)
@@ -155,11 +156,11 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let renderer = MKGradientPolylineRenderer(overlay: overlay)
         renderer.lineWidth = 4
         renderer.strokeColor = .systemRed
-//        renderer.setColors([
-//            UIColor(red: 0.02, green: 0.91, blue: 0.05, alpha: 1.0),
-//            UIColor(red: 1.0, green: 0.48, blue: 0.0, alpha: 1.0),
-//            UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
-//        ], locations: [])
+        //        renderer.setColors([
+        //            UIColor(red: 0.02, green: 0.91, blue: 0.05, alpha: 1.0),
+        //            UIColor(red: 1.0, green: 0.48, blue: 0.0, alpha: 1.0),
+        //            UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        //        ], locations: [])
         return renderer
     }
     
@@ -177,26 +178,34 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
         } else {
             annotationView?.annotation = annotation
         }
-//        annotationView?.image = UIImage(systemName: "\(?)".circle")
+        //        annotationView?.image = UIImage(systemName: "\(?)".circle")
         annotationView?.markerTintColor = .black
         return annotationView
     }
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-          print("calloutAccessoryControlTapped")
-       }
-    
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let selectedAnnotaition = view.annotation {
-            let selectedCoordinate = selectedAnnotaition.coordinate
+        if let selectedAnnotaition = view.annotation?.coordinate {
             
             let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-            let region = MKCoordinateRegion(center: selectedCoordinate, span: span)
+            let region = MKCoordinateRegion(center: selectedAnnotaition, span: span)
             mapView.setRegion(region, animated: true)
-            
-            print(selectedCoordinate)
+            selectedCoordinate = selectedAnnotaition
         }
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("calloutAccessoryControlTapped")
+        
+        let selectedAnnotation = selectedCoordinate
+        
+        print(selectedAnnotation)
+                let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+                let destinationPlaceMark = MKPlacemark(coordinate: selectedAnnotation)
+                let destinationMapItem = MKMapItem(placemark: destinationPlaceMark)
+                destinationMapItem.openInMaps(launchOptions: launchOptions)
+        
+
         
     }
 }
