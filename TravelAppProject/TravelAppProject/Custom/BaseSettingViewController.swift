@@ -9,18 +9,18 @@ import UIKit
 
 class BaseSettingViewController: UIViewController {
     
-    let resultLabel = {
+   private let locationLabel = {
         let label = topTextFieldLabel()
         label.text = "Location(Modified)".localized
         return label
     }()
-    let resultTextField = {
+    let locationTextField = {
         let text = UITextField()
         
         return text
     }()
     
-    let memoLabel = {
+   private let memoLabel = {
         let label = topTextFieldLabel()
         label.text = "Memo".localized
         return label
@@ -36,7 +36,7 @@ class BaseSettingViewController: UIViewController {
         return view
     }()
     
-    let timeLabel = {
+   private let timeLabel = {
         let label = topTextFieldLabel()
         label.text = "Time".localized
         
@@ -68,7 +68,7 @@ class BaseSettingViewController: UIViewController {
             textField.borderStyle = .none
             textField.layer.addSublayer(bottomLine)
         }
-            setBottomLine(textField: resultTextField)
+            setBottomLine(textField: locationTextField)
         setBottomLine(textField: timeTextField)
         
     }
@@ -102,34 +102,35 @@ class BaseSettingViewController: UIViewController {
         
     }
     @objc func doneButtonPressed() {
-//        timeTextField.text =
+        timeTextField.text = timeFormatter(time: Date())
         self.view.endEditing(true)
     }
+    
     @objc func dateChange(_ sender: UIDatePicker) {
         timeTextField.text = timeFormatter(time: sender.date)
     }
     
     func timeFormatter(time: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH : mm"
+        formatter.dateFormat = "H : mm a".localized
         return formatter.string(from: time)
     }
     func setAutoLayout() {
-        [resultLabel, resultTextField, memoLabel, memoTextField, timeLabel, timeTextField, resultButton].forEach {
+        [locationLabel, locationTextField, memoLabel, memoTextField, timeLabel, timeTextField, resultButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
             NSLayoutConstraint.activate([
                 // MARK: - 장소레이블
-                resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-                resultLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                locationLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+                locationLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
                 
                 // MARK: - 장소 제목 텍스트필드
-                resultTextField.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 5),
-                resultTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-                resultTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+                locationTextField.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 5),
+                locationTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                locationTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
                 // MARK: - 시간 레이블
-                timeLabel.topAnchor.constraint(equalTo: resultTextField.bottomAnchor, constant: 40),
+                timeLabel.topAnchor.constraint(equalTo: locationTextField.bottomAnchor, constant: 40),
                 timeLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
 
                 // MARK: - 시간 선택 필드
