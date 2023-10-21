@@ -13,8 +13,6 @@ class PlanSearchSettingViewController: BaseSettingViewController {
     var id: ObjectId?
     var longitude = 0.0
     var latitude = 0.0
-    var sectionNumber = 0
-    var row = 0
     var date = Date()
     
     override func viewDidLoad() {
@@ -23,8 +21,20 @@ class PlanSearchSettingViewController: BaseSettingViewController {
     }
     func addButtonSetting() {
         resultButton.setTitle("Add Place".localized, for: .normal)
+        resultButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
+    @objc func addButtonTapped() {
+          realmCreate()
+          if let viewControllers = self.navigationController?.viewControllers {
+              for viewController in viewControllers {
+                  if viewController is PlanViewController {
+                      self.navigationController?.popToViewController(viewController, animated: true)
+                      break
+                  }
+              }
+          }
+      }
     
     func realmCreate() {
         let realm = try! Realm()
