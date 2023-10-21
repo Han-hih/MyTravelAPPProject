@@ -34,10 +34,11 @@ class PlanSearchViewController: UIViewController {
         return table
     }()
     
+    
     var dataSource : UITableViewDiffableDataSource<Section, Search>!
     var snapshot : NSDiffableDataSourceSnapshot<Section, Search>!
     var id: ObjectId?
-    var section = 0
+    var date = Date()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -99,26 +100,11 @@ class PlanSearchViewController: UIViewController {
     
     func setupTableView() {
         searchTable.delegate = self
-//        searchTable.dataSource = self
-//        searchTable.register(SearchTable.self, forCellReuseIdentifier: "SearchTable")
     }
 }
 
-extension PlanSearchViewController: UITableViewDelegate/*UITableViewDataSource*/ {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        //        return searchResults.count
-//        return searchResults.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//         let cell = UITableViewCell()
-//        var content = cell.defaultContentConfiguration()
-//        content.text = searchResults[indexPath.row].title
-//        content.attributedText = NSAttributedString(string: searchResults[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .semibold)])
-//        content.secondaryText = searchResults[indexPath.row].subtitle
-//        cell.contentConfiguration = content
-//        return cell
-//    }
+extension PlanSearchViewController: UITableViewDelegate {
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedResult = searchResults[indexPath.row]
@@ -138,14 +124,13 @@ extension PlanSearchViewController: UITableViewDelegate/*UITableViewDataSource*/
             print(place)
             
             let vc = PlanSearchSettingViewController()
-            vc.resultTextField.text = place
-            vc.sectionNumber = self.section
+            vc.locationTextField.text = place
             vc.latitude = latitude
             vc.longitude = longitude
             vc.id = self.id
+            vc.date = self.date
             self.navigationController?.pushViewController(vc, animated: true)
-//            present(vc, animated: true)
-            
+
         }
     }
     
