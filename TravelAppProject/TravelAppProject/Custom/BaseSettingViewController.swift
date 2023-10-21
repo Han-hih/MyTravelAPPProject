@@ -77,7 +77,25 @@ class BaseSettingViewController: UIViewController {
         view.backgroundColor = .white
         setAutoLayout()
         setupDatePicker()
+        locationTextFieldValueChanged()
     }
+    
+    func locationTextFieldValueChanged() {
+        self.locationTextField.addTarget(self, action: #selector(locationChanged), for: .editingChanged)
+        
+    }
+    @objc func locationChanged() {
+        if locationTextField.text!.isEmpty {
+            resultButton.isEnabled = false
+            resultButton.setTitle("Please enter the place".localized, for: .normal)
+            resultButton.backgroundColor = .red
+        } else {
+            resultButton.isEnabled = true
+            resultButton.setTitle("Add Place".localized, for: .normal)
+            resultButton.backgroundColor = .lightGray
+        }
+    }
+    
     
     func setupDatePicker() {
         let datePicker = UIDatePicker()

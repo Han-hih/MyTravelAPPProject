@@ -16,27 +16,15 @@ class PlanSearchSettingViewController: BaseSettingViewController {
     var sectionNumber = 0
     var row = 0
     var date = Date()
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       addButtonSetting()
+        addButtonSetting()
     }
     func addButtonSetting() {
         resultButton.setTitle("Add Place".localized, for: .normal)
-        resultButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
-    @objc func addButtonTapped() {
-        realmCreate()
-        if let viewControllers = self.navigationController?.viewControllers {
-            for viewController in viewControllers {
-                if viewController is PlanViewController {
-                    self.navigationController?.popToViewController(viewController, animated: true)
-                    break
-                }
-            }
-        }
-    }
     
     func realmCreate() {
         let realm = try! Realm()
@@ -44,9 +32,9 @@ class PlanSearchSettingViewController: BaseSettingViewController {
             $0._id == id!
         }.first!
         
-        let task = DetailTable(date: date, location: resultTextField.text!, memo: memoTextField.text ?? "", time: timeTextField.text ?? "", longitude: longitude, latitude: latitude)
+        let task = DetailTable(date: date, location: locationTextField.text!, memo: memoTextField.text ?? "", time: timeTextField.text ?? "", longitude: longitude, latitude: latitude)
         try! realm.write {
-//            realm.add(task)
+            //            realm.add(task)
             main.detail.append(task)
             print(Realm.Configuration.defaultConfiguration.fileURL!)
         }
