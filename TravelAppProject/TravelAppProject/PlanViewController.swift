@@ -49,13 +49,11 @@ final class PlanViewController: UIViewController, UIPopoverPresentationControlle
     struct Plan {
         var objectId: ObjectId
         var location: String
-        var memo: String?
         var time: String?
         
-        init(objectID: ObjectId, location: String, memo: String? = nil, time: String? = nil) {
+        init(objectID: ObjectId, location: String, time: String? = nil) {
             self.objectId = objectID
             self.location = location
-            self.memo = memo
             self.time = time
         }
         
@@ -83,26 +81,10 @@ final class PlanViewController: UIViewController, UIPopoverPresentationControlle
         for i in 0..<sectionCount {
             for j in 0..<main.detail.count {
                 if dateArray[i] == main.detail[j].date {
-                    place[i].append(Plan(objectID: main.detail[j]._id, location: main.detail[j].location))
+                    place[i].append(Plan(objectID: main.detail[j]._id, location: main.detail[j].location, time: main.detail[j].time))
                 }
             }
             
-        }
-    }
-    
-    func setData() {
-        let main = realm.objects(TravelRealmModel.self).where {
-            $0._id == id!
-        }.first!
-        place = [[Plan]](repeating: [], count: sectionCount)
-        print(sectionCount, main.detail.count)
-        for i in 0..<sectionCount {
-            for j in 0..<main.detail.count {
-                if dateArray[i] == main.detail[j].date {
-                    place[i].append(Plan(objectID: main.detail[j]._id, location: main.detail[j].location))
-                }
-            }
-
         }
     }
 
@@ -194,8 +176,7 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlanTableViewCell.identifier, for: indexPath) as? PlanTableViewCell else {
             return UITableViewCell() }
         cell.selectionStyle = .none
-        
-        
+        cell.timeLabel.text = place[indexPath.section][indexPath.row].time
         cell.placeLabel.text = place[indexPath.section][indexPath.row].location
         
         
