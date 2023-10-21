@@ -120,7 +120,9 @@ class BaseSettingViewController: UIViewController {
         
     }
     @objc func doneButtonPressed() {
-        timeTextField.text = timeFormatter(time: Date())
+        if timeTextField.text!.isEmpty {
+            timeTextField.text = timeFormatter(time: Date())
+        }
         self.view.endEditing(true)
     }
     
@@ -130,7 +132,7 @@ class BaseSettingViewController: UIViewController {
     
     func timeFormatter(time: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "H : mm a".localized
+        formatter.dateFormat = "h : mm a".localized
         return formatter.string(from: time)
     }
     func setAutoLayout() {
