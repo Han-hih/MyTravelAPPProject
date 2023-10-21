@@ -13,8 +13,10 @@ import MapKit
 
 class SearchViewController: UIViewController {
     
+    let preferredLanguage = Locale.preferredLanguages.first
+    
     enum Section {
-         case search
+        case search
     }
     
     let countryController = CountryController()
@@ -44,15 +46,32 @@ class SearchViewController: UIViewController {
         setSearchBar()
         setupTableView()
         setDataSource()
-
+        
     }
     
     func setDataSource() {
         dataSource = UITableViewDiffableDataSource<Section, CountryController.Country>(tableView: self.searchTable, cellProvider: { tableView, indexPath, item in
             let cell = UITableViewCell()
             var content = cell.defaultContentConfiguration()
-            content.attributedText = NSAttributedString(string: item.countryKOR, attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold)])
-            content.secondaryAttributedText = NSAttributedString(string: item.countryName, attributes: [.font: UIFont.systemFont(ofSize: 12)])
+            if #available(iOS 16, *) {
+                if let languageCode = Locale.current.language.languageCode?.identifier {
+                    if languageCode == "ko" {
+                        content.attributedText = NSAttributedString(string: item.countryKOR, attributes: [.font: UIFont.systemFont(ofSize: 15, weight: .semibold)])
+                    } else {
+                        content.attributedText = NSAttributedString(string: item.countryName, attributes: [.font: UIFont.systemFont(ofSize: 15, weight: .semibold)])
+                    }
+                }
+            } else {
+                if let languageCode = Locale.current.languageCode {
+                    if languageCode == "ko" {
+                        content.attributedText = NSAttributedString(string: item.countryKOR, attributes: [.font: UIFont.systemFont(ofSize: 15, weight: .semibold)])
+                    } else {
+                        content.attributedText = NSAttributedString(string: item.countryName, attributes: [.font: UIFont.systemFont(ofSize: 15, weight: .semibold)])
+                    }
+                }
+                
+            }
+            
             content.textProperties.alignment = .justified
             cell.contentConfiguration = content
             
@@ -62,7 +81,20 @@ class SearchViewController: UIViewController {
         
     }
     func performQuery(with filter: String?) {
-        let countries = countryController.filteredCountries(with: filter).sorted { $0.countryName < $1.countryName }
+        var countries = countryController.filteredCountries(with: filter).sorted { $0.countryName < $1.countryName }
+        if #available(iOS 16, *) {
+            if let languageCode = Locale.current.language.languageCode?.identifier {
+                if languageCode == "kr" {
+                     countries = countryController.filteredCountries(with: filter).sorted { $0.countryKOR < $1.countryKOR }
+                }
+            }
+        } else {
+            if let languageCode = Locale.current.languageCode {
+                if languageCode == "kr" {
+                     countries = countryController.filteredCountries(with: filter).sorted { $0.countryKOR < $1.countryKOR }
+                }
+            }
+        }
         var snapshot = NSDiffableDataSourceSnapshot<Section, CountryController.Country>()
         snapshot.appendSections([.search])
         snapshot.appendItems(countries)
@@ -84,9 +116,9 @@ class SearchViewController: UIViewController {
             searchTable.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             searchTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            searchTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            searchTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        }
+    }
     
     
     func setSearchBar() {
@@ -102,22 +134,40 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        
         let code = item.countryCode
-        let countryName = item.countryKOR
+        var countryName = item.countryName
+        if #available(iOS 16, *) {
+            if let languageCode = Locale.current.language.languageCode?.identifier {
+                if languageCode == "kr" {
+                     countryName = item.countryKOR
+                } else {
+                     countryName = item.countryName
+                }
+            }
+        } else {
+            if let languageCode = Locale.current.languageCode {
+                if languageCode == "kr" {
+                     countryName = item.countryKOR
+                } else {
+                     countryName = item.countryName
+                }
+            }
+        }
         print(code)
         
-            let vc = CalanderViewController()
-            
-            vc.modalPresentationStyle = .fullScreen
-            vc.title = "여행 기간을 설정해주세요"
-            vc.country = code
+        let vc = CalanderViewController()
+        
+        vc.modalPresentationStyle = .fullScreen
+        vc.title = "여행 기간을 설정해주세요"
+        vc.country = code
         vc.countryName = countryName
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        }
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
-    
-    
+}
+
+
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
