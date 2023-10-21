@@ -55,6 +55,7 @@ class MainViewController: UIViewController {
     
     func setNavigation() {
         self.navigationItem.title = "Travel List".localized
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .done, target: self, action: #selector(createButtonTapped))
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationController?.navigationBar.tintColor = .black
@@ -64,7 +65,7 @@ class MainViewController: UIViewController {
         let vc = SearchViewController()
 //        let nav = UINavigationController(rootViewController: vc)
         vc.modalPresentationStyle = .fullScreen
-        vc.title = "나라 선택"
+        vc.title = "Choose a country".localized
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -100,7 +101,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         vc.dateArray = dateBetween(start: list[indexPath.row].startDate, end: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
         vc.sectionCount = daysBetween(start: list[indexPath.row].startDate, end: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
         print(vc.dateArray, vc.sectionCount)
-        self.navigationController?.pushViewController(vc, animated: true)
+    
+        navigationController?.pushViewController(vc, animated: false)
     }
     
     func daysBetween(start: Date, end: Date) -> Int {
