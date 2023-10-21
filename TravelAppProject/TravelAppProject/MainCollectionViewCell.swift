@@ -13,14 +13,23 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     private enum Color {
         static var gradientColors = [
-          UIColor.systemBlue,
-          UIColor.systemBlue.withAlphaComponent(0.7),
-          UIColor.systemBlue.withAlphaComponent(0.4),
-          UIColor.systemGreen.withAlphaComponent(0.3),
-          UIColor.systemGreen.withAlphaComponent(0.7),
-          UIColor.systemGreen.withAlphaComponent(0.3),
-          UIColor.systemBlue.withAlphaComponent(0.4),
-          UIColor.systemBlue.withAlphaComponent(0.7),
+            UIColor(hexCode: "#FF2A2B", alpha: 1),
+            UIColor(hexCode: "#FF2A2B", alpha: 0.7),
+            UIColor(hexCode: "#FF2A2B", alpha: 0.4),
+            UIColor(hexCode: "#2A46FF", alpha: 0.3),
+            UIColor(hexCode: "#2A46FF", alpha: 0.7),
+            UIColor(hexCode: "#2A46FF", alpha: 0.3),
+            UIColor(hexCode: "#8325FF", alpha: 0.4),
+            UIColor(hexCode: "#8325FF", alpha: 0.7),
+            
+            
+//          UIColor.systemRed.withAlphaComponent(0.7),
+//          UIColor.systemRed.withAlphaComponent(0.4),
+//          UIColor.systemYellow.withAlphaComponent(0.3),
+//          UIColor.systemYellow.withAlphaComponent(0.7),
+//          UIColor.systemYellow.withAlphaComponent(0.3),
+//          UIColor.systemPink.withAlphaComponent(0.4),
+//          UIColor.systemPink.withAlphaComponent(0.7),
         ]
       }
       private enum Constants {
@@ -249,3 +258,23 @@ class MainCollectionViewCell: UICollectionViewCell {
     }
 }
 
+extension UIColor {
+    
+    convenience init(hexCode: String, alpha: CGFloat = 1.0) {
+        var hexFormatted: String = hexCode.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
+        
+        if hexFormatted.hasPrefix("#") {
+            hexFormatted = String(hexFormatted.dropFirst())
+        }
+        
+        assert(hexFormatted.count == 6, "Invalid hex code used.")
+        
+        var rgbValue: UInt64 = 0
+        Scanner(string: hexFormatted).scanHexInt64(&rgbValue)
+        
+        self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                  green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                  blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                  alpha: alpha)
+    }
+}
