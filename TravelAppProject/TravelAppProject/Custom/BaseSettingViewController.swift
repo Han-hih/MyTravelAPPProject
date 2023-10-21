@@ -11,7 +11,7 @@ class BaseSettingViewController: UIViewController {
     
     let resultLabel = {
         let label = topTextFieldLabel()
-        label.text = "장소 (수정가능)"
+        label.text = "Location(Modified)".localized
         return label
     }()
     let resultTextField = {
@@ -22,7 +22,7 @@ class BaseSettingViewController: UIViewController {
     
     let memoLabel = {
         let label = topTextFieldLabel()
-        label.text = "메모"
+        label.text = "Memo".localized
         return label
     }()
     
@@ -38,14 +38,14 @@ class BaseSettingViewController: UIViewController {
     
     let timeLabel = {
         let label = topTextFieldLabel()
-        label.text = "시간"
+        label.text = "Time".localized
         
         return label
     }()
     
     let timeTextField = {
         let field = inputTextField()
-        field.placeholder = "시간을 선택해 주세요"
+        field.placeholder = "Select time".localized
         field.autocorrectionType = .no
         return field
     }()

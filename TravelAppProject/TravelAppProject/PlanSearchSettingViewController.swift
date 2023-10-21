@@ -17,18 +17,26 @@ class PlanSearchSettingViewController: BaseSettingViewController {
     var row = 0
     var date = Date()
    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       addButtonSetting()
+    }
+    func addButtonSetting() {
+        resultButton.setTitle("Add Place".localized, for: .normal)
+        resultButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+    }
     
-//    @objc func addButtonTapped() {
-//        realmCreate()
-//        if let viewControllers = self.navigationController?.viewControllers {
-//            for viewController in viewControllers {
-//                if viewController is PlanViewController {
-//                    self.navigationController?.popToViewController(viewController, animated: true)
-//                    break
-//                }
-//            }
-//        }
-//    }
+    @objc func addButtonTapped() {
+        realmCreate()
+        if let viewControllers = self.navigationController?.viewControllers {
+            for viewController in viewControllers {
+                if viewController is PlanViewController {
+                    self.navigationController?.popToViewController(viewController, animated: true)
+                    break
+                }
+            }
+        }
+    }
     
     func realmCreate() {
         let realm = try! Realm()
