@@ -33,10 +33,9 @@ final class PlanViewController: UIViewController, UIPopoverPresentationControlle
         return button
     }()
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        place = [[Plan]](repeating: [Plan(objectID: id!, location: "", memo: "", time: "")], count: sectionCount)
+        place = [[Plan]](repeating: [], count: sectionCount)
         
 
     }
@@ -70,7 +69,9 @@ final class PlanViewController: UIViewController, UIPopoverPresentationControlle
         setAutoLayout()
         setSortedData()
         setupTableView()
-        
+        let main = self.realm.objects(TravelRealmModel.self).where {
+                    $0._id == self.id!
+                }.first!
         
     }
     func setSortedData() {
@@ -107,6 +108,7 @@ final class PlanViewController: UIViewController, UIPopoverPresentationControlle
 
     func setNavigation() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(mapButtonTapped))
+        navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.tintColor = .black
     }
     @objc func mapButtonTapped() {
@@ -169,47 +171,16 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         vc.date = dateArray[sender.tag]
         self.navigationController?.pushViewController(vc, animated: true)
     }
-  
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let main = self.realm.objects(TravelRealmModel.self).where {
-            $0._id == self.id!
-        }.first!
-        print(main)
-        let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, _, completionHandler in
-                print(main.detail.count)
-                for i in 0..<main.detail.count {
-                    guard let task = self.realm.objects(DetailTable.self).filter({ $0._id == main.detail[i]._id }).first else { return }
-                    if self.place[indexPath.section][indexPath.row].objectId == main.detail[i]._id {
-                        try! self.realm.write {
-                            self.realm.delete(task)
-                        }
-
-                    }
-                }
-
-            // 테이블 뷰에서 해당 셀 삭제
-            self.setData()
-//            tableView.deleteRows(at: [indexPathToDelete], with: .automatic)
-            
-            print(self.place)
-            tableView.reloadData()
-
-
-            print("삭제 클릭됨")
-            completionHandler(true)
-            
-        }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = PlanModifiyViewController()
+        vc.id = place[indexPath.section][indexPath.row].objectId
+        print(vc.id)
+        self.navigationController?.pushViewController(vc, animated: true)
         
-        deleteAction.image = UIImage(systemName: "trash")
-        deleteAction.backgroundColor = .red
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        return configuration
     }
-    
-        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            return true
-        }
-    
+  
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount
     }
@@ -227,13 +198,15 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.placeLabel.text = place[indexPath.section][indexPath.row].location
         
-        cell.memoButton.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
+        
         return cell
         
     }
     
-    
-}
+   
+      
+    }
+
 extension UIButton {
     func setUnderline() {
         guard let title = title(for: .normal) else { return }
