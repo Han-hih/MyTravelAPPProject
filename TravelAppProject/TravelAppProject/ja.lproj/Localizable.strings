@@ -29,3 +29,8 @@
 "Choose a country" = "国を選ぶ";
 "Set travel period" = "旅行期間を設定します";
 "Please select the travel date" = "旅行日を選択してください";
+"Are you sure you want to delete?" = "消去してもよろしいですか?";
+"Delete" = "消去";
+"Cancel" = "キャンセル";
+"h : mm a" = "HH : mm";
+"Please enter the place" = "場所に入ってください";

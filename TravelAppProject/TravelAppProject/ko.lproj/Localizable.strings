@@ -29,3 +29,8 @@
 "Choose a country" = "나라를 선택해 주세요";
 "Set travel period" = "여행 기간을 선택해 주세요";
 "Please select the travel period" = "여행 날짜를 선택해 주세요";
+"Are you sure you want to delete?" = "삭제하시겠습니까?";
+"Delete" = "삭제";
+"Cancel" = "취소";
+"h : mm a" = "a h : mm";
+"Please enter the place" = "장소를 입력해 주세요";

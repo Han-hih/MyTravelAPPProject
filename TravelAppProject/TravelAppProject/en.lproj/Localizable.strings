@@ -28,7 +28,11 @@
 "Choose a country" = "Choose a country";
 "Set travel period" = "Set travel period";
 "Please select the travel date" = "Please select the travel date";
-
+"Are you sure you want to delete?" = "Are you sure you want to delete?";
+"Delete" = "Delete";
+"Cancel" = "Cancel";
+"h : mm a" = "H : mm a";
+"Please enter the place" = "Please enter the place";
 //"GHANA" = "GHANA"
 //"GABON" = "GABON"
 //"GUYANA"
