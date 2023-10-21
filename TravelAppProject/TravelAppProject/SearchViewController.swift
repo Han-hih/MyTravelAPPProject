@@ -84,13 +84,13 @@ class SearchViewController: UIViewController {
         var countries = countryController.filteredCountries(with: filter).sorted { $0.countryName < $1.countryName }
         if #available(iOS 16, *) {
             if let languageCode = Locale.current.language.languageCode?.identifier {
-                if languageCode == "kr" {
+                if languageCode == "ko" {
                      countries = countryController.filteredCountries(with: filter).sorted { $0.countryKOR < $1.countryKOR }
                 }
             }
         } else {
             if let languageCode = Locale.current.languageCode {
-                if languageCode == "kr" {
+                if languageCode == "ko" {
                      countries = countryController.filteredCountries(with: filter).sorted { $0.countryKOR < $1.countryKOR }
                 }
             }
@@ -139,7 +139,7 @@ extension SearchViewController: UITableViewDelegate {
         var countryName = item.countryName
         if #available(iOS 16, *) {
             if let languageCode = Locale.current.language.languageCode?.identifier {
-                if languageCode == "kr" {
+                if languageCode == "ko" {
                      countryName = item.countryKOR
                 } else {
                      countryName = item.countryName
@@ -147,7 +147,7 @@ extension SearchViewController: UITableViewDelegate {
             }
         } else {
             if let languageCode = Locale.current.languageCode {
-                if languageCode == "kr" {
+                if languageCode == "ko" {
                      countryName = item.countryKOR
                 } else {
                      countryName = item.countryName
@@ -159,7 +159,7 @@ extension SearchViewController: UITableViewDelegate {
         let vc = CalanderViewController()
         
         vc.modalPresentationStyle = .fullScreen
-        vc.title = "여행 기간을 설정해주세요"
+        vc.title = "Set travel period".localized
         vc.country = code
         vc.countryName = countryName
         self.navigationController?.pushViewController(vc, animated: true)

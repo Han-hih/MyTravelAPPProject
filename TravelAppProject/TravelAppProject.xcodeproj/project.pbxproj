@@ -18,6 +18,9 @@
 		8020B0FF2AD805C600ECBB37 /* PhotoDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */; };
 		8020B1012AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */; };
 		8020B1062AD8D0E700ECBB37 /* PhotoRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B1052AD8D0E700ECBB37 /* PhotoRealmRepository.swift */; };
+		802B34542AE3AD8800052E82 /* TextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802B34532AE3AD8800052E82 /* TextFieldExtensions.swift */; };
+		802B34562AE3BE8500052E82 /* BaseSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802B34552AE3BE8500052E82 /* BaseSettingViewController.swift */; };
+		802B34582AE3C68E00052E82 /* PlanModifiyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802B34572AE3C68E00052E82 /* PlanModifiyViewController.swift */; };
 		80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */; };
 		80491F912AC4133400095DE8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 80491F902AC4133400095DE8 /* FSCalendar */; };
 		80491F942AC71B3100095DE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80491F962AC71B3100095DE8 /* Localizable.strings */; };
@@ -58,6 +61,9 @@
 		8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDiaryViewController.swift; sourceTree = "<group>"; };
 		8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDiaryDrawViewController.swift; sourceTree = "<group>"; };
 		8020B1052AD8D0E700ECBB37 /* PhotoRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRealmRepository.swift; sourceTree = "<group>"; };
+		802B34532AE3AD8800052E82 /* TextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtensions.swift; sourceTree = "<group>"; };
+		802B34552AE3BE8500052E82 /* BaseSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingViewController.swift; sourceTree = "<group>"; };
+		802B34572AE3C68E00052E82 /* PlanModifiyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanModifiyViewController.swift; sourceTree = "<group>"; };
 		80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderViewController.swift; sourceTree = "<group>"; };
 		80491F952AC71B3100095DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80491F972AC71B6300095DE8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -122,6 +128,8 @@
 			children = (
 				800404682AD0F4A800634CD4 /* CustomLabel.swift */,
 				80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */,
+				802B34532AE3AD8800052E82 /* TextFieldExtensions.swift */,
+				802B34552AE3BE8500052E82 /* BaseSettingViewController.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -141,8 +149,8 @@
 				808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */,
 				800FC5E22ADFB6E800F84AED /* PhotoTableViewCell.swift */,
 				8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */,
-				809512562AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift */,
 				8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */,
+				809512562AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift */,
 			);
 			path = SecondTabBarView;
 			sourceTree = "<group>";
@@ -188,10 +196,11 @@
 				80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */,
 				806985552ADA79A8003609BA /* MapPinViewController.swift */,
 				806985572ADA7DD1003609BA /* MapPinCollectionviewCell.swift */,
-				80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */,
 				8087419C2ACC2DF600F81574 /* PlanSearchViewController.swift */,
 				8087419E2ACC311C00F81574 /* PlanSearchSettingViewController.swift */,
 				80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */,
+				80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */,
+				802B34572AE3C68E00052E82 /* PlanModifiyViewController.swift */,
 				80491F9D2AC8806B00095DE8 /* CalanderViewModel.swift */,
 				80491F9B2AC87FA300095DE8 /* Observable.swift */,
 				800404722AD29B2A00634CD4 /* CountryData */,
@@ -342,10 +351,12 @@
 			files = (
 				800FC5E32ADFB6E800F84AED /* PhotoTableViewCell.swift in Sources */,
 				800404662AD0325000634CD4 /* ReusableViewProtocol.swift in Sources */,
+				802B34582AE3C68E00052E82 /* PlanModifiyViewController.swift in Sources */,
 				8020B1012AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift in Sources */,
 				800404692AD0F4A800634CD4 /* CustomLabel.swift in Sources */,
 				80491F9E2AC8806B00095DE8 /* CalanderViewModel.swift in Sources */,
 				800404712AD279FD00634CD4 /* CountryRawData.swift in Sources */,
+				802B34562AE3BE8500052E82 /* BaseSettingViewController.swift in Sources */,
 				806985582ADA7DD1003609BA /* MapPinCollectionviewCell.swift in Sources */,
 				80159E2D2AD76FE300ACCBCA /* CustomFlowLayout.swift in Sources */,
 				80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */,
@@ -358,6 +369,7 @@
 				808EADFD2AC1B5F700ED57EF /* MainViewController.swift in Sources */,
 				80491F9C2AC87FA300095DE8 /* Observable.swift in Sources */,
 				809512572AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift in Sources */,
+				802B34542AE3AD8800052E82 /* TextFieldExtensions.swift in Sources */,
 				80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */,
 				8020B0FD2AD7BE6500ECBB37 /* FileManager+Extension.swift in Sources */,
 				8087419D2ACC2DF700F81574 /* PlanSearchViewController.swift in Sources */,
