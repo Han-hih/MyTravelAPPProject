@@ -29,41 +29,76 @@ class MainViewController: UIViewController {
         return view
     }()
     
+    private lazy var emptyView = {
+        let view = UIView()
+        
+        return view
+    }()
+    private let emptyLabel = {
+        let label = UILabel()
+        label.text = "The trip has not been made yet.\nPress the button to add a trip.".localized
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        return label
+    }()
     override func viewDidLoad() {
-        super.viewDidLoad() 
+        super.viewDidLoad()
         collectionView.reloadData()
-
+        
         list = realm.objects(TravelRealmModel.self).sorted(byKeyPath: "addDate", ascending: false)
         view.backgroundColor = .white
         view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         setAutoLayout()
         setNavigation()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         collectionView.reloadData()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        list = realm.objects(TravelRealmModel.self).sorted(byKeyPath: "addDate", ascending: false)
+        setAutoLayout()
+        collectionView.reloadData()
+
+    }
     func setAutoLayout() {
+        [collectionView, emptyView, emptyLabel].forEach {
+            view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
         NSLayoutConstraint.activate([
             collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)
+            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            emptyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            emptyLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor)
         ])
     }
     
     func setNavigation() {
         self.navigationItem.title = "Travel List".localized
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .done, target: self, action: #selector(createButtonTapped))
+        let add = UIBarButtonItem(image: UIImage(systemName: "pencil.and.outline"), style: .done, target: self, action: #selector(createButtonTapped))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(settingButtonTapped))
+        navigationItem.rightBarButtonItems = [add]
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationController?.navigationBar.tintColor = .black
+        
+        
     }
 
     @objc func createButtonTapped() {
         let vc = SearchViewController()
-//        let nav = UINavigationController(rootViewController: vc)
+        //        let nav = UINavigationController(rootViewController: vc)
         vc.modalPresentationStyle = .fullScreen
         vc.title = "Choose a country".localized
         self.navigationController?.pushViewController(vc, animated: true)
@@ -79,18 +114,25 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return list.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy".localized
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
-        cell.travelPlaceLabel.text = list[indexPath.row].country
-        cell.countryFullLabel.text = list[indexPath.row].countryName
-        cell.startDateLabel.text = dateFormatter.string(from: list[indexPath.row].startDate)
-        cell.endDateLabel.text = dateFormatter.string(from: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
-        return cell
+        if self.list.count == 0 {
+            self.emptyView.isHidden = false
+            self.emptyLabel.isHidden = false
+        } else {
+            self.emptyView.isHidden = true
+            self.emptyLabel.isHidden = true
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy".localized
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
+            cell.travelPlaceLabel.text = list[indexPath.row].country
+            cell.countryFullLabel.text = list[indexPath.row].countryName
+            cell.startDateLabel.text = dateFormatter.string(from: list[indexPath.row].startDate)
+            cell.endDateLabel.text = dateFormatter.string(from: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
+            return cell
+        }
+        return UICollectionViewCell()
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = PlanViewController()
         
@@ -101,10 +143,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         vc.dateArray = dateBetween(start: list[indexPath.row].startDate, end: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
         vc.sectionCount = daysBetween(start: list[indexPath.row].startDate, end: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
         print(vc.dateArray, vc.sectionCount)
-    
+        
         navigationController?.pushViewController(vc, animated: false)
     }
-    
+
     func daysBetween(start: Date, end: Date) -> Int {
         return Calendar.current.dateComponents([.day], from: start, to: end).day! + 1
         
