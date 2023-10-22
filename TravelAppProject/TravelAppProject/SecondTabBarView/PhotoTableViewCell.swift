@@ -36,7 +36,7 @@ class PhotoTableViewCell: UITableViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         NSLayoutConstraint.activate([
-            countryName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            countryName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             countryName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             
             travelRange.topAnchor.constraint(equalTo: countryName.bottomAnchor, constant: 10),

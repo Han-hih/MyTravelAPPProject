@@ -25,7 +25,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         view.isScrollEnabled = true
         view.showsHorizontalScrollIndicator = false
         view.showsVerticalScrollIndicator = true
-        
+
         view.register(PhotoDiaryCollectionViewCell.self, forCellWithReuseIdentifier: PhotoDiaryCollectionViewCell.identifier)
         
         view.delegate = self
@@ -48,12 +48,20 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        memoList = [String]()
+        photoList = [UIImage]()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getImageAndMemo()
         collectionView.reloadData()
+        
     }
 
     func getImageAndMemo() {
         let realm = try! Realm()
-            let main = realm.objects(TravelRealmModel.self).where {
+        let main = realm.objects(TravelRealmModel.self).where {
                 $0._id == id!
             }.first!
         for i in 0..<main.photo.count {
@@ -72,7 +80,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.9),
+            collectionView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
             
 
         ])
@@ -118,14 +126,16 @@ extension PhotoDiaryViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoDiaryCollectionViewCell.identifier, for: indexPath) as? PhotoDiaryCollectionViewCell else { return UICollectionViewCell() }
         cell.imageView.image = photoList[indexPath.item]
-        cell.memoLabel.text = memoList[indexPath.item]
+        cell.imageView.contentMode = .scaleAspectFit
+        cell.memoTextView.text = memoList[indexPath.item]
+        cell.pageControl.numberOfPages = photoList.count
+//        cell.pageControl.currentPage = 0
+        
+        
+        cell.pageControl.currentPageIndicatorTintColor = .black
+        cell.pageControl.pageIndicatorTintColor = .systemGray
+        
         return cell
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

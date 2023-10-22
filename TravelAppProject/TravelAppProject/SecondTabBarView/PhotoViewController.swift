@@ -18,7 +18,7 @@ class PhotoViewController: UIViewController {
         view.dataSource = self
         return view
     }()
-    let emptyLabel = {
+    lazy var emptyLabel = {
         let label = UILabel()
         label.text = "There is no travel plan.\nPlease create a travel plan in the Travel List tab.".localized
         label.textAlignment = .center
@@ -35,7 +35,26 @@ class PhotoViewController: UIViewController {
         view.backgroundColor = .white
         list = realm.objects(TravelRealmModel.self).sorted(byKeyPath: "addDate", ascending: false)
         setAutoLayout()
-       
+        labelHidden()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        list = realm.objects(TravelRealmModel.self).sorted(byKeyPath: "addDate", ascending: false)
+        tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        list = realm.objects(TravelRealmModel.self).sorted(byKeyPath: "addDate", ascending: false)
+        labelHidden()
+    }
+    
+    func labelHidden() {
+        if list.count == 0 {
+            emptyLabel.isHidden = false
+        } else {
+            emptyLabel.isHidden = true
+        }
     }
     
     func setNavigation() {
@@ -72,19 +91,18 @@ extension PhotoViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as? PhotoTableViewCell else { return UITableViewCell() }
-        let startDate = "".mediumLocalizeDate(date: list[indexPath.row].startDate)
-        let endDate = "".mediumLocalizeDate(date: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
-        cell.countryName.text = list[indexPath.row].countryName
-        if list[indexPath.row].startDate == list[indexPath.row].endDate {
-            cell.travelRange.text = startDate
-        } else {
-            cell.travelRange.text = "\(startDate) ~ \(endDate)"
-        }
-        
-        return cell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotoTableViewCell.identifier, for: indexPath) as? PhotoTableViewCell else { return UITableViewCell() }
+            let startDate = "".mediumLocalizeDate(date: list[indexPath.row].startDate)
+            let endDate = "".mediumLocalizeDate(date: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
+            cell.countryName.text = list[indexPath.row].countryName
+            if list[indexPath.row].startDate == list[indexPath.row].endDate {
+                cell.travelRange.text = startDate
+            } else {
+                cell.travelRange.text = "\(startDate) ~ \(endDate)"
+            }
+            return cell
+
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = PhotoDiaryViewController()
         tableView.deselectRow(at: indexPath, animated: true)
