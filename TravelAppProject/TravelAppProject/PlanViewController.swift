@@ -89,9 +89,30 @@ final class PlanViewController: UIViewController, UIPopoverPresentationControlle
     }
 
     func setNavigation() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(mapButtonTapped))
+        let delete = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .done, target: self, action: #selector(deletButtonTapped))
+        let map = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(mapButtonTapped))
+        navigationItem.rightBarButtonItems = [map, delete]
         navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.tintColor = .black
+    }
+    
+    @objc func deletButtonTapped() {
+        let alert = UIAlertController(title: "Both saved travel and photos are deleted.".localized, message: "Deleted data is not recovered.".localized, preferredStyle: .alert)
+        let delete = UIAlertAction(title: "Delete".localized, style: .destructive) { _ in
+            self.navigationController?.popViewController(animated: true)
+            let main = self.realm.objects(TravelRealmModel.self).where {
+                $0._id == self.id!
+            }.first!
+            
+            try! self.realm.write {
+                self.realm.delete(main)
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
+        alert.addAction(delete)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+        
     }
     @objc func mapButtonTapped() {
         let vc = MapPinViewController()
@@ -178,7 +199,7 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.timeLabel.text = place[indexPath.section][indexPath.row].time
         cell.placeLabel.text = place[indexPath.section][indexPath.row].location
-        
+        cell.accessoryType = .disclosureIndicator
         
         return cell
         
