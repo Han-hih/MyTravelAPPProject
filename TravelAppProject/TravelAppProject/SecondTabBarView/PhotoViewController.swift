@@ -18,6 +18,13 @@ class PhotoViewController: UIViewController {
         view.dataSource = self
         return view
     }()
+    let emptyLabel = {
+        let label = UILabel()
+        label.text = "There is no travel plan.\nPlease create a travel plan in the Travel List tab.".localized
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        return label
+    }()
     
     let realm = try! Realm()
     var list: Results<TravelRealmModel>!
@@ -39,13 +46,17 @@ class PhotoViewController: UIViewController {
     
     func setAutoLayout() {
         view.addSubview(tableView)
+        view.addSubview(emptyLabel)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        emptyLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
+            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
          
         ])
     }
@@ -54,7 +65,7 @@ class PhotoViewController: UIViewController {
 }
 extension PhotoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         list.count
@@ -76,7 +87,7 @@ extension PhotoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = PhotoDiaryViewController()
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         vc.id = list[indexPath.row]._id
         
         self.navigationController?.pushViewController(vc, animated: true)
