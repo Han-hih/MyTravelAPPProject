@@ -30,7 +30,12 @@
 "Set travel period" = "여행 기간을 선택해 주세요";
 "Please select the travel period" = "여행 날짜를 선택해 주세요";
 "Are you sure you want to delete?" = "삭제하시겠습니까?";
+"Deleted data is not recovered." = "삭제한 데이터는 복구되지 않습니다.";
+"Both saved travel and photos are deleted." = "저장된 여행과 사진이 모두 삭제됩니다.";
 "Delete" = "삭제";
 "Cancel" = "취소";
 "h : mm a" = "a h : mm";
 "Please enter the place" = "장소를 입력해 주세요";
+"There is no travel plan.\nPlease create a travel plan in the Travel List tab." = "여행 계획이 없습니다.\n여행목록 탭에서 여행계획을 생성해 주세요.";
+"The trip has not been made yet.\nPress the button to add a trip." = "아직 여행이 만들어지지 않았습니다.\n버튼을 눌러 여행을 추가해 주세요.";
+"Please keep a diary about your photos." = "사진에 대한 일기를 작성해 주세요.";
