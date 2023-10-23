@@ -24,8 +24,10 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
         let view = UIImageView()
         view.backgroundColor = .clear
         view.isUserInteractionEnabled = true
-        //        view.layer.cornerRadius = 20
-        //        view.clipsToBounds = true
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.black.cgColor
+//                view.layer.cornerRadius = 20
+//                view.clipsToBounds = true
         return view
     }()
     
@@ -47,6 +49,12 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
         view.inputAccessoryView = keyboardToolbar
         return view
     }()
+    
+    let diaryLabel = {
+        let label = topTextFieldLabel()
+        label.text = "Please keep a diary about your photos.".localized
+        return label
+    }()
     let repository = PhotoRealmRepository()
     
     var id: ObjectId?
@@ -66,9 +74,15 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
         super.viewWillDisappear(animated)
         self.removeKeyboardNotifications()
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
     @objc func doneButtonTapped() {
         self.view.endEditing(true)
     }
+    
     
     func setNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pencil.circle"), style: .plain, target: self, action: #selector(saveButtonTapped))
@@ -82,6 +96,7 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
         }.first!
         
         let task = PhotoTable(photoMemo: memoTextFieldView.text ?? "")
+        print(task._id)
         if photoView.image == nil {
             let alert = UIAlertController(title: "사진을 추가해 주세요", message: .none, preferredStyle: .alert)
             
@@ -107,7 +122,7 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
     func setLayout() {
         photoView.addSubview(photoButton)
         photoButton.translatesAutoresizingMaskIntoConstraints = false
-        [photoView, memoTextFieldView].forEach {
+        [photoView, diaryLabel, memoTextFieldView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -115,17 +130,21 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
             photoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             photoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             photoView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-            photoView.heightAnchor.constraint(equalTo: photoView.widthAnchor, multiplier: 1),
+            photoView.heightAnchor.constraint(equalTo: photoView.widthAnchor),
             
             photoButton.trailingAnchor.constraint(equalTo: photoView.trailingAnchor),
             photoButton.bottomAnchor.constraint(equalTo: photoView.bottomAnchor),
-            photoButton.heightAnchor.constraint(equalToConstant: 100),
+            photoButton.heightAnchor.constraint(equalToConstant: 50),
             photoButton.widthAnchor.constraint(equalTo: photoButton.heightAnchor),
             
+            diaryLabel.leadingAnchor.constraint(equalTo: memoTextFieldView.leadingAnchor),
+            diaryLabel.bottomAnchor.constraint(equalTo: memoTextFieldView.topAnchor),
+            
             memoTextFieldView.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 30),
+            
             memoTextFieldView.leadingAnchor.constraint(equalTo: photoView.leadingAnchor),
             memoTextFieldView.trailingAnchor.constraint(equalTo: photoView.trailingAnchor),
-            memoTextFieldView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            memoTextFieldView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
     }
     
@@ -189,38 +208,5 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
         }
     }
 }
-extension UIImage {
-    func downSample(size: CGSize, scale: CGFloat = UIScreen.main.scale) -> UIImage {
-        let imageSourceOption = [kCGImageSourceShouldCache: false] as CFDictionary
-        let data = self.pngData()! as CFData
-        let imageSource = CGImageSourceCreateWithData(data, imageSourceOption)!
 
-        let maxPixel = max(size.width, size.height) * scale
-        let downSampleOptions = [
-            kCGImageSourceCreateThumbnailFromImageAlways: true,
-            kCGImageSourceShouldCacheImmediately: true,
-            kCGImageSourceCreateThumbnailWithTransform: true,
-            kCGImageSourceThumbnailMaxPixelSize: maxPixel
-        ] as CFDictionary
 
-        let downSampledImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, downSampleOptions)!
-
-        let newImage = UIImage(cgImage: downSampledImage)
-        
-        return newImage
-    }
-}
-
-//extension PhotoDiaryDrawViewController: UITextViewDelegate {
-//    func textViewDidBeginEditing(_ textView: UITextView) {
-//        guard textView.textColor == .placeholderText else { return }
-//        textView.textColor = .label
-//        textView.text = nil
-//    }
-//    func textViewDidEndEditing(_ textView: UITextView) {
-//        if textView.text.isEmpty {
-//            textView.text = "메모를 입력해주세요"
-//            textView.textColor = .placeholderText
-//        }
-//    }
-//}
