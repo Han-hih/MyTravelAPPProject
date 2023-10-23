@@ -34,6 +34,13 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         return view
     }()
     
+    private let pageControl = {
+     let page = UIPageControl()
+        page.currentPage = 0
+        page.currentPageIndicatorTintColor = .black
+        page.pageIndicatorTintColor = .systemGray
+        return page
+    }()
     
     
     
@@ -44,6 +51,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         setNavigationBar()
         setAutoLayout()
         getImageAndMemo()
+     setPageControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +66,11 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         collectionView.reloadData()
         
     }
-
+    func setPageControl() {
+        pageControl.numberOfPages = photoList.count
+        pageControl.isUserInteractionEnabled = true
+        
+    }
     func getImageAndMemo() {
         let realm = try! Realm()
         let main = realm.objects(TravelRealmModel.self).where {
@@ -72,7 +84,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
     
     
     func setAutoLayout() {
-        [collectionView].forEach {
+        [collectionView, pageControl].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -80,9 +92,11 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
+            collectionView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.98),
             
-
+            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            
         ])
         
     }
@@ -104,7 +118,6 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
     func setConfiguration() {
         var configuration = PHPickerConfiguration()
         configuration.filter = .any(of: [.images, .livePhotos])
-//        configuration.preferredAssetRepresentationMode = .
         
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
@@ -128,14 +141,18 @@ extension PhotoDiaryViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.imageView.image = photoList[indexPath.item]
         cell.imageView.contentMode = .scaleAspectFit
         cell.memoTextView.text = memoList[indexPath.item]
-        cell.pageControl.numberOfPages = photoList.count
-//        cell.pageControl.currentPage = 0
         
         
-        cell.pageControl.currentPageIndicatorTintColor = .black
-        cell.pageControl.pageIndicatorTintColor = .systemGray
+        
         
         return cell
     }
 
+}
+
+extension PhotoDiaryViewController: UIScrollViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let page = Int(targetContentOffset.pointee.x / self.view.bounds.width)
+      self.pageControl.currentPage = page
+    }
 }
