@@ -28,12 +28,7 @@ class MainViewController: UIViewController {
         
         return view
     }()
-    
-    private lazy var emptyView = {
-        let view = UIView()
-        
-        return view
-    }()
+
     private let emptyLabel = {
         let label = UILabel()
         label.text = "The trip has not been made yet.\nPress the button to add a trip.".localized
@@ -59,12 +54,18 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         list = realm.objects(TravelRealmModel.self).sorted(byKeyPath: "addDate", ascending: false)
-        setAutoLayout()
-        collectionView.reloadData()
+        labelHidden()
 
     }
+    func labelHidden() {
+        if list.count == 0 {
+            emptyLabel.isHidden = false
+        } else {
+            emptyLabel.isHidden = true
+        }
+    }
     func setAutoLayout() {
-        [collectionView, emptyView, emptyLabel].forEach {
+        [collectionView, emptyLabel].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -73,14 +74,9 @@ class MainViewController: UIViewController {
             collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
-            
-            emptyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            emptyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            emptyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            emptyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            
-            emptyLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
-            emptyLabel.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor)
+       
+            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -95,7 +91,15 @@ class MainViewController: UIViewController {
         
         
     }
-
+   
+    
+    @objc func settingButtonTapped() {
+        let vc = SettingViewController()
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     @objc func createButtonTapped() {
         let vc = SearchViewController()
         //        let nav = UINavigationController(rootViewController: vc)
@@ -116,12 +120,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if self.list.count == 0 {
-            self.emptyView.isHidden = false
-            self.emptyLabel.isHidden = false
-        } else {
-            self.emptyView.isHidden = true
-            self.emptyLabel.isHidden = true
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd MMM yyyy".localized
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
@@ -130,8 +128,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.startDateLabel.text = dateFormatter.string(from: list[indexPath.row].startDate)
             cell.endDateLabel.text = dateFormatter.string(from: list[indexPath.row].endDate ?? list[indexPath.row].startDate)
             return cell
-        }
-        return UICollectionViewCell()
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = PlanViewController()
