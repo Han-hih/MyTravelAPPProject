@@ -58,6 +58,7 @@ final class PhotoDiaryDrawViewController: UIViewController, PHPickerViewControll
     let repository = PhotoRealmRepository()
     
     var id: ObjectId?
+    var photoId: ObjectId?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

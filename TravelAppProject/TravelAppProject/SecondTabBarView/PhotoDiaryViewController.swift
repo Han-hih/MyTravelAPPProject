@@ -34,7 +34,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         return view
     }()
     
-    private let pageControl = {
+     let pageControl = {
      let page = UIPageControl()
         page.currentPage = 0
         page.currentPageIndicatorTintColor = .black
@@ -42,7 +42,13 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         return page
     }()
     
-    
+    let emptyLabel = {
+        let label = UILabel()
+        label.text = "There are no saved photos or notes.\nPlease click the button to add.".localized
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +58,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         setAutoLayout()
         getImageAndMemo()
      setPageControl()
+        labelHidden()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,7 +71,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         super.viewDidAppear(animated)
         getImageAndMemo()
         collectionView.reloadData()
-        
+        labelHidden()
     }
     func setPageControl() {
         pageControl.numberOfPages = photoList.count
@@ -81,10 +88,16 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
             photoList.append(loadImageFromDocument(fileName: "\(main.photo[i]._id).jpg"))
         }
     }
-    
+    func labelHidden() {
+        if photoList.count == 0 {
+            emptyLabel.isHidden = false
+        } else {
+            emptyLabel.isHidden = true
+        }
+    }
     
     func setAutoLayout() {
-        [collectionView, pageControl].forEach {
+        [collectionView, pageControl, emptyLabel].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -95,13 +108,18 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
             collectionView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.98),
             
             pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             
         ])
         
     }
     func setNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pencil.circle"), style: .plain, target: self, action: #selector(addButtonTapped))
+        let add = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .done, target: self, action: #selector(addButtonTapped))
+        let modify = UIBarButtonItem(image: UIImage(systemName: "rectangle.and.pencil.and.ellipsis"), style: .done, target: self, action: #selector(modifyButtonTapped))
+        navigationItem.rightBarButtonItems = [add, modify]
         navigationItem.rightBarButtonItem?.tintColor = .black
         navigationItem.backButtonTitle = .none
         navigationItem.backBarButtonItem?.tintColor = .black
@@ -112,9 +130,30 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
    @objc func addButtonTapped() {
         let vc = PhotoDiaryDrawViewController()
        vc.id = id
+       
        self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @objc func modifyButtonTapped() {
+        if emptyLabel.isHidden {
+            let realm = try! Realm()
+            let main = realm.objects(TravelRealmModel.self).where {
+                $0._id == id!
+            }.first!
+            let vc = PhotoDiaryModifyViewController()
+            vc.id = id
+            vc.photoId = main.photo[pageControl.currentPage]._id
+            navigationController?.pushViewController(vc, animated: true)
+            print(vc.photoId)
+        } else {
+            let alert = UIAlertController(title: "기록이 없습니다.", message: .none, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .default) { _ in
+                print("취소됨")
+            }
+            alert.addAction(ok)
+            present(alert, animated:  true)
+        }
+    }
     func setConfiguration() {
         var configuration = PHPickerConfiguration()
         configuration.filter = .any(of: [.images, .livePhotos])
