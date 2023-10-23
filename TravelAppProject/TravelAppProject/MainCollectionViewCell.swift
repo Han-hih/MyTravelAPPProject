@@ -43,6 +43,7 @@ class MainCollectionViewCell: UICollectionViewCell {
       }
     private var timer: Timer?
     deinit {
+        print("deinit")
         self.timer?.invalidate()
         self.timer = nil
     }
