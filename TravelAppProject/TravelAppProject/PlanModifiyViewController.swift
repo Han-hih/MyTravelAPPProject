@@ -36,7 +36,7 @@ class PlanModifiyViewController: BaseSettingViewController {
 
     
     
-    func modifyButtonSetting() {
+   private func modifyButtonSetting() {
         resultButton.setTitle("Modification".localized, for: .normal)
         resultButton.addTarget(self, action: #selector(modifyButtonTapped), for: .touchUpInside)
     }
