@@ -21,8 +21,9 @@ extension UIViewController {
         
         do {
             try FileManager.default.removeItem(at: fileURL)
+            print("삭제됨")
         } catch {
-            print(error)
+            print("삭제안됨")
         }
     }
     

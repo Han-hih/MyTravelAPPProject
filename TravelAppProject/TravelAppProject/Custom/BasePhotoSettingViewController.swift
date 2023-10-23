@@ -85,7 +85,7 @@ class BasePhotoSettingViewController: UIViewController, PHPickerViewControllerDe
         NSLayoutConstraint.activate([
             photoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             photoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            photoView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            photoView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             photoView.heightAnchor.constraint(equalTo: photoView.widthAnchor),
             
             photoButton.trailingAnchor.constraint(equalTo: photoView.trailingAnchor),

@@ -65,6 +65,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         super.viewWillAppear(animated)
         memoList = [String]()
         photoList = [UIImage]()
+        collectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,6 +73,7 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
         getImageAndMemo()
         collectionView.reloadData()
         labelHidden()
+        setPageControl()
     }
     func setPageControl() {
         pageControl.numberOfPages = photoList.count
@@ -141,18 +143,29 @@ final class PhotoDiaryViewController: UIViewController, PHPickerViewControllerDe
                 $0._id == id!
             }.first!
             let vc = PhotoDiaryModifyViewController()
+            vc.photoView.image = loadImageFromDocument(fileName: "\(main.photo[pageControl.currentPage]._id).jpg")
             vc.id = id
             vc.photoId = main.photo[pageControl.currentPage]._id
+            vc.memoTextFieldView.text = main.photo[pageControl.currentPage].photoMemo
             navigationController?.pushViewController(vc, animated: true)
-            print(vc.photoId)
         } else {
             let alert = UIAlertController(title: "기록이 없습니다.", message: .none, preferredStyle: .alert)
             let ok = UIAlertAction(title: "확인", style: .default) { _ in
                 print("취소됨")
             }
             alert.addAction(ok)
-            present(alert, animated:  true)
+            present(alert, animated: true)
         }
+    }
+    @objc func deleteButtonTapped() {
+            let realm = try! Realm()
+            let main = realm.objects(TravelRealmModel.self).where {
+                $0._id == id!
+            }.first!
+            let task = main.photo[pageControl.currentPage]
+            try! realm.write {
+                realm.delete(task)
+            }
     }
     func setConfiguration() {
         var configuration = PHPickerConfiguration()
