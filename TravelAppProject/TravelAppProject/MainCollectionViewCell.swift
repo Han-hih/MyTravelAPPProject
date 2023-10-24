@@ -48,7 +48,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         self.timer = nil
     }
    private let barcodeView = {
-        let view = UIImageView()
+        let view = UIView()
         view.layer.cornerRadius = 20
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.black.cgColor
@@ -57,6 +57,12 @@ class MainCollectionViewCell: UICollectionViewCell {
         view.backgroundColor = .white
         return view
     }()
+    private let imageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "topviewimage")
+        return view
+    }()
+ 
     
    private let mainView = {
         let view = UIView()
@@ -204,7 +210,7 @@ class MainCollectionViewCell: UICollectionViewCell {
     }
     
     func setAutoLayout() {
-        [barcodeView, mainView, bottomView, travelLabel, startLabel, endLabel, gradationView, viewLabel, travelPlaceLabel, startDateLabel, endDateLabel, countryFullLabel].forEach {
+        [barcodeView, imageView, mainView, bottomView, travelLabel, startLabel, endLabel, gradationView, viewLabel, travelPlaceLabel, startDateLabel, endDateLabel, countryFullLabel].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -214,6 +220,11 @@ class MainCollectionViewCell: UICollectionViewCell {
             barcodeView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             barcodeView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
             barcodeView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2),
+            
+            imageView.topAnchor.constraint(equalTo: barcodeView.topAnchor, constant: 10),
+            imageView.leadingAnchor.constraint(equalTo: barcodeView.leadingAnchor, constant: 20),
+            imageView.trailingAnchor.constraint(equalTo: barcodeView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: barcodeView.bottomAnchor, constant: -10),
             // MARK: - 메인뷰
             mainView.topAnchor.constraint(equalTo: barcodeView.bottomAnchor),
             mainView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
