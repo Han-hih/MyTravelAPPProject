@@ -49,11 +49,13 @@ final class PlanViewController: UIViewController, UIPopoverPresentationControlle
     struct Plan {
         var objectId: ObjectId
         var location: String
+        var memo: String?
         var time: String?
         
-        init(objectID: ObjectId, location: String, time: String? = nil) {
+        init(objectID: ObjectId, location: String, memo: String? = nil, time: String? = nil) {
             self.objectId = objectID
             self.location = location
+            self.memo = memo
             self.time = time
         }
         
@@ -81,7 +83,7 @@ final class PlanViewController: UIViewController, UIPopoverPresentationControlle
         for i in 0..<sectionCount {
             for j in 0..<main.detail.count {
                 if dateArray[i] == main.detail[j].date {
-                    place[i].append(Plan(objectID: main.detail[j]._id, location: main.detail[j].location, time: main.detail[j].time))
+                    place[i].append(Plan(objectID: main.detail[j]._id, location: main.detail[j].location, memo: main.detail[j].memo, time: main.detail[j].time))
                 }
             }
             
@@ -199,6 +201,7 @@ extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.timeLabel.text = place[indexPath.section][indexPath.row].time
         cell.placeLabel.text = place[indexPath.section][indexPath.row].location
+        cell.memoLabel.text = place[indexPath.section][indexPath.row].memo
         cell.accessoryType = .disclosureIndicator
         
         return cell

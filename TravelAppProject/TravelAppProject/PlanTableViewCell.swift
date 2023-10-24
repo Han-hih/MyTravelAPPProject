@@ -21,6 +21,11 @@ class PlanTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 13, weight: .regular)
         return label
     }()
+    let memoLabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 13, weight: .regular)
+        return label
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,7 +38,7 @@ class PlanTableViewCell: UITableViewCell {
     
     
     func setAutoLayout() {
-        [placeLabel, timeLabel].forEach {
+        [placeLabel, timeLabel, memoLabel].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -45,7 +50,9 @@ class PlanTableViewCell: UITableViewCell {
             timeLabel.leadingAnchor.constraint(equalTo: placeLabel.leadingAnchor),
             timeLabel.topAnchor.constraint(equalTo: placeLabel.bottomAnchor, constant: 5),
             
-            
+            memoLabel.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: 5),
+            memoLabel.topAnchor.constraint(equalTo: timeLabel.topAnchor),
+            memoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
         
         
