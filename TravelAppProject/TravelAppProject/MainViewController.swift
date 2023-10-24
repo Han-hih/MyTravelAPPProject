@@ -95,7 +95,7 @@ class MainViewController: UIViewController {
     
     @objc func settingButtonTapped() {
         let vc = SettingViewController()
-        
+        vc.title = "Setting".localized
         navigationController?.pushViewController(vc, animated: true)
     }
     
