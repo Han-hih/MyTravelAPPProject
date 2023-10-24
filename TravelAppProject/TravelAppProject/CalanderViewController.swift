@@ -21,14 +21,14 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
     lazy var startButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        //        button.setTitle("2022-01-33 ~ 2022-01-44\n2박 3일", for: .normal)
+        button.setTitle("Please select the travel date".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
-        button.backgroundColor = .blue
-        button.layer.cornerRadius = 8
+        button.backgroundColor = UIColor.black
+        button.layer.cornerRadius = 10
         button.clipsToBounds = true
-        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -78,8 +78,13 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         }
     }
     func calendarSetting() {
-        calendar.appearance.selectionColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        calendar.appearance.selectionColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         calendar.appearance.eventDefaultColor = .gray
+        calendar.appearance.titleDefaultColor = .black
+        calendar.appearance.titleWeekendColor = .red
+        calendar.appearance.headerTitleColor = .black
+        calendar.appearance.weekdayTextColor = .black
+        
     }
     func setAutoLayout() {
         NSLayoutConstraint.activate([
@@ -91,7 +96,8 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             // MARK: - 버튼 오코레이아웃
             startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             startButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            startButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            startButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            startButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     

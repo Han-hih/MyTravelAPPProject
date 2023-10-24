@@ -51,7 +51,7 @@ class BaseSettingViewController: UIViewController {
     }()
     let resultButton = {
         let button = UIButton()
-        button.backgroundColor = .lightGray
+        button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 20
         button.clipsToBounds = true

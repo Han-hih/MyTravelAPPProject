@@ -13,7 +13,7 @@ class CalanderViewModel {
     
     func dateToString(completion: @escaping() -> Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "dd MMM yyyy".localized
         
         return dateFormatter.string(from: completion())
 //        return ""
