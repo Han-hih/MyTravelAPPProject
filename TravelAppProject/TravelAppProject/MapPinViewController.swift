@@ -154,8 +154,8 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKGradientPolylineRenderer(overlay: overlay)
-        renderer.lineWidth = 4
-        renderer.strokeColor = .systemRed
+        renderer.lineWidth = 3
+        renderer.strokeColor = .systemBlue.withAlphaComponent(0.6)
         //        renderer.setColors([
         //            UIColor(red: 0.02, green: 0.91, blue: 0.05, alpha: 1.0),
         //            UIColor(red: 1.0, green: 0.48, blue: 0.0, alpha: 1.0),
