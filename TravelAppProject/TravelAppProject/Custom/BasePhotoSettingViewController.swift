@@ -11,15 +11,6 @@ import RealmSwift
 
 class BasePhotoSettingViewController: UIViewController, PHPickerViewControllerDelegate {
     
-     let photoButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "photo.badge.plus"), for: .normal)
-        button.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
-        //       button.setTitleColor(.black, for: .normal)
-        button.tintColor = .black
-        return button
-    }()
-    
      let photoView = {
         let view = UIImageView()
         view.backgroundColor = .clear
@@ -55,30 +46,34 @@ class BasePhotoSettingViewController: UIViewController, PHPickerViewControllerDe
         super.viewDidLoad()
         view.backgroundColor = .white
         setLayout()
-        
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        navigationController?.popToRootViewController(animated: true)
+        addTapGestureRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addKeyboardNotifications()
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         self.removeKeyboardNotifications()
     }
     @objc func doneButtonTapped() {
         self.view.endEditing(true)
     }
+    func addTapGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(_:)))
+        self.photoView.addGestureRecognizer(tapGesture)
+        self.photoView.isUserInteractionEnabled = true
+    }
     
+    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
+        print("이미지 탭됨")
+        imageTapped()
+    }
   
     func setLayout() {
-        photoView.addSubview(photoButton)
-        photoButton.translatesAutoresizingMaskIntoConstraints = false
-        [photoView, memoTextFieldView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -88,19 +83,14 @@ class BasePhotoSettingViewController: UIViewController, PHPickerViewControllerDe
             photoView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             photoView.heightAnchor.constraint(equalTo: photoView.widthAnchor),
             
-            photoButton.trailingAnchor.constraint(equalTo: photoView.trailingAnchor),
-            photoButton.bottomAnchor.constraint(equalTo: photoView.bottomAnchor),
-            photoButton.heightAnchor.constraint(equalToConstant: 100),
-            photoButton.widthAnchor.constraint(equalTo: photoButton.heightAnchor),
-            
             memoTextFieldView.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 30),
             memoTextFieldView.leadingAnchor.constraint(equalTo: photoView.leadingAnchor),
             memoTextFieldView.trailingAnchor.constraint(equalTo: photoView.trailingAnchor),
-            memoTextFieldView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            memoTextFieldView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
         ])
     }
     
-    @objc func photoButtonTapped() {
+    func imageTapped() {
         var configuration = PHPickerConfiguration()
         configuration.filter = .any(of: [.images, .livePhotos])
         
