@@ -137,24 +137,22 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
                 calendar.deselect(firstDate!)
                 firstDate = date
                 datesRange = [firstDate!]
-                
                 print("datesRange contains: \(datesRange!)", "하루만 선택되어있을때") //*
-                
                 return
             }
             
             let range = datesRange(from: firstDate!, to: date)
             lastDate = range.last
             
-            for d in range {
-                calendar.select(d)
+            for day in range {
+                calendar.select(day)
             }
+            
             datesRange = range
             print("datesRange contains: \(datesRange!)", "기간으로 선택됨") //*
             startButton.isEnabled = true
             viewModel.dateRange.bind { date in
                 guard let date = self.datesRange else { return }
-                //                print(date, self.datesRange?.first, self.datesRange?.last)
                 
                 let firstDay = self.viewModel.dateToString {
                     date.first!
@@ -169,8 +167,8 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         
         
         if firstDate != nil && lastDate != nil {
-            for d in calendar.selectedDates {
-                calendar.deselect(d)
+            for day in calendar.selectedDates {
+                calendar.deselect(day)
             }
             
             lastDate = nil
@@ -185,8 +183,8 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
         if firstDate != nil && lastDate != nil {
-            for d in calendar.selectedDates {
-                calendar.deselect(d)
+            for day in calendar.selectedDates {
+                calendar.deselect(day)
             }
             lastDate = nil
             firstDate = nil
@@ -194,5 +192,4 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
             print("datesRange contains: \(datesRange!)", "날짜 선택 취소")
         }
     }
-    
 }
