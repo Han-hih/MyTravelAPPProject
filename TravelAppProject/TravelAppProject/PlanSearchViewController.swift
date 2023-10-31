@@ -31,6 +31,7 @@ class PlanSearchViewController: UIViewController {
     let searchTable = {
         let table = UITableView()
         table.backgroundColor = .clear
+        table.keyboardDismissMode = .onDrag
         return table
     }()
     
@@ -91,7 +92,7 @@ class PlanSearchViewController: UIViewController {
     
     func setSearchCompleter() {
         searchCompleter.delegate = self
-        searchCompleter.resultTypes = .pointOfInterest
+        searchCompleter.resultTypes = .query
     }
     
     func setSearchBar() {
@@ -104,7 +105,6 @@ class PlanSearchViewController: UIViewController {
 }
 
 extension PlanSearchViewController: UITableViewDelegate {
-
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedResult = searchResults[indexPath.row]
@@ -121,7 +121,6 @@ extension PlanSearchViewController: UITableViewDelegate {
             let place = placeMark.name
             let longitude = placeMark.coordinate.longitude
             let latitude = placeMark.coordinate.latitude
-            print(place)
             
             let vc = PlanSearchSettingViewController()
             vc.locationTextField.text = place
@@ -135,6 +134,7 @@ extension PlanSearchViewController: UITableViewDelegate {
     }
     
     
+    
 }
 extension PlanSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -145,6 +145,7 @@ extension PlanSearchViewController: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         searchResults = completer.results
         snapShot(data: searchResults)
+        searchTable.reloadData()
     }
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         print(error.localizedDescription)
