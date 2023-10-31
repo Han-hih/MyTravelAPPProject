@@ -33,6 +33,7 @@ class SearchViewController: UIViewController {
     let searchTable = {
         let table = UITableView()
         table.backgroundColor = .clear
+        table.keyboardDismissMode = .onDrag
         return table
     }()
     
@@ -46,7 +47,7 @@ class SearchViewController: UIViewController {
         setSearchBar()
         setupTableView()
         setDataSource()
-        
+        performQuery(with: nil)
     }
     
     func setDataSource() {
