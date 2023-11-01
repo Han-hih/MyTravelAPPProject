@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class BaseSettingViewController: UIViewController {
     
@@ -58,6 +60,8 @@ class BaseSettingViewController: UIViewController {
        
         return button
     }()
+    
+    let disposeBag = DisposeBag()
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -127,7 +131,12 @@ class BaseSettingViewController: UIViewController {
     }
     
     @objc func dateChange(_ sender: UIDatePicker) {
-        timeTextField.text = timeFormatter(time: sender.date)
+        sender.rx.date
+            .bind { models in
+                self.timeTextField.text = self.timeFormatter(time: models)
+            }
+            .disposed(by: disposeBag)
+//        timeTextField.text = timeFormatter(time: sender.date)
     }
     
     func timeFormatter(time: Date) -> String {

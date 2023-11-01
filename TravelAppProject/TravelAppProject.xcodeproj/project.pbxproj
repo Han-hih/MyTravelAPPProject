@@ -43,6 +43,8 @@
 		808F8A5B2ACEDD1700D9A0EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 808F8A5A2ACEDD1700D9A0EB /* RealmSwift */; };
 		808F8A5E2ACEDF1D00D9A0EB /* TravelRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808F8A5D2ACEDF1D00D9A0EB /* TravelRealmModel.swift */; };
 		809512572AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809512562AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift */; };
+		809DDF332AF1CB6200AAB17C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 809DDF322AF1CB6200AAB17C /* RxCocoa */; };
+		809DDF352AF1CB6200AAB17C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 809DDF342AF1CB6200AAB17C /* RxSwift */; };
 		80A26D3F2AE538FC002F668B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A26D3E2AE538FC002F668B /* SettingViewController.swift */; };
 		80A26D412AE57EF6002F668B /* BasePhotoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A26D402AE57EF6002F668B /* BasePhotoSettingViewController.swift */; };
 		80A26D432AE57F4A002F668B /* PhotoDiaryModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A26D422AE57F4A002F668B /* PhotoDiaryModifyViewController.swift */; };
@@ -106,8 +108,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				809DDF352AF1CB6200AAB17C /* RxSwift in Frameworks */,
 				808F8A5B2ACEDD1700D9A0EB /* RealmSwift in Frameworks */,
 				808F8A592ACEDD1700D9A0EB /* Realm in Frameworks */,
+				809DDF332AF1CB6200AAB17C /* RxCocoa in Frameworks */,
 				80491F912AC4133400095DE8 /* FSCalendar in Frameworks */,
 				D532CCEF79CE967660F96333 /* Pods_TravelAppProject.framework in Frameworks */,
 			);
@@ -268,6 +272,8 @@
 				80491F902AC4133400095DE8 /* FSCalendar */,
 				808F8A582ACEDD1700D9A0EB /* Realm */,
 				808F8A5A2ACEDD1700D9A0EB /* RealmSwift */,
+				809DDF322AF1CB6200AAB17C /* RxCocoa */,
+				809DDF342AF1CB6200AAB17C /* RxSwift */,
 			);
 			productName = TravelAppProject;
 			productReference = 808EADF52AC1B5F700ED57EF /* TravelAppProject.app */;
@@ -302,6 +308,7 @@
 			packageReferences = (
 				80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */,
+				809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 808EADF62AC1B5F700ED57EF /* Products */;
 			projectDirPath = "";
@@ -667,6 +674,14 @@
 				kind = branch;
 			};
 		};
+		809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -684,6 +699,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		809DDF322AF1CB6200AAB17C /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		809DDF342AF1CB6200AAB17C /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
