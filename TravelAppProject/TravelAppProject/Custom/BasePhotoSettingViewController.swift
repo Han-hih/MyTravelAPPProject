@@ -26,6 +26,14 @@ class BasePhotoSettingViewController: UIViewController, PHPickerViewControllerDe
         label.text = "Press this place to add a picture".localized
         return label
     }()
+    
+    let diaryLabel = {
+        let label = topTextFieldLabel()
+        label.text = "Please keep a diary about your photos.".localized
+        label.font = .systemFont(ofSize: 12)
+        return label
+    }()
+    
      let memoTextFieldView = {
         let view = UITextView()
         view.backgroundColor = .clear
@@ -72,7 +80,7 @@ class BasePhotoSettingViewController: UIViewController, PHPickerViewControllerDe
     }
   
     func setLayout() {
-        [photoView, memoTextFieldView, hiddenLabel].forEach {
+        [photoView, memoTextFieldView, hiddenLabel, diaryLabel].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -88,7 +96,10 @@ class BasePhotoSettingViewController: UIViewController, PHPickerViewControllerDe
             memoTextFieldView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             
             hiddenLabel.centerXAnchor.constraint(equalTo: photoView.centerXAnchor),
-            hiddenLabel.centerYAnchor.constraint(equalTo: photoView.centerYAnchor)
+            hiddenLabel.centerYAnchor.constraint(equalTo: photoView.centerYAnchor),
+            
+            diaryLabel.leadingAnchor.constraint(equalTo: memoTextFieldView.leadingAnchor),
+            diaryLabel.bottomAnchor.constraint(equalTo: memoTextFieldView.topAnchor)
         ])
     }
     func isHiddenLabel() {

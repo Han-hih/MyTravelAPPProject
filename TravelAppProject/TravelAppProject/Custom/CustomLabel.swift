@@ -80,7 +80,7 @@ class topTextFieldLabel: UILabel {
     
     func setLabel() {
         font = .systemFont(ofSize: 12)
-        textColor = .lightGray
+        textColor = .darkGray
     }
     
     
