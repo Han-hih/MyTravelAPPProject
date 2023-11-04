@@ -120,13 +120,10 @@ class CalanderViewController: UIViewController, FSCalendarDelegate {
         if firstDate == nil {
             firstDate = date
             datesRange = [firstDate!]
-            //            print(firstDate, "잘나옴")
-            //            print(datesRange?[0], "잘나옴222")
-            //            self.startButton.setTitle("\(datesRange?[0])", for: .normal)
             startButton.isEnabled = true
             viewModel.dateRange.bind { date in
                 guard let date = self.datesRange?[0] else { return }
-                print(date, self.datesRange?[0])
+
                 self.startButton.setTitle(self.viewModel.dateToString(completion: {
                     date
                 }), for: .normal)

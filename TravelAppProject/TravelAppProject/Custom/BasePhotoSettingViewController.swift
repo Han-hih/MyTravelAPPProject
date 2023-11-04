@@ -31,13 +31,13 @@ class BasePhotoSettingViewController: UIViewController, PHPickerViewControllerDe
         view.backgroundColor = .clear
         view.textAlignment = .center
         view.isScrollEnabled = true
-//                view.text = "메모를 입력해주세요"
         view.font = .systemFont(ofSize: 18, weight: .medium)
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.black.cgColor
         let keyboardToolbar = UIToolbar()
         let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneBarButton = UIBarButtonItem(title: "Done".localized, style: .plain, target: self, action: #selector(doneButtonTapped))
+         let doneBarButton = UIBarButtonItem(title: "Done".localized, style: .plain, target: self, action: #selector(doneButtonTapped))
+         doneBarButton.tintColor = .systemBlue
         keyboardToolbar.items = [flexBarButton, doneBarButton]
         keyboardToolbar.sizeToFit()
         keyboardToolbar.tintColor = UIColor.systemGray
@@ -53,21 +53,13 @@ class BasePhotoSettingViewController: UIViewController, PHPickerViewControllerDe
         setLayout()
         addTapGestureRecognizer()
         isHiddenLabel()
+        self.addKeyboardNotifications()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.addKeyboardNotifications()
-        
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.removeKeyboardNotifications()
-    }
     @objc func doneButtonTapped() {
         self.view.endEditing(true)
     }
+    
     func addTapGestureRecognizer() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(_:)))
         self.photoView.addGestureRecognizer(tapGesture)
