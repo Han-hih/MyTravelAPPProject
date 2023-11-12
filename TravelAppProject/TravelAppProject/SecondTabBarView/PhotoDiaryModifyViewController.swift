@@ -28,7 +28,6 @@ class PhotoDiaryModifyViewController: BasePhotoSettingViewController {
             self.navigationController?.navigationBar.tintColor = .black
         }
     func realmModify() {
-        //잘됨
         let data = self.realm.objects(PhotoTable.self).where {
                     $0._id == self.photoId!
                 }.first!
@@ -53,11 +52,13 @@ class PhotoDiaryModifyViewController: BasePhotoSettingViewController {
         removeImageFromDocument(fileName: "\(photoId!).jpg")
         self.navigationController?.popViewController(animated: true)
     }
+    
     @objc func modifyButtonTapped() {
         realmModify()
 
             
         }
+    
     @objc func deleteButtonTapped() {
         let alert = UIAlertController(title: "Are you sure you want to delete?".localized, message: "Deleted data is not recovered.".localized, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Delete".localized, style: .destructive) {_ in 

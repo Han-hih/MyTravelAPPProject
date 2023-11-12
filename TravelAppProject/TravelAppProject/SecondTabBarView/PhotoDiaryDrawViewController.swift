@@ -11,11 +11,6 @@ import RealmSwift
 
 final class PhotoDiaryDrawViewController: BasePhotoSettingViewController {
     
-    let diaryLabel = {
-        let label = topTextFieldLabel()
-        label.text = "Please keep a diary about your photos.".localized
-        return label
-    }()
 //    let repository = PhotoRealmRepository()
     
     var id: ObjectId?
@@ -32,10 +27,12 @@ final class PhotoDiaryDrawViewController: BasePhotoSettingViewController {
     }
     
     @objc func saveButtonTapped() {
+        removeKeyboardNotifications()
         let realm = try! Realm()
         let main = realm.objects(TravelRealmModel.self).where {
             $0._id == id!
         }.first!
+        
         
         let task = PhotoTable(photoMemo: memoTextFieldView.text ?? "")
         print(task._id)
@@ -43,7 +40,7 @@ final class PhotoDiaryDrawViewController: BasePhotoSettingViewController {
             let alert = UIAlertController(title: "사진을 추가해 주세요", message: .none, preferredStyle: .alert)
             
             let ok = UIAlertAction(title: "확인", style: .default) { _ in
-                print("저장안됨")
+                self.addKeyboardNotifications()
             }
             alert.addAction(ok)
             present(alert, animated:  true)
