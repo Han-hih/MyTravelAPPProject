@@ -126,7 +126,9 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
         if indexPath.item == 0 {
             mapView.removeOverlays(mapView.overlays)
             directionArray.removeAll()
@@ -152,6 +154,7 @@ extension MapPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
             mapView.showAnnotations(allAnnotaitions, animated: true)
         }
     }
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKGradientPolylineRenderer(overlay: overlay)
         renderer.lineWidth = 3

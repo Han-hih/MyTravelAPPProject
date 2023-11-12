@@ -22,6 +22,18 @@ class MapPinCollectionviewCell: UICollectionViewCell {
         return label
     }()
     
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                dateLabel.textColor = .white
+                dateLabel.backgroundColor = .black
+            } else {
+                dateLabel.textColor = .black
+                dateLabel.backgroundColor = .white
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()
