@@ -48,7 +48,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = settingTableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell else { return UITableViewCell() }
                 
         if indexPath.row == 0 {
-            cell.settingLabel.text = "문의하기"
+            cell.settingLabel.text = "개발자에게 문의하기"
         } else if indexPath.row == 1 {
             cell.settingLabel.text = "개인정보 처리 방침"
         } else if indexPath.row == 2 {
