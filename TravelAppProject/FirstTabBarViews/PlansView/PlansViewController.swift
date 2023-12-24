@@ -22,7 +22,7 @@ class PlansViewController: UIViewController {
         view.showsHorizontalScrollIndicator = false
         view.showsVerticalScrollIndicator = true
         
-        view.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+        view.register(PlansCollectionViewCell.self, forCellWithReuseIdentifier: PlansCollectionViewCell.identifier)
         
         view.delegate = self
         view.dataSource = self
@@ -123,7 +123,7 @@ extension PlansViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd MMM yyyy".localized
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlansCollectionViewCell.identifier, for: indexPath) as? PlansCollectionViewCell else { return UICollectionViewCell() }
             cell.travelPlaceLabel.text = list[indexPath.row].country
             cell.countryFullLabel.text = list[indexPath.row].countryName
             cell.startDateLabel.text = dateFormatter.string(from: list[indexPath.row].startDate)

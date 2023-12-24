@@ -28,7 +28,7 @@ class PlanSearchSettingViewController: BaseSettingViewController {
           realmCreate()
           if let viewControllers = self.navigationController?.viewControllers {
               for viewController in viewControllers {
-                  if viewController is PlanViewController {
+                  if viewController is PlanMemoViewController {
                       self.navigationController?.popToViewController(viewController, animated: true)
                       break
                   }
