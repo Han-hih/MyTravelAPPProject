@@ -8,8 +8,8 @@
 import UIKit
 import RealmSwift
 
-class MainCollectionViewCell: UICollectionViewCell {
-    static let shared = MainCollectionViewCell()
+class PlansCollectionViewCell: UICollectionViewCell {
+    static let shared = PlansCollectionViewCell()
     
     private enum Color {
         static var gradientColors = [

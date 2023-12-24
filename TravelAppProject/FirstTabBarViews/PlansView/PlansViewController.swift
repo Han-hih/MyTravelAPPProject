@@ -7,7 +7,8 @@
 
 import UIKit
 import RealmSwift
-class MainViewController: UIViewController {
+
+class PlansViewController: UIViewController {
     let realm = try! Realm()
     var list: Results<TravelRealmModel>!
     
@@ -110,7 +111,7 @@ class MainViewController: UIViewController {
     
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PlansViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.frame.size
     }
@@ -130,7 +131,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = PlanViewController()
+        let vc = PlanMemoViewController()
         
         vc.id = list[indexPath.row]._id
         

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		800404642AD01F7E00634CD4 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404632AD01F7E00634CD4 /* MainCollectionViewCell.swift */; };
+		800404642AD01F7E00634CD4 /* PlansCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404632AD01F7E00634CD4 /* PlansCollectionViewCell.swift */; };
 		800404662AD0325000634CD4 /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404652AD0325000634CD4 /* ReusableViewProtocol.swift */; };
 		800404692AD0F4A800634CD4 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404682AD0F4A800634CD4 /* CustomLabel.swift */; };
 		8004046D2AD2786E00634CD4 /* CountryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004046C2AD2786E00634CD4 /* CountryController.swift */; };
@@ -34,7 +34,7 @@
 		8087419F2ACC311C00F81574 /* PlanSearchSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087419E2ACC311C00F81574 /* PlanSearchSettingViewController.swift */; };
 		808EADF92AC1B5F700ED57EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EADF82AC1B5F700ED57EF /* AppDelegate.swift */; };
 		808EADFB2AC1B5F700ED57EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */; };
-		808EADFD2AC1B5F700ED57EF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EADFC2AC1B5F700ED57EF /* MainViewController.swift */; };
+		808EADFD2AC1B5F700ED57EF /* PlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EADFC2AC1B5F700ED57EF /* PlansViewController.swift */; };
 		808EAE022AC1B5F800ED57EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808EAE012AC1B5F800ED57EF /* Assets.xcassets */; };
 		808EAE052AC1B5F800ED57EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808EAE032AC1B5F800ED57EF /* LaunchScreen.storyboard */; };
 		808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */; };
@@ -53,7 +53,7 @@
 		80DADFA12B0222FC00803E0C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 80DADFA02B0222FC00803E0C /* FirebaseMessaging */; };
 		80DADFA42B023ABA00803E0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80DADFA32B023ABA00803E0C /* GoogleService-Info.plist */; };
 		80DADFA62B023BDE00803E0C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 80DADFA52B023BDE00803E0C /* FirebaseAnalytics */; };
-		80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */; };
+		80FFBD102AC9BD5C00DD8FCC /* PlanMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD0F2AC9BD5C00DD8FCC /* PlanMemoViewController.swift */; };
 		80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */; };
 		D532CCEF79CE967660F96333 /* Pods_TravelAppProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0354202EA2AA6615E31ED975 /* Pods_TravelAppProject.framework */; };
 /* End PBXBuildFile section */
@@ -61,7 +61,7 @@
 /* Begin PBXFileReference section */
 		0354202EA2AA6615E31ED975 /* Pods_TravelAppProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelAppProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1023031FA1AF4106AA8D727A /* Pods-TravelAppProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelAppProject.release.xcconfig"; path = "Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject.release.xcconfig"; sourceTree = "<group>"; };
-		800404632AD01F7E00634CD4 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		800404632AD01F7E00634CD4 /* PlansCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansCollectionViewCell.swift; sourceTree = "<group>"; };
 		800404652AD0325000634CD4 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		800404682AD0F4A800634CD4 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		8004046C2AD2786E00634CD4 /* CountryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryController.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		808EADF52AC1B5F700ED57EF /* TravelAppProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelAppProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		808EADF82AC1B5F700ED57EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		808EADFC2AC1B5F700ED57EF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		808EADFC2AC1B5F700ED57EF /* PlansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansViewController.swift; sourceTree = "<group>"; };
 		808EAE012AC1B5F800ED57EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		808EAE042AC1B5F800ED57EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		808EAE062AC1B5F800ED57EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		80A26D512AE6C673002F668B /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		80DADFA22B0233BF00803E0C /* TravelAppProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TravelAppProject.entitlements; sourceTree = "<group>"; };
 		80DADFA32B023ABA00803E0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
+		80FFBD0F2AC9BD5C00DD8FCC /* PlanMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanMemoViewController.swift; sourceTree = "<group>"; };
 		80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTableViewCell.swift; sourceTree = "<group>"; };
 		9EA670909D4A7803BF2C9A81 /* Pods-TravelAppProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelAppProject.debug.xcconfig"; path = "Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,9 +146,121 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		80011A962B3868EE00A8B37D /* FirstTabBarViews */ = {
+			isa = PBXGroup;
+			children = (
+				80011A9D2B38716900A8B37D /* PlanMemoView */,
+				80011A9C2B3870F000A8B37D /* PlanModifyView */,
+				80011A9B2B386EDF00A8B37D /* PlanSearchView */,
+				80011A9A2B386EC900A8B37D /* MapPinView */,
+				80011A992B386E8E00A8B37D /* CalendarView */,
+				80011A982B386E0A00A8B37D /* CountrySearchView */,
+				80011A972B386C1900A8B37D /* PlansView */,
+			);
+			path = FirstTabBarViews;
+			sourceTree = "<group>";
+		};
+		80011A972B386C1900A8B37D /* PlansView */ = {
+			isa = PBXGroup;
+			children = (
+				808EADFC2AC1B5F700ED57EF /* PlansViewController.swift */,
+				800404632AD01F7E00634CD4 /* PlansCollectionViewCell.swift */,
+			);
+			path = PlansView;
+			sourceTree = "<group>";
+		};
+		80011A982B386E0A00A8B37D /* CountrySearchView */ = {
+			isa = PBXGroup;
+			children = (
+				808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */,
+			);
+			path = CountrySearchView;
+			sourceTree = "<group>";
+		};
+		80011A992B386E8E00A8B37D /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */,
+				80491F9D2AC8806B00095DE8 /* CalanderViewModel.swift */,
+				80491F9B2AC87FA300095DE8 /* Observable.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		80011A9A2B386EC900A8B37D /* MapPinView */ = {
+			isa = PBXGroup;
+			children = (
+				806985552ADA79A8003609BA /* MapPinViewController.swift */,
+				806985572ADA7DD1003609BA /* MapPinCollectionviewCell.swift */,
+			);
+			path = MapPinView;
+			sourceTree = "<group>";
+		};
+		80011A9B2B386EDF00A8B37D /* PlanSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				8087419C2ACC2DF600F81574 /* PlanSearchViewController.swift */,
+				80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */,
+			);
+			path = PlanSearchView;
+			sourceTree = "<group>";
+		};
+		80011A9C2B3870F000A8B37D /* PlanModifyView */ = {
+			isa = PBXGroup;
+			children = (
+				802B34572AE3C68E00052E82 /* PlanModifiyViewController.swift */,
+			);
+			path = PlanModifyView;
+			sourceTree = "<group>";
+		};
+		80011A9D2B38716900A8B37D /* PlanMemoView */ = {
+			isa = PBXGroup;
+			children = (
+				80FFBD0F2AC9BD5C00DD8FCC /* PlanMemoViewController.swift */,
+			);
+			path = PlanMemoView;
+			sourceTree = "<group>";
+		};
+		80011A9E2B3871C700A8B37D /* PhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */,
+				800FC5E22ADFB6E800F84AED /* PhotoTableViewCell.swift */,
+			);
+			path = PhotoView;
+			sourceTree = "<group>";
+		};
+		80011A9F2B3871D900A8B37D /* PhotoDiaryView */ = {
+			isa = PBXGroup;
+			children = (
+				8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */,
+			);
+			path = PhotoDiaryView;
+			sourceTree = "<group>";
+		};
+		80011AA02B38728400A8B37D /* PhotoDiarySettingView */ = {
+			isa = PBXGroup;
+			children = (
+				809512562AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift */,
+				80A26D422AE57F4A002F668B /* PhotoDiaryModifyViewController.swift */,
+				8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */,
+			);
+			path = PhotoDiarySettingView;
+			sourceTree = "<group>";
+		};
+		80011AA12B3872B800A8B37D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				800404652AD0325000634CD4 /* ReusableViewProtocol.swift */,
+				80491F992AC7366B00095DE8 /* String+Extension.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		800404672AD0F49900634CD4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				8087419E2ACC311C00F81574 /* PlanSearchSettingViewController.swift */,
 				800404682AD0F4A800634CD4 /* CustomLabel.swift */,
 				80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */,
 				802B34532AE3AD8800052E82 /* TextFieldExtensions.swift */,
@@ -167,23 +279,21 @@
 			path = CountryData;
 			sourceTree = "<group>";
 		};
-		800404732AD29B4A00634CD4 /* SecondTabBarView */ = {
+		800404732AD29B4A00634CD4 /* SecondTabBarViews */ = {
 			isa = PBXGroup;
 			children = (
-				808EAE0C2AC1BFB300ED57EF /* PhotoViewController.swift */,
-				800FC5E22ADFB6E800F84AED /* PhotoTableViewCell.swift */,
-				8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */,
-				8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */,
-				80A26D422AE57F4A002F668B /* PhotoDiaryModifyViewController.swift */,
-				809512562AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift */,
+				80011AA02B38728400A8B37D /* PhotoDiarySettingView */,
+				80011A9E2B3871C700A8B37D /* PhotoView */,
+				80011A9F2B3871D900A8B37D /* PhotoDiaryView */,
 			);
-			path = SecondTabBarView;
+			path = SecondTabBarViews;
 			sourceTree = "<group>";
 		};
 		8020B0FB2AD7BE4B00ECBB37 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */,
+				800404722AD29B2A00634CD4 /* CountryData */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -191,6 +301,11 @@
 		808EADEC2AC1B5F700ED57EF = {
 			isa = PBXGroup;
 			children = (
+				808EADF82AC1B5F700ED57EF /* AppDelegate.swift */,
+				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
+				80011AA12B3872B800A8B37D /* Protocols */,
+				80011A962B3868EE00A8B37D /* FirstTabBarViews */,
+				800404732AD29B4A00634CD4 /* SecondTabBarViews */,
 				80A26D502AE6C2CA002F668B /* Setting */,
 				8020B0FB2AD7BE4B00ECBB37 /* Utility */,
 				808EADF72AC1B5F700ED57EF /* TravelAppProject */,
@@ -213,30 +328,11 @@
 			children = (
 				80DADFA22B0233BF00803E0C /* TravelAppProject.entitlements */,
 				80DADFA32B023ABA00803E0C /* GoogleService-Info.plist */,
-				808EADF82AC1B5F700ED57EF /* AppDelegate.swift */,
-				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
-				800404732AD29B4A00634CD4 /* SecondTabBarView */,
 				800404672AD0F49900634CD4 /* Custom */,
 				808F8A5C2ACEDF0400D9A0EB /* Realm */,
-				808EADFC2AC1B5F700ED57EF /* MainViewController.swift */,
-				808EAE0E2AC1D37E00ED57EF /* SearchViewController.swift */,
-				80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */,
-				806985552ADA79A8003609BA /* MapPinViewController.swift */,
-				806985572ADA7DD1003609BA /* MapPinCollectionviewCell.swift */,
-				8087419C2ACC2DF600F81574 /* PlanSearchViewController.swift */,
-				8087419E2ACC311C00F81574 /* PlanSearchSettingViewController.swift */,
-				80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */,
-				80FFBD0F2AC9BD5C00DD8FCC /* PlanViewController.swift */,
-				802B34572AE3C68E00052E82 /* PlanModifiyViewController.swift */,
-				800404632AD01F7E00634CD4 /* MainCollectionViewCell.swift */,
-				80491F9D2AC8806B00095DE8 /* CalanderViewModel.swift */,
-				80491F9B2AC87FA300095DE8 /* Observable.swift */,
-				800404722AD29B2A00634CD4 /* CountryData */,
 				808EAE012AC1B5F800ED57EF /* Assets.xcassets */,
 				808EAE032AC1B5F800ED57EF /* LaunchScreen.storyboard */,
 				808EAE062AC1B5F800ED57EF /* Info.plist */,
-				800404652AD0325000634CD4 /* ReusableViewProtocol.swift */,
-				80491F992AC7366B00095DE8 /* String+Extension.swift */,
 				80491F962AC71B3100095DE8 /* Localizable.strings */,
 			);
 			path = TravelAppProject;
@@ -411,12 +507,12 @@
 				806985562ADA79A8003609BA /* MapPinViewController.swift in Sources */,
 				8032FBFD2AE6D0020052AD3E /* SettingMessage.swift in Sources */,
 				80491F9A2AC7366B00095DE8 /* String+Extension.swift in Sources */,
-				800404642AD01F7E00634CD4 /* MainCollectionViewCell.swift in Sources */,
+				800404642AD01F7E00634CD4 /* PlansCollectionViewCell.swift in Sources */,
 				80A26D522AE6C673002F668B /* SettingTableViewCell.swift in Sources */,
 				808EAE0F2AC1D37E00ED57EF /* SearchViewController.swift in Sources */,
 				8087419F2ACC311C00F81574 /* PlanSearchSettingViewController.swift in Sources */,
 				8004046D2AD2786E00634CD4 /* CountryController.swift in Sources */,
-				808EADFD2AC1B5F700ED57EF /* MainViewController.swift in Sources */,
+				808EADFD2AC1B5F700ED57EF /* PlansViewController.swift in Sources */,
 				80491F9C2AC87FA300095DE8 /* Observable.swift in Sources */,
 				80A26D3F2AE538FC002F668B /* SettingViewController.swift in Sources */,
 				809512572AD9A196000DA92B /* PhotoDiaryCollectionViewCell.swift in Sources */,
@@ -424,7 +520,7 @@
 				80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */,
 				8020B0FD2AD7BE6500ECBB37 /* FileManager+Extension.swift in Sources */,
 				8087419D2ACC2DF700F81574 /* PlanSearchViewController.swift in Sources */,
-				80FFBD102AC9BD5C00DD8FCC /* PlanViewController.swift in Sources */,
+				80FFBD102AC9BD5C00DD8FCC /* PlanMemoViewController.swift in Sources */,
 				8020B0FF2AD805C600ECBB37 /* PhotoDiaryViewController.swift in Sources */,
 				808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */,
 				8020B1062AD8D0E700ECBB37 /* PhotoRealmRepository.swift in Sources */,

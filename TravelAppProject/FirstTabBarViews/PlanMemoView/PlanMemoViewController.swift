@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-final class PlanViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+final class PlanMemoViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     var id: ObjectId?
     
@@ -142,7 +142,7 @@ final class PlanViewController: UIViewController, UIPopoverPresentationControlle
     }
 }
 
-extension PlanViewController: UITableViewDelegate, UITableViewDataSource {
+extension PlanMemoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "".localizeDate(date: dateArray[section])
