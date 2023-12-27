@@ -1,6 +1,21 @@
-# MyTravelAPPProject
+# 여행은 Trip
 
-1.0 개발기간
+# 📱앱 주요 화면
+
+## 주요 기능
+- 여행 날짜와 지역 설정, 장소 검색, 장소 추가, 메모 작성
+- 애플맵 연동, 날짜 별 경로 확인, 애플맵 경로 찾기
+- 사진 일기 작성, 조회
+## 개발 기간
+2023.09.25 ~ 2023.10.23
+
+# 🔨기술스택
+- 최소 버전: iOS 15.0
+- UIKit(Codebase UI), MVVM
+- DiffableDataSource, CompositionalLayout
+- MapKit
+- RealmSwift
+- Firebase Push Notifications
 
 
 11월 12일 업데이트(1.0.1)
