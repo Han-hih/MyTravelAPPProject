@@ -36,14 +36,8 @@ final class PlanMemoViewController: UIViewController, UIPopoverPresentationContr
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         place = [[Plan]](repeating: [], count: sectionCount)
-        
-
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setSortedData()
+         setSortedData()
         tableView.reloadData()
-                    
     }
     
     struct Plan {
