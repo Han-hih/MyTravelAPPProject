@@ -8,17 +8,23 @@
 - MapKit의 MKLocalSearchCompletion를 이용해 장소 검색 및 Diffable datasource를 이용해 애니메이션 효과 추가
 - 애플맵 연동, 날짜 별 경로 확인, 애플맵 경로 찾기
 - 사진 일기 작성, 조회
+- repository pattern을 이용한 realm사용, 데이터베이스 모듈화 
   
 ## 개발 기간
 2023.09.25 ~ 2023.10.23
 
 # 🔨기술스택
 - 최소 버전: iOS 15.0
-- UIKit(Codebase UI), MVVM
-- DiffableDataSource
-- MapKit
+- 디자인 패턴: MVC, MVVM
+- UIKit(Codebase UI)
 - RealmSwift
-- Firebase Push Notifications
+- MapKit
+- DiffableDataSource
+- PhotosUI
+- FSCalendar
+- Firebase Push Notifications, Crashlytics
+- RxSwift
+
 
 # 트러블 슈팅
  ### 1. 여행 계획 추가 후 돌아온 화면 reload 문제
