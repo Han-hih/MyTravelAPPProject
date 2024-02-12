@@ -7,20 +7,19 @@
 - Observable을 이용해 달력에서 선택한 날짜 데이터 바인딩
 - MapKit의 MKLocalSearchCompletion를 이용해 장소 검색 및 Diffable datasource를 이용해 애니메이션 효과 추가
 - 애플맵 연동, 날짜 별 경로 확인, 애플맵 경로 찾기
-- 사진 일기 작성, 조회
+- realm을 활용해 사진 일기 저장 및 불러오기
 - repository pattern을 이용한 realm사용, 데이터베이스 모듈화 
   
 ## 개발 기간
-2023.09.25 ~ 2023.10.23
+2023.09.25 ~ 2023.10.23(29일)
 
 # 🔨기술스택
 - 최소 버전: iOS 15.0
 - 디자인 패턴: MVC, MVVM
 - UIKit(Codebase UI)
 - RealmSwift
-- MapKit
+- MapKit, PhotosUI
 - DiffableDataSource
-- PhotosUI
 - FSCalendar
 - Firebase Push Notifications, Crashlytics
 - RxSwift
@@ -115,6 +114,8 @@ func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FS
         }
     }
 ```
+
+# 회고
 
 
 11월 12일 업데이트(1.0.1)
