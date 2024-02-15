@@ -3,10 +3,12 @@
 # 📱앱 주요 화면
 
 ## 주요 기능
-- 여행 날짜와 지역 설정, 장소 검색, 장소 추가, 메모 작성
 - Observable을 이용해 달력에서 선택한 날짜 데이터 바인딩
-- MapKit의 MKLocalSearchCompletion를 이용해 장소 검색 및 Diffable datasource를 이용해 애니메이션 효과 추가
-- 애플맵 연동, 날짜 별 경로 확인, 애플맵 경로 찾기
+- MapKit의 MKLocalSearchCompletion를 이용해 장소 검색
+- Diffable datasource를 이용해 검색 부분 애니메이션 효과 추가
+- MKMapView를 이용해 추가한 장소 pin으로 고정
+- 날짜별 추가한 장소 필터링 및 PolyLine으로 연결
+- Pin선택 시 애플맵 길찾기로 연동 
 - realm을 활용해 사진 일기 저장 및 불러오기
 - repository pattern을 이용한 realm사용, 데이터베이스 모듈화 
   
@@ -14,6 +16,7 @@
 2023.09.25 ~ 2023.10.23(29일)
 
 # 🔨기술스택
+- 개발 인원: 1인
 - 최소 버전: iOS 15.0
 - 디자인 패턴: MVC, MVVM
 - UIKit(Codebase UI)
@@ -35,88 +38,11 @@
    - 하루만 선택했을 때, 기간으로 설정했을 때와 다시 선택했을 때 어떻게 처리해줘야 할 지 고민을 많이 했었습니다.
      애플에서 기본으로 제공하는 달력에는 여러 날짜를 선택하거나 하루만 선택 가능했는데 제가 생각했던 기능은 연속된 날짜 선택이었습니다. 그래서 FSCalendar를 이용했고 라이브러리 내에 있는 didSelect메서드를 이용해서
      구현을 해줬습니다.
-```swift
-func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        // nothing selected:
-        if firstDate == nil {
-            firstDate = date
-            datesRange = [firstDate!]
-            startButton.isEnabled = true
-            viewModel.dateRange.bind { date in
-                guard let date = self.datesRange?[0] else { return }
 
-                self.startButton.setTitle(self.viewModel.dateToString(completion: {
-                    date
-                }), for: .normal)
-            }
-            print("datesRange contains: \(datesRange!)", "하루만 선택")
-            
-            return
-        }
-        if firstDate != nil && lastDate == nil {
-            if date <= firstDate! {
-                calendar.deselect(firstDate!)
-                firstDate = date
-                datesRange = [firstDate!]
-                print("datesRange contains: \(datesRange!)", "하루만 선택되어있을때") //*
-                return
-            }
-            
-            let range = datesRange(from: firstDate!, to: date)
-            lastDate = range.last
-            
-            for day in range {
-                calendar.select(day)
-            }
-            
-            datesRange = range
-            print("datesRange contains: \(datesRange!)", "기간으로 선택됨") //*
-            startButton.isEnabled = true
-            viewModel.dateRange.bind { date in
-                guard let date = self.datesRange else { return }
-                
-                let firstDay = self.viewModel.dateToString {
-                    date.first!
-                }
-                let lastDay = self.viewModel.dateToString {
-                    date.last!
-                }
-                self.startButton.setTitle("\(firstDay) ~ \(lastDay)", for: .normal)
-            }
-            return
-        }
-        
-        
-        if firstDate != nil && lastDate != nil {
-            for day in calendar.selectedDates {
-                calendar.deselect(day)
-            }
-            
-            lastDate = nil
-            firstDate = nil
-            
-            datesRange = []
-            startButton.setTitle("Please select the travel date".localized, for: .normal)
-            startButton.isEnabled = false
-            print("datesRange contains: \(datesRange!)", "날짜 선택 취소") //*
-        }
-    }
-    
-    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        if firstDate != nil && lastDate != nil {
-            for day in calendar.selectedDates {
-                calendar.deselect(day)
-            }
-            lastDate = nil
-            firstDate = nil
-            datesRange = []
-            print("datesRange contains: \(datesRange!)", "날짜 선택 취소")
-        }
-    }
-```
 
 # 회고
-
+- 생각했던 구현 시간보다 널널하게 공수 기간을 잡아야겠다.
+- RxSwift를 처음 사용 해봐서 일부분만 사용했는데 다음 프로젝트에서는 적극적으로 사용 해봐야겠다.
 
 11월 12일 업데이트(1.0.1)
   - 사진일기 작성 뷰에서 키보드 올라온 상태에서 사진이 없을 때 작성버튼 누르면 뷰가 두번 내려가서 검은화면 보이는 현상 해결
