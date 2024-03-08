@@ -1,6 +1,9 @@
+
+<img src="https://github.com/Han-hih/TravelApp/assets/109748526/d549a650-a5ce-4ebe-864b-f7b719af186a" width="75" height="75"> 
+
 # 여행은 Trip
 
-# 📱앱 주요 화면
+> 여행계획을 작성하고 추억을 사진과 메모로 저장할 수 있는 앱
 
 <img width="1401" alt="image" src="https://github.com/Han-hih/TravelApp/assets/109748526/c44f116d-0ee0-48f4-9df4-d0aa06e77b60">
 
@@ -35,7 +38,7 @@
    -  배열이 추가가 안되거나 두번씩 중첩되는 현상이 있었습니다.
    -  viewWillAppear에서는 reload가 안돼서 배열을 새로 만들었는데 그럴 때마다 viewDidLoad에서 만들어 놓은 배열과 합쳐져서 두배로 증가해서 겹쳐보이는 현상이 생겼습니다.
    -  viewWillAppear에서 배열을 초기화 해주고 다시 렘에서 데이터를 받아와서 tableViewReload를 해줬습니다.
-   -  
+     
  ### 2. tableView에서 행을 제거할 때 에러발생
   - 문제상황
     - 테이블뷰에서 여행계획을 삭제하고 reload를 해주면 기존 배열과 렘에서 가져온 배열이 맞지 않는 현상이 생겼습니다.
