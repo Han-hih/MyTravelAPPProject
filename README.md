@@ -1,7 +1,8 @@
 # 여행은 Trip
 
 # 📱앱 주요 화면
-<img width="1051" alt="image" src="https://github.com/Han-hih/TravelApp/assets/109748526/866205a7-38af-42bf-a960-eaaee92445ad">
+
+<img width="1401" alt="image" src="https://github.com/Han-hih/TravelApp/assets/109748526/c44f116d-0ee0-48f4-9df4-d0aa06e77b60">
 
 ## 주요 기능
 - Observable을 이용해 달력에서 선택한 날짜 데이터 바인딩
