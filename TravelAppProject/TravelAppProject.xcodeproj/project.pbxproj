@@ -23,6 +23,7 @@
 		802B34582AE3C68E00052E82 /* PlanModifiyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802B34572AE3C68E00052E82 /* PlanModifiyViewController.swift */; };
 		8032FBFD2AE6D0020052AD3E /* SettingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032FBFC2AE6D0020052AD3E /* SettingMessage.swift */; };
 		8046D62B2BA5743700146135 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8046D62A2BA5743700146135 /* .gitignore */; };
+		8046D62D2BA5754200146135 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8046D62C2BA5754200146135 /* APIKey.swift */; };
 		80491F802AC2C2F100095DE8 /* CalanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */; };
 		80491F912AC4133400095DE8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 80491F902AC4133400095DE8 /* FSCalendar */; };
 		80491F942AC71B3100095DE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80491F962AC71B3100095DE8 /* Localizable.strings */; };
@@ -79,6 +80,7 @@
 		802B34572AE3C68E00052E82 /* PlanModifiyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanModifiyViewController.swift; sourceTree = "<group>"; };
 		8032FBFC2AE6D0020052AD3E /* SettingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMessage.swift; sourceTree = "<group>"; };
 		8046D62A2BA5743700146135 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8046D62C2BA5754200146135 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		80491F7F2AC2C2F100095DE8 /* CalanderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderViewController.swift; sourceTree = "<group>"; };
 		80491F952AC71B3100095DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80491F972AC71B6300095DE8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		808EADEC2AC1B5F700ED57EF = {
 			isa = PBXGroup;
 			children = (
+				8046D62C2BA5754200146135 /* APIKey.swift */,
 				8046D62A2BA5743700146135 /* .gitignore */,
 				808EADF82AC1B5F700ED57EF /* AppDelegate.swift */,
 				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
@@ -526,6 +529,7 @@
 				8087419D2ACC2DF700F81574 /* PlanSearchViewController.swift in Sources */,
 				80FFBD102AC9BD5C00DD8FCC /* PlanMemoViewController.swift in Sources */,
 				8020B0FF2AD805C600ECBB37 /* PhotoDiaryViewController.swift in Sources */,
+				8046D62D2BA5754200146135 /* APIKey.swift in Sources */,
 				808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */,
 				8020B1062AD8D0E700ECBB37 /* PhotoRealmRepository.swift in Sources */,
 				808EADF92AC1B5F700ED57EF /* AppDelegate.swift in Sources */,

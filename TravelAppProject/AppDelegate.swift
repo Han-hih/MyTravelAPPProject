@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseCore
 import FirebaseMessaging
+import NMapsMap
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,6 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("FCM registration token: \(token)")
             }
         }
+        
+        NMFAuthManager.shared().clientId = APIKey.nClientKey
+        
         return true
     }
 
