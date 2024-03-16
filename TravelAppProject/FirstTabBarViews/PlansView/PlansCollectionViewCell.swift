@@ -21,17 +21,9 @@ class PlansCollectionViewCell: UICollectionViewCell {
             UIColor(hexCode: "#2A46FF", alpha: 0.3),
             UIColor(hexCode: "#8325FF", alpha: 0.4),
             UIColor(hexCode: "#8325FF", alpha: 0.7),
-            
-            
-//          UIColor.systemRed.withAlphaComponent(0.7),
-//          UIColor.systemRed.withAlphaComponent(0.4),
-//          UIColor.systemYellow.withAlphaComponent(0.3),
-//          UIColor.systemYellow.withAlphaComponent(0.7),
-//          UIColor.systemYellow.withAlphaComponent(0.3),
-//          UIColor.systemPink.withAlphaComponent(0.4),
-//          UIColor.systemPink.withAlphaComponent(0.7),
         ]
       }
+    
       private enum Constants {
         static let gradientLocation = [Int](0..<Color.gradientColors.count)
           .map(Double.init)
@@ -39,14 +31,16 @@ class PlansCollectionViewCell: UICollectionViewCell {
           .map(NSNumber.init)
         static let cornerRadius = 20.0
         static let cornerWidth = 2.0
-//        static let viewSize = CGSize(width: 100, height: 350)
       }
+    
     private var timer: Timer?
+    
     deinit {
         print("deinit")
         self.timer?.invalidate()
         self.timer = nil
     }
+    
    private let barcodeView = {
         let view = UIView()
         view.layer.cornerRadius = 20
@@ -66,10 +60,8 @@ class PlansCollectionViewCell: UICollectionViewCell {
     
    private let mainView = {
         let view = UIView()
-        //        view.layer.cornerRadius = 20
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.black.cgColor
-        //        view.layer.masksToBounds = true
         view.backgroundColor = .white
         return view
     }()
@@ -115,8 +107,6 @@ class PlansCollectionViewCell: UICollectionViewCell {
         label.font = .boldSystemFont(ofSize: 30)
         label.layer.cornerRadius = 10
         label.clipsToBounds = true
-//        label.layer.borderColor = UIColor.black.cgColor
-//        label.layer.borderWidth = 1
         return label
     }()
     
@@ -152,19 +142,11 @@ class PlansCollectionViewCell: UICollectionViewCell {
         setAutoLayout()
         
     }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.gradationAnimate()
-    }
   
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-        self.gradationAnimate()
-    }
-    
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         gradationAnimate()

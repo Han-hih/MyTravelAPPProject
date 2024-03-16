@@ -55,9 +55,13 @@
 		80DADFA62B023BDE00803E0C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 80DADFA52B023BDE00803E0C /* FirebaseAnalytics */; };
 		80FFBD102AC9BD5C00DD8FCC /* PlanMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD0F2AC9BD5C00DD8FCC /* PlanMemoViewController.swift */; };
 		80FFBD122ACAAA2500DD8FCC /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFBD112ACAAA2500DD8FCC /* PlanTableViewCell.swift */; };
+		EC83E209B0AB137352CE1BC6 /* Pods_TravelAppProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0623D5D5C01010ED01B3C57D /* Pods_TravelAppProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0623D5D5C01010ED01B3C57D /* Pods_TravelAppProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelAppProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		220FFA1A19D62B4343025088 /* Pods-TravelAppProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelAppProject.release.xcconfig"; path = "Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject.release.xcconfig"; sourceTree = "<group>"; };
+		3E0E2639B57BF59A0553898A /* Pods-TravelAppProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelAppProject.debug.xcconfig"; path = "Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject.debug.xcconfig"; sourceTree = "<group>"; };
 		800404632AD01F7E00634CD4 /* PlansCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansCollectionViewCell.swift; sourceTree = "<group>"; };
 		800404652AD0325000634CD4 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		800404682AD0F4A800634CD4 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
@@ -118,12 +122,31 @@
 				80DADFA62B023BDE00803E0C /* FirebaseAnalytics in Frameworks */,
 				80491F912AC4133400095DE8 /* FSCalendar in Frameworks */,
 				80DADF9F2B0222FC00803E0C /* FirebaseCrashlytics in Frameworks */,
+				EC83E209B0AB137352CE1BC6 /* Pods_TravelAppProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3EC92B044B6E1A5FE0411545 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0623D5D5C01010ED01B3C57D /* Pods_TravelAppProject.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		46AB7D0B743CC6D7D3EA0E45 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E0E2639B57BF59A0553898A /* Pods-TravelAppProject.debug.xcconfig */,
+				220FFA1A19D62B4343025088 /* Pods-TravelAppProject.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		80011A962B3868EE00A8B37D /* FirstTabBarViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +311,8 @@
 				8020B0FB2AD7BE4B00ECBB37 /* Utility */,
 				808EADF72AC1B5F700ED57EF /* TravelAppProject */,
 				808EADF62AC1B5F700ED57EF /* Products */,
+				46AB7D0B743CC6D7D3EA0E45 /* Pods */,
+				3EC92B044B6E1A5FE0411545 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -340,9 +365,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 808EAE092AC1B5F800ED57EF /* Build configuration list for PBXNativeTarget "TravelAppProject" */;
 			buildPhases = (
+				313FD7E30ECC7AD7BE91518F /* [CP] Check Pods Manifest.lock */,
 				808EADF12AC1B5F700ED57EF /* Sources */,
 				808EADF22AC1B5F700ED57EF /* Frameworks */,
 				808EADF32AC1B5F700ED57EF /* Resources */,
+				6F2CF8C9F6E794B1106B3527 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -390,9 +417,9 @@
 			);
 			mainGroup = 808EADEC2AC1B5F700ED57EF;
 			packageReferences = (
-				80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar" */,
-				808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */,
-				809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */,
+				808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */,
+				809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift.git" */,
 				80DADF992B0222FC00803E0C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 808EADF62AC1B5F700ED57EF /* Products */;
@@ -417,6 +444,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		313FD7E30ECC7AD7BE91518F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TravelAppProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F2CF8C9F6E794B1106B3527 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TravelAppProject/Pods-TravelAppProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		808EADF12AC1B5F700ED57EF /* Sources */ = {
@@ -609,6 +678,7 @@
 		};
 		808EAE0A2AC1B5F800ED57EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E0E2639B57BF59A0553898A /* Pods-TravelAppProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -637,6 +707,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -645,6 +716,7 @@
 		};
 		808EAE0B2AC1B5F800ED57EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 220FFA1A19D62B4343025088 /* Pods-TravelAppProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -672,6 +744,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -702,7 +775,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+		80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
 			requirement = {
@@ -710,7 +783,7 @@
 				minimumVersion = 2.8.4;
 			};
 		};
-		808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -718,7 +791,7 @@
 				kind = branch;
 			};
 		};
-		809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -739,27 +812,27 @@
 /* Begin XCSwiftPackageProductDependency section */
 		80491F902AC4133400095DE8 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			package = 80491F8F2AC4133400095DE8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */;
 			productName = FSCalendar;
 		};
 		808F8A582ACEDD1700D9A0EB /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = Realm;
 		};
 		808F8A5A2ACEDD1700D9A0EB /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 808F8A572ACEDD1700D9A0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = RealmSwift;
 		};
 		809DDF322AF1CB6200AAB17C /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxCocoa;
 		};
 		809DDF342AF1CB6200AAB17C /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 809DDF312AF1CB6200AAB17C /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxSwift;
 		};
 		80DADF9E2B0222FC00803E0C /* FirebaseCrashlytics */ = {

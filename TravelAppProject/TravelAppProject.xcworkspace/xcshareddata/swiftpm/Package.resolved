@@ -1,4 +1,5 @@
 {
+  "originHash" : "4a5264251ed3f5aa9b45c3e8aecf629a97a0d162bf3c310dddcb0d0f69f3d595",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -10,21 +11,12 @@
       }
     },
     {
-      "identity" : "app-check",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/app-check.git",
-      "state" : {
-        "revision" : "5746b2d35c91c50581590ed97abe4c06b5037274",
-        "version" : "10.18.0"
-      }
-    },
-    {
       "identity" : "firebase-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "c60c958e707c50a9cf8bcb7cfd7d51c566d726c5",
-        "version" : "10.19.1"
+        "revision" : "8872dbd7d947acf757abab933da10e83c1842280",
+        "version" : "10.17.0"
       }
     },
     {
@@ -50,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleDataTransport.git",
       "state" : {
-        "revision" : "a732a4b47f59e4f725a2ea10f0c77e93a7131117",
-        "version" : "9.3.0"
+        "revision" : "aae45a320fd0d11811820335b1eabc8753902a40",
+        "version" : "9.2.5"
       }
     },
     {
@@ -77,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/gtm-session-fetcher.git",
       "state" : {
-        "revision" : "115f75e43851774934d695449a4836123c3246e1",
-        "version" : "3.2.0"
+        "revision" : "d415594121c9e8a4f9d79cecee0965cf35e74dbd",
+        "version" : "3.1.1"
       }
     },
     {
@@ -122,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "e836317e8238bd32f06086dd7ce6768ef574beb6",
-        "version" : "13.22.0"
+        "revision" : "f8604b9fd3d2982008a1d3f5ff35e52ee9098d5b",
+        "version" : "13.23.0"
       }
     },
     {
@@ -132,7 +124,7 @@
       "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
         "branch" : "master",
-        "revision" : "16273bd3968468e0c947dfe8577975c34d8d4360"
+        "revision" : "becc93324f6a6a5ccc7a2ea3f3f40f94fa57ce49"
       }
     },
     {
@@ -149,10 +141,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "65e8f29b2d63c4e38e736b25c27b83e012159be8",
-        "version" : "1.25.2"
+        "revision" : "07f7f26ded8df9645c072f220378879c4642e063",
+        "version" : "1.25.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
