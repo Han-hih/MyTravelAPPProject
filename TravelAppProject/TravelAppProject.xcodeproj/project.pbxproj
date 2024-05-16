@@ -14,6 +14,7 @@
 		800404712AD279FD00634CD4 /* CountryRawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800404702AD279FD00634CD4 /* CountryRawData.swift */; };
 		800FC5E32ADFB6E800F84AED /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FC5E22ADFB6E800F84AED /* PhotoTableViewCell.swift */; };
 		80159E2D2AD76FE300ACCBCA /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */; };
+		801D225F2BF6405400C24B70 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D225E2BF6405400C24B70 /* Plan.swift */; };
 		8020B0FD2AD7BE6500ECBB37 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */; };
 		8020B0FF2AD805C600ECBB37 /* PhotoDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */; };
 		8020B1012AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */; };
@@ -71,6 +72,7 @@
 		800404702AD279FD00634CD4 /* CountryRawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryRawData.swift; sourceTree = "<group>"; };
 		800FC5E22ADFB6E800F84AED /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		80159E2C2AD76FE300ACCBCA /* CustomFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
+		801D225E2BF6405400C24B70 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		8020B0FC2AD7BE6500ECBB37 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		8020B0FE2AD805C600ECBB37 /* PhotoDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDiaryViewController.swift; sourceTree = "<group>"; };
 		8020B1002AD8124500ECBB37 /* PhotoDiaryDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDiaryDrawViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +295,14 @@
 			path = SecondTabBarViews;
 			sourceTree = "<group>";
 		};
+		801D225D2BF6404100C24B70 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				801D225E2BF6405400C24B70 /* Plan.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8020B0FB2AD7BE4B00ECBB37 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +319,7 @@
 				8046D62A2BA5743700146135 /* .gitignore */,
 				808EADF82AC1B5F700ED57EF /* AppDelegate.swift */,
 				808EADFA2AC1B5F700ED57EF /* SceneDelegate.swift */,
+				801D225D2BF6404100C24B70 /* Model */,
 				80011AA12B3872B800A8B37D /* Protocols */,
 				80011A962B3868EE00A8B37D /* FirstTabBarViews */,
 				800404732AD29B4A00634CD4 /* SecondTabBarViews */,
@@ -528,6 +539,7 @@
 				8020B0FD2AD7BE6500ECBB37 /* FileManager+Extension.swift in Sources */,
 				8087419D2ACC2DF700F81574 /* PlanSearchViewController.swift in Sources */,
 				80FFBD102AC9BD5C00DD8FCC /* PlanMemoViewController.swift in Sources */,
+				801D225F2BF6405400C24B70 /* Plan.swift in Sources */,
 				8020B0FF2AD805C600ECBB37 /* PhotoDiaryViewController.swift in Sources */,
 				8046D62D2BA5754200146135 /* APIKey.swift in Sources */,
 				808EAE0D2AC1BFB300ED57EF /* PhotoViewController.swift in Sources */,

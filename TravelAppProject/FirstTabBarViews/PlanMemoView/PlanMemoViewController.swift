@@ -40,21 +40,6 @@ final class PlanMemoViewController: UIViewController, UIPopoverPresentationContr
         tableView.reloadData()
     }
     
-    struct Plan {
-        var objectId: ObjectId
-        var location: String
-        var memo: String?
-        var time: String?
-        
-        init(objectID: ObjectId, location: String, memo: String? = nil, time: String? = nil) {
-            self.objectId = objectID
-            self.location = location
-            self.memo = memo
-            self.time = time
-        }
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         list = realm.objects(TravelRealmModel.self)
